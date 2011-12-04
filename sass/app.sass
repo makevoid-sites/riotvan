@@ -6,14 +6,25 @@
 // this is your main css file, loaded after reset.sass feel free to delete everything and write your own styles
 
 !text_color2 = #FFF
+!main_c = #222
 
 +rounded
   border-radius: 10px
   -webkit-border-radius: 10px
   -moz-border-radius: 10px
 
+!side_margin = 4%
+
+@font-face
+  font-family: Lemon
+  src: url('/fonts/lemon.ttf')
+  
+@font-face
+  font-family: Chinese_Rocks
+  src: url('/fonts/chinese_rocks.ttf')
+
 body
-  background: #eaeaea
+  background: #fefefe
   font-family: Georgia, Helvetica, Arial, Verdana
   
 button
@@ -24,17 +35,44 @@ body
   
 #container
   margin: 20px auto
-  width: 92%
+
+#content
+  margin: 0 
+
+#content .page
+  margin: 20px !side_margin
+  
+
+h1 
+  span
+    font-family: Lemon, Arial
+    float: left
+    margin: 0 0 20px 10px
+  img  
+    float: left
+    width: 300px 
+    margin: 0 0 0 !side_margin
+
+.nav_cont
+  background: !main_c
+  text-align: center
   
 nav
-  margin: 8px 0 30px
+  text-align: left
+  padding: 5px 0 2px
+  margin: 5px !side_margin 0
+  font-size: 1.1em
   a
-    margin: 0 10px 0 0
+    font-size: 0.9em
     color: !text_color2
-    padding: 4px 10px
+    padding: 8px 3% 8px 0
     +rounded
+    display: inline-block
+    background: !main_c
+    font-family: Chinese_Rocks
   a:hover  
     color: #ddd
+    background: #555 // !main_c + #222 // +shift_color(!main_c)
     
 ul
   margin: 10px 0 20px
@@ -54,6 +92,7 @@ p
   padding: 2px 9px
   margin: 0 0 15px 0
   +rounded
+  background: !main_c
 
 ul span
   color: #333
@@ -71,3 +110,70 @@ ul span
   .blue
     background: #00F
   
+  
+
+a, h2, h3, span
+  color: !main_c
+
+
+
+  
+  
+
+.box, nav a
+  background: !main_c
+  
+#debug
+  position: absolute
+  top: 0 
+  right: 0
+  padding: 5px 10px
+  background: #fff
+  box-shadow: 3px, 3px, #999
+  font-size: 1em
+  
+#webgl
+ 
+#rvideos
+  width: 100%
+  -webkit-perspective: 700px
+  //  -webkit-transform-origin: 100% 50%
+  -webkit-transform-origin: 50% 50%
+  position: relative
+  background: #111
+
+!duration = 0.8s
+
+video  
+  // TODO: not working?
+  // border: 1px solid #AAA
+  // -webkit-box-shadow: 10px, 10px, 2px, #FFF
+  position: absolute
+  //-webkit-transform-style: preserve-3d
+  -webkit-transition-property: -webkit-transform
+  -webkit-transition-duration: !duration
+  -webkit-transition-timing-function: ease-in-out
+  -webkit-backface-visibility: hidden
+  // waiting for firefox 10
+  //-moz-transform-style: preserve-3d
+  //-moz-transition-property: -moz-transform
+  //-moz-transition-duration: !duration
+  //-moz-transition-timing-function: ease-in-out
+  //-moz-backface-visibility: hidden
+  background: #333
+  display: block
+  border: 1px solid #333
+  width: 75%
+  
+
+
+#img_gal  
+  position: relative
+  width: 60%
+  height: 300px
+  overflow: hidden
+  img 
+    position: absolute
+    width: 100%
+    -webkit-transition-property: opacity
+    

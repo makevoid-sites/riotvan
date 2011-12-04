@@ -1,27 +1,34 @@
 -# contents in #head and #body will be appended to head and body tags in index.html, same thing for #title
 %div
   #head
-    #title FiveTastic
+    #title RiotVan
     %link{ type: "text/sass", href: "/sass/reset.sass" }
     %link{ type: "text/sass", href: "/sass/app.sass" }
     %link{ type: "text/sass", href: "/sass/theme_red.sass", id: "theme" }
   #body
     #container
       %header
-        .themes
-          %p sass themes:
-          %button.red
-          %button.blue
-          
         %h1 
-          %a{ href: "/" } FiveTastic
-          
-        %nav
-          %a{ href: "/" } Home
-          %a{ href: "/page1" } Page 1
+          / %a{ href: "/" } RiotVan
+          / RV
+          %img{ src: "/images/logo.png" }
+        .clear
+        .nav_cont
+          %nav
+            / ricordarsi di aggiungere il sottomenu
+            %a{ href: "/" }           Home
+            %a{ href: "/chi_siamo" }  Chi siamo
+            %a{ href: "/foto" }       Foto
+            %a{ href: "/history" }    History
+            %a{ href: "/shop" }       Shop
+            %a{ href: "/video" }      Video
+            %a{ href: "/argomenti" }  Argomenti
+            
       .clear
-          
+      #debug
+      
       #content
+        #webgl
         != yield
   
       %footer
