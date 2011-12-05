@@ -5,36 +5,41 @@
     %link{ type: "text/sass", href: "/sass/reset.sass" }
     %link{ type: "text/sass", href: "/sass/app.sass" }
     %link{ type: "text/sass", href: "/sass/theme_red.sass", id: "theme" }
-    :css
+    %style
       @media (min-width: 800px) {
         body #container {
           font-size: 1.1em
         }
       }
-      
-      @media (min-width: 500px) {
-        .right {
+      @media (max-width: 500px) { 
+        body #container {
+          font-size: 0.9em
+        } .right { 
           display: none
-        }
+        } #container .page {
+          width: 92%;
+        } 
       }
   #body
     #container
       %header
-        %h1 
-          / %a{ href: "/" } RiotVan
-          / RV
-          %img{ src: "/images/logo.png" }
-        .clear
+        .outer
+          %h1 
+            / %a{ href: "/" } RiotVan
+            / RV
+            %img{ src: "/images/logo.png" }
+            .clear
         .nav_cont
-          %nav
-            / ricordarsi di aggiungere il sottomenu
-            %a{ href: "/" }           Home
-            %a{ href: "/chi_siamo" }  Chi siamo
-            %a{ href: "/foto" }       Foto
-            %a{ href: "/history" }    History
-            %a{ href: "/shop" }       Shop
-            %a{ href: "/video" }      Video
-            %a{ href: "/argomenti" }  Argomenti
+          .outer
+            %nav
+              / ricordarsi di aggiungere il sottomenu
+              %a{ href: "/" }           Home
+              %a{ href: "/chi_siamo" }  Chi siamo
+              %a{ href: "/foto" }       Foto
+              %a{ href: "/history" }    History
+              %a{ href: "/shop" }       Shop
+              %a{ href: "/video" }      Video
+              %a{ href: "/argomenti" }  Argomenti
             
       .clear
       #debug

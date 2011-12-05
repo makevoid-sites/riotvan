@@ -1,12 +1,23 @@
 .right
-  %div
-    [ultimo numero]
-  %div
-    musica]
-  %div
-    partner]
-  %div
-    [articoli simili]
+  .last_number
+    %h3 Ultimo Numero
+    %img{ src: "/images/numbers/10.png" }
+  .music
+    %h3 Musica
+    - playlist = "1237306"
+    - color = "ff7700"
+    - src = "http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Fplaylists%2F"+playlist+"}&amp;auto_play=false&amp;show_artwork=false&amp;color=ff7700"
+    %iframe{ src: src, scrolling: "no", frameborder: "no" }
+
+  .partners  
+    %h3 Partners
+    %a{ href: "http://nodump.it" }
+      %img{ src: "/images/partners/no_dump.png" }
+    %a{ href: "http://www.velvetgoldmine.eu" }      
+      %img{ src: "/images/partners/gold.png" }
+    %a{ href: "http://parkourfirenze.com" }
+      %img{ src: "/images/partners/parkhour.png" }
+    
 
 
 .page
@@ -23,7 +34,7 @@
       %h2 Riot Van #10 is out!
       %p E' fuori, a giro, nei posti più tosti. In città sembra che alcuni l'abbiano già avvistato! Il nuovo numero di RIOT VAN, il decimo per l'esattezza, si sta facendo già conoscere tra i più svegli. Anche i pigri però, se lo potranno permettere. Da ... 
       [fb like]
-      .clear
+      .clear_left
       
     %article    
       .imgbox
@@ -31,7 +42,7 @@
       %h2 Foto dal festival internazionale del film a Roma 2011!
       %p Tutta la diretta fotografica che Super-magazine ha realizzato al Festival Internazionale del film di Roma all'Auditorium parco della musica fino allo scorso 4 novembre.
       [fb like]
-      .clear
+      .clear_left
       
     %article  
       .imgbox
@@ -39,7 +50,7 @@
       %h2 Foto dal festival internazionale del film a Roma 2011!
       %p Tutta la diretta fotografica che Super-magazine ha realizzato al Festival Internazionale del film di Roma all'Auditorium parco della musica fino allo scorso 4 novembre.
       [fb like]
-      .clear
+      .clear_left
       
     %article  
       .imgbox
@@ -47,6 +58,6 @@
       %h2 Dee Dee &amp; Brandon of DUM DUM GIRLS &amp; CROCODILES
       %p Venerdì 25 novembre Dee Dee e Brandon Welchez rispettivamente leader di Dum Dum Girls e Crocodiles, si esibiranno dal vivo portandoci un'ondata di indie rock americano. A Dee Dee e Brandon Welchez dobbiamo anche due recenti pubblicazioni, la prima ... leggi tutto
       [fb like]
-      .clear
+      .clear_left
 
       
