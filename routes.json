@@ -1,5 +1,9 @@
 {
   "/":          "index",
-  "/page1":     "page1",
-  "/page2":     "page2"
+  "/chi_siamo": "chi_siamo",
+  "/foto":      "foto",
+  "/history":   "history",
+  "/shop":      "shop",
+  "/video":     "video",
+  "/argomenti": "argomenti"
 }
