@@ -6,7 +6,7 @@
 // this is your main css file, loaded after reset.sass feel free to delete everything and write your own styles
 
 !text_color2 = #FFF
-!main_c = #222
+!main_c = #111
 
 +rounded
   border-radius: 10px
@@ -49,6 +49,18 @@ body
   margin: 15px !side_margin
   width: !cont_width
 
+!full = 92% 
+//100% - !side_margin*2
+
+.page.full
+  width: !full
+
+a
+  color: #000
+  
+a:hover
+  text-shadow:  0px 0px 1px #888, 0px 0px 3px #F5C593
+
 h1 
   margin: 0 0 8px
   img  
@@ -59,6 +71,8 @@ h1
 .nav_cont
   background: !main_c
   text-align: center
+  
+
   
 nav
   text-align: left
@@ -76,6 +90,7 @@ nav
   a:hover  
     color: #ddd
     background: #555 // !main_c + #222 // +shift_color(!main_c)
+    text-shadow: 0 0 2px #000, 0 0 5px #EEE
     
 ul
   margin: 10px 0 20px
@@ -165,6 +180,8 @@ a, h2, h3, span
   img
     margin: 0 auto
     width: 70%
+  img:hover
+    opacity: 0.85
 
 .partners
   img
@@ -189,6 +206,25 @@ a, h2, h3, span
   iframe
     width: 100%
     height: 350px
+    
+.page .yt_video
+  width: 600px
+  height: 400px
+
+.numbers
+  img 
+    width: 142px
+    height: 200px
+
+.history
+  text-align: center
+
+.issuu embed, .issuu
+  width: 100%
+  height: 600px
+  max-width: 730px
+  margin: 0 auto
+
 
 // TODO: add media queries support to clientside-sass-js
 @media (min-width: 1000px)
