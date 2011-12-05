@@ -37,11 +37,12 @@ body
   margin: 20px auto
 
 #content
-  margin: 0 
+  margin: 0 auto
+  min-width: 320px
+  max-width: 1100px
 
 #content .page
   margin: 20px !side_margin
-  
 
 h1 
   span
@@ -61,7 +62,7 @@ nav
   text-align: left
   padding: 5px 0 2px
   margin: 5px !side_margin 0
-  font-size: 1.1em
+  font-size: 1.2em
   a
     font-size: 0.9em
     color: !text_color2
@@ -110,15 +111,25 @@ ul span
   .blue
     background: #00F
   
-  
-
 a, h2, h3, span
   color: !main_c
 
 
-
-  
-  
+.articles
+  margin: 30px 0 0 0 
+  article
+    clear: left
+    margin: 0 0 15px 0 
+  h2
+    font-size: 1.4em
+  .imgbox    
+    width: 200px
+    height: 150px
+    margin: 0 10px 2px 0
+    float: left
+    overflow: hidden
+  img
+    width: 100%
 
 .box, nav a
   background: !main_c
@@ -132,48 +143,27 @@ a, h2, h3, span
   box-shadow: 3px, 3px, #999
   font-size: 1em
   
-#webgl
- 
-#rvideos
-  width: 100%
-  -webkit-perspective: 700px
-  //  -webkit-transform-origin: 100% 50%
-  -webkit-transform-origin: 50% 50%
-  position: relative
-  background: #111
-
-!duration = 0.8s
-
-video  
-  // TODO: not working?
-  // border: 1px solid #AAA
-  // -webkit-box-shadow: 10px, 10px, 2px, #FFF
-  position: absolute
-  //-webkit-transform-style: preserve-3d
-  -webkit-transition-property: -webkit-transform
-  -webkit-transition-duration: !duration
-  -webkit-transition-timing-function: ease-in-out
-  -webkit-backface-visibility: hidden
-  // waiting for firefox 10
-  //-moz-transform-style: preserve-3d
-  //-moz-transition-property: -moz-transform
-  //-moz-transition-duration: !duration
-  //-moz-transition-timing-function: ease-in-out
-  //-moz-backface-visibility: hidden
-  background: #333
-  display: block
-  border: 1px solid #333
-  width: 75%
   
-
+.right
+  float: right
+  width: 33%
+  margin: 0 !side_margin 0 0
+  padding: 1%
+  background: #EEE
+  padding: 
 
 #img_gal  
   position: relative
   width: 60%
-  height: 300px
   overflow: hidden
   img 
     position: absolute
     width: 100%
     -webkit-transition-property: opacity
+
+
+// TODO: add media queries support to clientside-sass-js
+@media (min-width: 1000px)
+  body
+    font-size: 1.4em
     

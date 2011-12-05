@@ -5,6 +5,18 @@
     %link{ type: "text/sass", href: "/sass/reset.sass" }
     %link{ type: "text/sass", href: "/sass/app.sass" }
     %link{ type: "text/sass", href: "/sass/theme_red.sass", id: "theme" }
+    :css
+      @media (min-width: 800px) {
+        body #container {
+          font-size: 1.1em
+        }
+      }
+      
+      @media (min-width: 500px) {
+        .right {
+          display: none
+        }
+      }
   #body
     #container
       %header
