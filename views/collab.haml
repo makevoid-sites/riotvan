@@ -1,55 +1,13 @@
-.right
-  .last_number
-    / %h3 Ultimo Numero
-    %a{ href: "/read" }
-      %img{ src: "/images/numbers/10.png" }
-  .events
-    %h3 
-      %a{ href: "/events" } Ultimi Eventi
-    %div 
-      %span.date 22/02/2012
-      %a{ href: "/event" } Evento next2
-    %div
-      %span.date 15/01/2012
-      Next!!!
-    %div 
-      %span.date 14/01/2012
-      Ultimo evento bomba!
-  .music
-    %h3 Musica
-    - playlist = "1237306"
-    - color = "ff7700"
-    - src = "http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Fplaylists%2F"+playlist+"}&amp;auto_play=false&amp;show_artwork=false&amp;color=ff7700"
-    %iframe{ src: src, scrolling: "no", frameborder: "no" }
-
-  .partners  
-    %h3 Partners
-    %a{ href: "http://nodump.it" }
-      %img{ src: "/images/partners/no_dump.png" }
-    %a{ href: "http://www.velvetgoldmine.eu" }      
-      %img{ src: "/images/partners/gold.png" }
-    %a{ href: "http://parkourfirenze.com" }
-      %img{ src: "/images/partners/parkhour.png" }
-    %a{ href: "http://super-magazine.com" }
-      %img{ src: "/images/partners/super_magazine.png" }
-    
-
-
-.page.home
-  #img_gal
-    %img{ src: "/images/articles/1.png" }
-    %img{ src: "/images/articles/2.png" }
-    %img{ src: "/images/articles/3.png" }
-    %img{ src: "/images/articles/4.png" }
-    .caption
-
+.page.collabs
+  %h2 Collaboratori
+  
   %section.articles
     %article      
       .imgbox
         %a{ href: "/article" }
           %img{ src: "/images/articles/1.png" }
       %h3 
-        %a{ href: "/article" } Riot Van #10 is out!
+        %a{ href: "/article" } Mario Rossi
       %p E' fuori, a giro, nei posti più tosti. In città sembra che alcuni l'abbiano già avvistato! Il nuovo numero di RIOT VAN, il decimo per l'esattezza, si sta facendo già conoscere tra i più svegli. Anche i pigri però, se lo potranno permettere. Da ... 
       [fb like]
       [nome]
@@ -58,7 +16,7 @@
     %article    
       .imgbox
         %img{ src: "/images/articles/2.png" }
-      %h3 Foto dal festival internazionale del film a Roma 2011!
+      %h3 Iddahane
       %p Tutta la diretta fotografica che Super-magazine ha realizzato al Festival Internazionale del film di Roma all'Auditorium parco della musica fino allo scorso 4 novembre.
       [fb like]
       [nome]
@@ -67,7 +25,7 @@
     %article  
       .imgbox
         %img{ src: "/images/articles/3.png" }
-      %h3 Bam bam bam bam bam bam bam baaam!
+      %h3 Tullo Sai
       %p Tutta la diretta fotografica che Super-magazine ha realizzato al Festival Internazionale del film di Roma all'Auditorium parco della musica fino allo scorso 4 novembre.
       [fb like]
       [nome]
@@ -82,4 +40,4 @@
       [nome]
       .clear_left
 
-      
+  

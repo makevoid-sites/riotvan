@@ -6,5 +6,11 @@
   "/shop":      "shop",
   "/video":     "video",
   "/argomenti": "argomenti",
-  "/read":      "read"
+  "/article":   "article",
+  "/articles":  "articles",
+  "/collab":    "collab",
+  "/event":    "event",
+  "/read":      "read",
+  "/issues":      "issues",
+  "/events":    "events"
 }

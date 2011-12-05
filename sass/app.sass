@@ -1,3 +1,6 @@
+// TODO: cercare: 123klan
+
+
 // TODO: add variables into mixins on sass-js 
 +gradient(!start, !end)
   background-image: -webkit-linear-gradient(!start, !end)
@@ -15,9 +18,13 @@
 
 !side_margin = 4%
 !side_margin_half = 2%
+!cont_margin_top = 1%
 
 !cont_width = 60%
 !right_width = 28%
+
+!full = 92% 
+
 
 @font-face
   font-family: Lemon
@@ -49,8 +56,11 @@ body
 .page
   margin: 15px !side_margin
   width: !cont_width
+  
+.page.home
+  padding-top: !cont_margin_top
 
-!full = 92% 
+
 //100% - !side_margin*2
 
 .page.full
@@ -101,7 +111,7 @@ ul
    font-weight: bold
   
 h2
-  margin: 0 0 10px 0
+  margin: 20px 0 10px 0
   
 p
   margin: 3px 0 5px
@@ -132,15 +142,15 @@ ul span
   
 a, h2, h3, span
   color: !main_c
-
+  
+h3
+  font-size: 1.3em
 
 .articles
   margin: 30px 0 0 0 
   article
     clear: left
     margin: 0 0 15px 0 
-  h2
-    font-size: 1.4em
   .imgbox    
     width: 40%
     margin: 0 10px 2px 0
@@ -160,13 +170,12 @@ a, h2, h3, span
   box-shadow: 3px, 3px, #999
   font-size: 1em
 
-  
 
 .right
   float: right
   width: !right_width
   margin: 0 !side_margin 0 0
-  padding: 1%
+  padding: !cont_margin_top
   background: #EEE
   text-align: center
   div
@@ -179,7 +188,7 @@ a, h2, h3, span
 .last_number
   img
     margin: 0 auto
-    width: 70%
+    width: 94.5%
   img:hover
     opacity: 0.85
 
@@ -192,6 +201,14 @@ a, h2, h3, span
 #img_gal  
   position: relative
   overflow: hidden
+  .caption
+    position: absolute
+    color: #FFF
+    padding: 10px
+    background: #555
+    opacity: 0.8
+    width: 35.5%
+    font-size: 0.8em
   img 
     position: absolute
     width: 100%
@@ -227,6 +244,29 @@ a, h2, h3, span
   height: 600px
   max-width: 730px
   margin: 0 auto
+
+.page.article
+  width: !full
+  img.main
+    float: left
+    width: 40%
+    margin: 0 12px 0 0
+    
+  img.max
+    margin: 20px 0
+    width: 100%
+
+.page.articles_page, .page.collabs
+  width: !full
+  margin: 20px auto 0
+  .articles
+    margin: 10px 0 0 0
+    
+
+
+.page.events
+  span.date
+    font-size: 0.8em
 
 
 // TODO: add media queries support to clientside-sass-js

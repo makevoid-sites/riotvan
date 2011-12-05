@@ -60,12 +60,17 @@ render_md = ->
 restore_gal = ->
   $("#img_gal img").css "opacity", 0
   $("#img_gal img:first-child").css "opacity", 1
-  
-  
+
+
+
+titles = ["Riot Van #10 is out!", "Foto dal festival internazionale del film a Roma 2011!", "Bam bam bam bam bam bam bam baaam!", "Dee Dee &amp; Brandon of DUM DUM GIRLS &amp; CROCODILES"]
+
 cur_idx = 0
 
 gal_anim = ->
   time = 5000
+  # time = 1000
+  $(".caption").html titles[cur_idx]
   setTimeout ->
     images = _($("#img_gal img")).map (el) -> el
     cond = cur_idx >= images.length-1

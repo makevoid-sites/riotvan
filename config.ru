@@ -6,7 +6,7 @@ Bundler.require :default
 require "json" # load json gem?
 
 
-use Rack::Reloader, 0
+# use Rack::Reloader, 0
 # use Rack::Static, :urls => ["*"]
 
 PATHS = JSON.parse( File.read("#{PATH}/routes.json") ).keys
