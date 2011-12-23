@@ -90,8 +90,73 @@ gal_resize = ->
 
 
 
+  
+
+# 
+
 $(window).on "resize", ->
   gal_resize()
 
 
-console.log "app coffee loaded"
+
+
+######## 
+# fiveapi
+
+unless window.console || console.log
+  window.console = {}
+  console.log = ->
+
+puts = console.log
+  
+# models
+
+# mollections
+
+# collections
+
+# views
+
+hostz = "localhost:3000"
+# host = "fiveapi.com"
+
+hostz = "http://#{hostz}"
+local = "http://localhost:3001"
+
+# fiveapi requires jquery/zepto
+
+$.get "#{hostz}/fiveapi.js", (data) ->
+  eval data
+  configs = {
+    user: "makevoid",
+    project: { riotvan: 1 },
+    collections: { 
+      articoli: 1,
+      people: 2
+    }
+  }
+  window.fiveapi = new Fiveapi( configs )
+  fiveapi.activate()
+  
+  # default sort keys: published_at, id DESC
+  
+  # #TODO: debug code, remove in production
+  # $("#fiveapi_edit").trigger "click"
+  fiveapi.start_edit_mode()
+  setTimeout ->
+      $(".articles a").first().trigger "click"
+    , 200
+  
+  render_haml = (view_name, obj={}, callback) ->
+    # TODO: cache request
+    $.get "#{local}/views/#{view_name}.haml", (view) =>
+      html = haml.compileStringToJs(view) obj
+      callback html
+  
+  fiveapi.get_collection "articoli", (articles) ->
+    got_articoli articles
+  
+  got_articoli = (articles) ->
+    _(articles).each (article) ->
+      render_haml "article", article, (html) ->
+        $("#fiveapi_collection").append html

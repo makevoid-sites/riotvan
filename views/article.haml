@@ -1,6 +1,6 @@
 .page.article
-  %h2 Riot Van #10 is out!     
-  %img.main{ src: "/images/articles/1.png" }
+  %h2= title    
+  %img.main{ src: "/images/articles/"+id+".png" }
   %div
     E' fuori, a giro, nei posti più tosti. In città sembra che alcuni l’abbiano già avvistato! Il nuovo numero di RIOT VAN, il decimo per l'esattezza, si sta facendo già conoscere tra i più svegli. Anche i pigri però, se lo potranno permettere. 
 
@@ -8,8 +8,7 @@
   
     ECCO A VOI LA RIOT MAP: 
     
-    %img.max{ src: "/images/uploads/mappa_distribuzione.jpg" }
-    
+    -# %img.max{ src: "/images/uploads/mappa_distribuzione.jpg" }
     
     [fb like]
     [nome]
