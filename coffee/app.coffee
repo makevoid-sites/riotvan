@@ -117,11 +117,14 @@ puts = console.log
 
 # views
 
-hostz = "localhost:3000"
-# host = "fiveapi.com"
+hostz = "localhost:3000" # dev
+hostz = "fiveapi.com" # prod
+
+local = "localhost:3001" # dev
+local = "new.riotvan.net" # prod
 
 hostz = "http://#{hostz}"
-local = "http://localhost:3001"
+local = "http://#{local}"
 
 # fiveapi requires jquery/zepto
 
@@ -142,6 +145,11 @@ $.get "#{hostz}/fiveapi.js", (data) ->
   
   # #TODO: debug code, remove in production
   # $("#fiveapi_edit").trigger "click"
+  # fiveapi.start_edit_mode()
+  # setTimeout ->
+  #     $(".articles a").first().trigger "click"
+  #   , 200
+  
   fiveapi.start_edit_mode()
   setTimeout ->
       $(".articles a").first().trigger "click"
@@ -160,3 +168,5 @@ $.get "#{hostz}/fiveapi.js", (data) ->
     _(articles).each (article) ->
       render_haml "article", article, (html) ->
         $("#fiveapi_collection").append html
+ 
+ 
