@@ -103,6 +103,10 @@ $(window).on "resize", ->
 ######## 
 # fiveapi
 
+$(document).ajaxSend (event, xhr, settings) ->
+  settings.xhrFields = { withCredentials: true }
+
+
 unless window.console || console.log
   window.console = {}
   console.log = ->
@@ -117,11 +121,15 @@ puts = console.log
 
 # views
 
-hostz = "localhost:3000" # dev
-hostz = "fiveapi.com" # prod
+# prod
+hostz = "fiveapi.com"
+local = "new.riotvan.net" 
 
-local = "localhost:3001" # dev
-local = "new.riotvan.net" # prod
+# dev
+if location.hostname == "localhost"
+  hostz = "localhost:3000"
+  local = "localhost:3001" 
+
 
 hostz = "http://#{hostz}"
 local = "http://#{local}"
@@ -150,10 +158,10 @@ $.get "#{hostz}/fiveapi.js", (data) ->
   #     $(".articles a").first().trigger "click"
   #   , 200
   
-  fiveapi.start_edit_mode()
-  setTimeout ->
-      $(".articles a").first().trigger "click"
-    , 200
+  # fiveapi.start_edit_mode()
+  # setTimeout ->
+  #     $(".articles a").first().trigger "click"
+  #   , 200
   
   render_haml = (view_name, obj={}, callback) ->
     # TODO: cache request
