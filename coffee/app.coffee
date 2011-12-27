@@ -97,8 +97,18 @@ gal_resize = ->
 $(window).on "resize", ->
   gal_resize()
 
-
-
+$ ->
+  console.log "oh"
+  $(document).bind "change", (e) ->
+    e.preventDefault()
+    console.log e.target
+    if ($(e.target).attr("name") == "antani")
+      console.log $(e.target).val()
+  # $(document).bind "drop", (e) ->  
+  #   console.log e.target
+  #   if ($(e.target).attr("name") == "antani")
+  #     console.log "right1!!!"
+  #     e.preventDefault()
 
 ######## 
 # fiveapi
@@ -125,10 +135,12 @@ puts = console.log
 hostz = "fiveapi.com"
 local = "new.riotvan.net" 
 
+console.log hostz
+
 # dev
-if location.hostname == "localhost"
-  hostz = "localhost:3000"
-  local = "localhost:3001" 
+# if location.hostname == "localhost"
+#   hostz = "localhost:3000"
+#   local = "localhost:3001" 
 
 
 hostz = "http://#{hostz}"
