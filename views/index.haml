@@ -19,6 +19,7 @@
     %h3 Musica
     - playlist = "1237306"
     - color = "ff7700"
+    -# if connection_is_available
     - src = "http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Fplaylists%2F"+playlist+"}&amp;auto_play=false&amp;show_artwork=false&amp;color=ff7700"
     %iframe{ src: src, scrolling: "no", frameborder: "no" }
 

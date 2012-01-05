@@ -98,7 +98,6 @@ $(window).on "resize", ->
   gal_resize()
 
 $ ->
-  console.log "oh"
   $(document).bind "change", (e) ->
     e.preventDefault()
     console.log e.target
@@ -135,12 +134,13 @@ puts = console.log
 hostz = "fiveapi.com"
 local = "new.riotvan.net" 
 
-console.log hostz
+# console.log hostz
 
+# TODO:
 # dev
 # if location.hostname == "localhost"
-#   hostz = "localhost:3000"
-#   local = "localhost:3001" 
+hostz = "localhost:3000"
+local = "localhost:3001" 
 
 
 hostz = "http://#{hostz}"
@@ -155,11 +155,15 @@ $.get "#{hostz}/fiveapi.js", (data) ->
     project: { riotvan: 1 },
     collections: { 
       articoli: 1,
-      people: 2
+      eventi: 2,
+      chi_siamo: 3,
+      collaboratori: 4
     }
   }
   window.fiveapi = new Fiveapi( configs )
   fiveapi.activate()
+  
+  
   
   # default sort keys: published_at, id DESC
   
@@ -175,18 +179,39 @@ $.get "#{hostz}/fiveapi.js", (data) ->
   #     $(".articles a").first().trigger "click"
   #   , 200
   
+  $("body").on "page_loaded", ->
+    get_collection()
+
+  $("body").on "page_js_loaded", ->
+    get_collection()  
+  
+  get_collection = ->
+    coll_name = fiveapi.collection_from_page()
+    if coll_name
+      fiveapi.get_collection coll_name, (collection) ->
+        got_collection coll_name, collection
+  
+  
+  hamls = {}
+  
+  load_haml = (view_name, callback) ->
+    if hamls[view_name]
+      callback hamls[view_name]
+    else
+      $.get "#{local}/views/#{view_name}.haml", (data) =>
+        hamls[view_name] = data 
+        callback hamls[view_name]
+  
+  
   render_haml = (view_name, obj={}, callback) ->
     # TODO: cache request
-    $.get "#{local}/views/#{view_name}.haml", (view) =>
+    load_haml view_name, (view) =>
       html = haml.compileStringToJs(view) obj
       callback html
   
-  fiveapi.get_collection "articoli", (articles) ->
-    got_articoli articles
-  
-  got_articoli = (articles) ->
-    _(articles).each (article) ->
-      render_haml "article", article, (html) ->
+  got_collection = (name, collection) ->
+    _(collection).each (elem) ->
+      render_haml name, elem, (html) ->
         $("#fiveapi_collection").append html
  
  
