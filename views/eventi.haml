@@ -1,9 +1,10 @@
+- link = "/events/"+id
 .event
-
-  %h2 Evento next2
-
-  %span.date 22/02/2012
-  sadsadsadsads
-  ytfvuvjhb
-  konoiubo
-  knoino ih ouh oj
+  %h3
+    %a{ href: link }
+      %span.date 
+        = haml.format_date(published_at)
+        \-
+      = title
+ 
+  = text

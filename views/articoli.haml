@@ -1,5 +1,8 @@
+- link = "/articoli/"+id
+
 .article
-  %h2= title    
+  %h2
+    %a{ href: link }= title
   %img.main{ src: "/images/articles/"+id+".png" }
   .text
     = text

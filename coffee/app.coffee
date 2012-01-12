@@ -85,9 +85,10 @@ gal_anim = ->
 
 
 gal_resize = ->
-  height = $("#img_gal").width() / 4 * 2.5
-  $("#img_gal").height height
-
+  setTimeout ->
+    height = $("#img_gal").width() / 4 * 2.5
+    $("#img_gal").height height
+  , 10
 
 
   
@@ -108,6 +109,8 @@ $ ->
   #   if ($(e.target).attr("name") == "antani")
   #     console.log "right1!!!"
   #     e.preventDefault()
+
+
 
 ######## 
 # fiveapi
@@ -148,70 +151,76 @@ local = "http://#{local}"
 
 # fiveapi requires jquery/zepto
 
-$.get "#{hostz}/fiveapi.js", (data) ->
-  eval data
-  configs = {
-    user: "makevoid",
-    project: { riotvan: 1 },
-    collections: { 
-      articoli: 1,
-      eventi: 2,
-      chi_siamo: 3,
-      collaboratori: 4
-    }
-  }
-  window.fiveapi = new Fiveapi( configs )
-  fiveapi.activate()
-  
-  
-  
-  # default sort keys: published_at, id DESC
-  
-  # #TODO: debug code, remove in production
-  # $("#fiveapi_edit").trigger "click"
-  # fiveapi.start_edit_mode()
-  # setTimeout ->
-  #     $(".articles a").first().trigger "click"
-  #   , 200
-  
-  # fiveapi.start_edit_mode()
-  # setTimeout ->
-  #     $(".articles a").first().trigger "click"
-  #   , 200
-  
-  $("body").on "page_loaded", ->
-    get_collection()
+$("body").on "page_loaded", ->
 
-  $("body").on "page_js_loaded", ->
-    get_collection()  
+  $.get "#{hostz}/fiveapi.js", (data) ->
+    eval data
+    configs = {
+      user: "makevoid",
+      project: { riotvan: 1 },
+      collections: { 
+        articoli: 1,
+        eventi: 2,
+        chi_siamo: 3,
+        collaboratori: 4
+      }
+    }
+    window.fiveapi = new Fiveapi( configs )
+    fiveapi.activate()
   
-  get_collection = ->
-    coll_name = fiveapi.collection_from_page()
-    if coll_name
-      fiveapi.get_collection coll_name, (collection) ->
-        got_collection coll_name, collection
   
   
-  hamls = {}
+    # default sort keys: published_at, id DESC
   
-  load_haml = (view_name, callback) ->
-    if hamls[view_name]
+    # #TODO: debug code, remove in production
+    # $("#fiveapi_edit").trigger "click"
+    # fiveapi.start_edit_mode()
+    # setTimeout ->
+    #     $(".articles a").first().trigger "click"
+    #   , 200
+  
+    # fiveapi.start_edit_mode()
+    # setTimeout ->
+    #     $(".articles a").first().trigger "click"
+    #   , 200
+    setTimeout ->
+      get_collection()
+    , 100
+  
+    $("body").on "page_js_loaded", ->
+      get_collection()  
+  
+get_collection = ->
+  coll_name = fiveapi.collection_from_page()
+  if coll_name
+    fiveapi.get_collection coll_name, (collection) ->
+      got_collection coll_name, collection
+
+
+hamls = {}
+
+load_haml = (view_name, callback) ->
+  if hamls[view_name]
+    callback hamls[view_name]
+  else
+    $.get "#{local}/views/#{view_name}.haml", (data) =>
+      hamls[view_name] = data 
       callback hamls[view_name]
-    else
-      $.get "#{local}/views/#{view_name}.haml", (data) =>
-        hamls[view_name] = data 
-        callback hamls[view_name]
-  
-  
-  render_haml = (view_name, obj={}, callback) ->
-    # TODO: cache request
-    load_haml view_name, (view) =>
-      html = haml.compileStringToJs(view) obj
-      callback html
-  
-  got_collection = (name, collection) ->
-    _(collection).each (elem) ->
-      render_haml name, elem, (html) ->
-        $("#fiveapi_collection").append html
- 
- 
+
+render_haml = (view_name, obj={}, callback) ->
+  # TODO: cache request
+  load_haml view_name, (view) =>
+    html = haml.compileStringToJs(view) obj
+    callback html
+
+got_collection = (name, collection) ->
+  _(collection).each (elem) ->
+    render_haml name, elem, (html) ->
+      $("#fiveapi_collection").append html
+
+
+# helpers
+
+haml.format_date = (date) ->
+  date = new Date(date)
+  date.getDay() + "/" + date.getMonth() + "/" + date.getFullYear()
