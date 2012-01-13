@@ -9,6 +9,8 @@
   "/article":   "article",
   "/articles":  "articles",
   "/collab":    "collab",
+  "/events/*":    "event",
+  "/articoli/*":    "article",
   "/event":    "event",
   "/read":      "read",
   "/issues":      "issues",

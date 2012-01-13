@@ -61,8 +61,6 @@ restore_gal = ->
   $("#img_gal img").css "opacity", 0
   $("#img_gal img:first-child").css "opacity", 1
 
-
-
 titles = ["Riot Van #10 is out!", "Foto dal festival internazionale del film a Roma 2011!", "Bam bam bam bam bam bam bam baaam!", "Dee Dee &amp; Brandon of DUM DUM GIRLS &amp; CROCODILES"]
 
 cur_idx = 0
@@ -184,20 +182,32 @@ $("body").on "page_loaded", ->
     #     $(".articles a").first().trigger "click"
     #   , 200
     setTimeout ->
-      get_collection()
+      get_elements()
     , 100
   
     $("body").on "page_js_loaded", ->
-      get_collection()  
+      get_elements()  
   
+hamls = {}
+
+singularize = (word) ->
+  word.replace /s$/, ''
+
+get_elements = ->
+  get_article()  
+  get_collection()  
+
+get_article = ->
+  article_id = fiveapi.article_from_page()
+  if article_id
+    fiveapi.get_article article_id, (article) ->
+      got_article article_id, article
+
 get_collection = ->
   coll_name = fiveapi.collection_from_page()
   if coll_name
     fiveapi.get_collection coll_name, (collection) ->
       got_collection coll_name, collection
-
-
-hamls = {}
 
 load_haml = (view_name, callback) ->
   if hamls[view_name]
@@ -213,10 +223,15 @@ render_haml = (view_name, obj={}, callback) ->
     html = haml.compileStringToJs(view) obj
     callback html
 
-got_collection = (name, collection) ->
-  _(collection).each (elem) ->
-    render_haml name, elem, (html) ->
-      $("#fiveapi_collection").append html
+got_article = (id, article) ->
+  view = singularize article.collection_id
+  render_haml view, article, (html) ->
+    $(".fiveapi_element[data-type=article]").append html      
+      
+got_collection = (name, collection) ->                        
+  _(collection).each (elem) ->                                
+    render_haml name, elem, (html) ->                         
+      $(".fiveapi_element[data-type=collection]").append html 
 
 
 # helpers

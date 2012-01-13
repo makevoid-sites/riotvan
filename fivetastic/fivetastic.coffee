@@ -1,3 +1,5 @@
+localStorage = {} unless localStorage
+
 class FiveTastic
   constructor: ->
     @hamls = []
@@ -12,27 +14,32 @@ class FiveTastic
   start: (body) ->  
     @body = body if body
     
-    @hamls.push { name: "layout", loaded: false }
-    this.load_page "layout"
+    @hamls.push { name: "layout.haml", loaded: false }
     
     if this.index_path()
-      @hamls.push { name: "index", loaded: false }
-      this.load_page "index"
+      @hamls.push { name: "index.haml", loaded: false }
+      this.load_page { value: "layout.haml" }
+      this.load_page { value: "index.haml"  }
     else
       this.routes_get (routes) =>
         path = window.location.pathname
         page = this.page_from_path routes, path
-        @hamls.push { name: page, loaded: false }
+        page = this.detect_format page
+        @hamls.push { name: page.full_name, loaded: false }
+        this.load_page { value: "layout.haml" }
         this.load_page page
-    
 
     this.manage_state()
     this.theme_buttons()
     
   # rendering
   
-  render_js: (name, page) ->
-    html = this.haml page
+  render_js: (page, data) ->
+    html = if page.format == "haml" 
+      this.haml data
+    else
+      data
+
     $("#content").html html
     @body.trigger("page_js_loaded", [name])
     
@@ -40,10 +47,23 @@ class FiveTastic
   times: 0
   
   render: ->
-    page = this.haml @page
-    html = this.haml(@layout, {yield: page})
+    # debug 
+    # $("body").css "color", "#000"
+    
+    # console.log @page
+    page = if @page.format == "haml"
+      this.haml @page.html
+    else
+      @page.html
+    # TODO: insert other rendering format here (like markdown)
+    
+    html = this.haml @layout.html, {yield: page}
+    
+    major_ver = parseInt($.browser.version, 10)
     $("head").append $(html).find("#head").html()
-    $("title").html $(html).find("#head #title").text()
+    if !($.browser.msie && major_ver <= 8)
+      # console.log "not ie < 8"
+      $("title").html $(html).find("#head #title").text()
     
     @body = $("#rendered") if this.times > 0
     
@@ -103,11 +123,12 @@ class FiveTastic
     # catch error
     #       console.log error
   
-  assign: (name, html) ->
-    if name == "layout"
-      @layout = html
+  assign: (page, html) ->
+    page.html = html
+    if page.name == "layout"
+      @layout = page
     else
-      @page = html
+      @page = page
   
   # handlers
   
@@ -128,13 +149,19 @@ class FiveTastic
         
         try 
           self.routes_get (routes) ->
-            page = self.page_from_path routes, path
-            self.load_page_js page
-            self.push_state path
+            self.execute_click routes, path
         catch error
           console.log error
     
         evt.preventDefault()
+  
+  execute_click: (routes, path) ->
+    page = this.page_from_path routes, path
+    page = this.detect_format page
+    page.path = path
+    this.load_page_js page
+    this.push_state page
+  
   
   # events
   
@@ -145,11 +172,11 @@ class FiveTastic
     all_loaded = _.all(@sasses, (h) -> h.loaded == true)
     this.render_all_sass() if all_loaded
   
-  got_haml: (name, haml_string) ->
-    haml = _.detect(@hamls, (h) -> h.name == name )
+  got_haml: (page, haml_string) ->
+    haml = _.detect(@hamls, (h) -> h.name == page.full_name )
     haml.loaded = true
     all_loaded = _.all(@hamls, (h) -> h.loaded == true)
-    this.assign name, haml_string
+    this.assign page, haml_string
     this.render() if all_loaded
     haml_string
   
@@ -162,32 +189,66 @@ class FiveTastic
   # haml
     
   load_page_js: (page) ->
-    $.get "/#{@views_path}/#{page}.haml", (data) =>
+    $.get "/#{@views_path}/#{page.full_name}", (data) =>
+      @current_page = page
       this.render_js page, data
     
   load_page: (page, callback) ->
     # TODO: implement other markups like markdown and mustache/handlebars
-    this.load_haml page, callback
+    page = this.detect_format page
+    @current_page = page
+    this.load_view page, callback
     
-  load_haml: (name, callback) ->
-    path = "#{@views_path}/#{name}.haml"
-    stored = localStorage["#{name}.haml_content"]
+  
+  default_format: "haml"  
+  
+  detect_format: (page) ->
+    return page if page.full_name
+    value = page
+    value = page.value if page.value
+    if value.match /\./
+      split = value.split(/\./)
+      { name: split[0], format: split[1], full_name: value, args: page.args }
+    else
+      format = this.default_format
+      { name: value, format: format, full_name: "#{value}.#{format}", args: page.args }
+    
+  load_view: (page, callback) ->
+    path = "/#{@views_path}/#{page.full_name}"
+    stored = localStorage["#{page.full_name}_content"]
     if this.settings.load_from_storage && stored
-      haml = this.got_haml name, stored
+      haml = this.got_haml page, stored
       callback(haml) if callback
       haml      
     else
       $.get path, (data) =>
-        haml = this.got_haml name, data
+        haml = this.got_haml page, data
         callback(haml) if callback
         haml
   
   # routes
   
   page_from_path: (routes, path) ->
-    route = _.detect(_(routes).keys(), (route) -> route == path )
-    routes[route]
-  
+    this.route_matches routes, path
+    
+  route_matches: (routes, path) ->
+    route = null
+    for route, value of routes
+      if route.match /\*/
+        route_exp = route.replace(/\*/g, '(.+)').replace(/\//g, '\\/')
+        matches = path.match new RegExp(route_exp)
+        if matches
+          name = matches[0]
+          args = matches[1..-1]
+          route = { name: name, args: args, value: value }
+          break
+      else
+        if path == route
+          route = { name: path, args: [], value: value }
+          break
+        
+    route
+    
   index_path: ->
     path = window.location.pathname 
     path == "/" || path == "/index.html"
@@ -213,20 +274,21 @@ class FiveTastic
       
   # state
   
-  push_state: (url) ->
+  push_state: (page) ->
     # TODO: fix state object
-    page = url[1..-1]  
-    page = "index" if page == ""
-    state = {url: url, page: page}
+    # page = url[1..-1]  
+    # page = "index" if page == ""
+    # page = this.detect_format page
+    state = { page: page }
     if history.pushState
       title = page # TODO: set proper title, maybe just capitalize
       # console.log "push state: ", state
-      history.pushState(state, title, url)
+      history.pushState(state, title, page.path)
   
   manage_state: ->
     window.onpopstate = (event) =>
       state = event.state
-      if state && state.url
+      if state# && state.url
         # console.log "pop state: ", state
         this.load_page_js state.page
         
@@ -249,7 +311,7 @@ class FiveTastic
     
   dev_mode: ->
     @in_dev_mode = true
-    console.log "fivetastic is running in dev mode"
+    # console.log "fivetastic is running in dev mode"
     
     $("head").append "<script src='/fivetastic/vendor/codemirror.js'></script>"
     

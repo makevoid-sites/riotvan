@@ -1,48 +1,16 @@
-PATH = File.expand_path "../", __FILE__
+path = File.expand_path "../", __FILE__
 
-require 'bundler/setup'
-Bundler.require :default
+require "#{path}/fivetastic"
 
-require "json" # load json gem?
+# require 'rack/contrib'  
+# use Rack::StaticCache, :urls => [ '*' ], :root => 'public'
 
+# use Rack::Cache,
+#   :verbose     => true,
+#   :metastore   => 'file:tmp/cache/rack/meta',
+#   :entitystore => 'file:tmp/cache/rack/body'
 
-# use Rack::Reloader, 0
-# use Rack::Static, :urls => ["*"]
-
-PATHS = JSON.parse( File.read("#{PATH}/routes.json") ).keys
-
-MIME_TYPES = {
-  ".haml"     => "text/haml",
-  ".coffee"   => "text/x-coffeescript",
-  ".md"       => "text/markdown",
-}
-
-Rack::Mime::MIME_TYPES.merge! MIME_TYPES
-
-class Loadr
-  
-  def self.get_type(type)
-    Rack::Mime.mime_type ".#{type}"
-  end
-  
-  def self.load(file, type=:html)
-    Proc.new do |env|
-      path = env["REQUEST_PATH"]
-      path = "/index.html" if path == "/" || PATHS.include?(path)
-      file = "#{PATH}#{path}"
-      unless File.exists? file
-        [404, { "Content-Type" => get_type(type)}, ["File '#{path}' not found"]]
-      else
-        body = File.read file
-        cont_type = File.extname(file)[1..-1].to_sym
-        content_type = get_type cont_type 
-        [200, { "Content-Type" => content_type }, [body]] 
-      end
-    end
-  end
-end
-
-run Loadr.load "index"
+run Fivetastic
 
 # Rack::Handler::WEBrick.run(
 #   MyApp.new, 
