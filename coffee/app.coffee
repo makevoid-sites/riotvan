@@ -113,8 +113,8 @@ $ ->
 ######## 
 # fiveapi
 
-$(document).ajaxSend (event, xhr, settings) ->
-  settings.xhrFields = { withCredentials: true }
+# $(document).ajaxSend (event, xhr, settings) ->
+#   settings.xhrFields = { withCredentials: true }
 
 
 unless window.console || console.log
@@ -131,18 +131,17 @@ puts = console.log
 
 # views
 
-# prod
-hostz = "fiveapi.com"
-local = "new.riotvan.net" 
 
 # console.log hostz
 
-# TODO:
-# dev
-# if location.hostname == "localhost"
-hostz = "localhost:3000"
-local = "localhost:3001" 
-
+if location.hostname == "localhost"
+  # dev
+  hostz = "localhost:3000"
+  local = "localhost:3001" 
+else
+  # prod
+  hostz = "fiveapi.com"
+  local = "new.riotvan.net"
 
 hostz = "http://#{hostz}"
 local = "http://#{local}"
@@ -224,7 +223,7 @@ render_haml = (view_name, obj={}, callback) ->
     callback html
 
 got_article = (id, article) ->
-  view = singularize article.collection_id
+  view = "#{singularize article.collection}_article"
   render_haml view, article, (html) ->
     $(".fiveapi_element[data-type=article]").append html      
       
