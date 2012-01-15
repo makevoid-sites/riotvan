@@ -40,7 +40,12 @@ body
   
   font-family: arial, helvetica, sans-serif
   
-  
+
+strong
+  font-weight: bold
+em
+  font-style: italic
+
 button
   padding: 5px 10px
   
@@ -81,6 +86,8 @@ h1
     float: left
     width: 306px 
     margin: 0 0 0 !side_margin
+  img:hover
+    opacity: 0.85
 
 .nav_cont
   background: !main_c
@@ -259,12 +266,16 @@ h3
 .article  
   img.main
     float: left
-    width: 40%
     margin: 0 12px 0 0
+    width: 40%
   
   .article_infos
     text-align: left
     display: block
+
+.page.article
+  img.main
+    width: 55%
     
 .page.articles_page, .page.collabs, .page.event
   width: !full

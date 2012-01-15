@@ -1,15 +1,14 @@
-.page.article
-%h2= title    
+- link = "/articoli/"+id
+
+%h2
+  %a{ href: link }= title
 %img.main{ src: "/images/articles/"+id+".png" }
-%div
-  E' fuori, a giro, nei posti più tosti. In città sembra che alcuni l’abbiano già avvistato! Il nuovo numero di RIOT VAN, il decimo per l'esattezza, si sta facendo già conoscere tra i più svegli. Anche i pigri però, se lo potranno permettere. 
+.text
+  = text
 
-  Da questo numero infatti avremo ancora più punti raccolta dove poter accaparrarsi il cartaceo!
-
-  ECCO A VOI LA RIOT MAP: 
-  
-  -# %img.max{ src: "/images/uploads/mappa_distribuzione.jpg" }
-  
-  [fb like]
-  [nome]
+.article_infos
+  -# [fb like]
+  = published_by
+  il 
+  = created_at
 .clear_left

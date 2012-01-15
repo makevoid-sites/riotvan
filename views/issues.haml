@@ -1,7 +1,12 @@
 .page.full
   .numbers
-    %a{ href: "/article" }
+    %a{ href: "/issues/10" }
       %img{ src: "/images/numbers/10.png" }
+    - for num in [10..0]
+      = num
+    - _(["Option 1", "Option 2", "Option 3"]).each(function (option) {
+      %span= option      
+    
     %img{ src: "/images/numbers/9.png" }
     %img{ src: "/images/numbers/8.png" }
     %img{ src: "/images/numbers/7.png" }
