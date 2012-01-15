@@ -1,19 +1,5 @@
 .page.full
   .numbers
-    %a{ href: "/issues/10" }
-      %img{ src: "/images/numbers/10.png" }
-    - for num in [10..0]
-      = num
-    - _(["Option 1", "Option 2", "Option 3"]).each(function (option) {
-      %span= option      
-    
-    %img{ src: "/images/numbers/9.png" }
-    %img{ src: "/images/numbers/8.png" }
-    %img{ src: "/images/numbers/7.png" }
-    %img{ src: "/images/numbers/6.png" }
-    %img{ src: "/images/numbers/5.png" }
-    %img{ src: "/images/numbers/4.png" }
-    %img{ src: "/images/numbers/3.png" }
-    %img{ src: "/images/numbers/2.png" }
-    %img{ src: "/images/numbers/1.png" }
-    %img{ src: "/images/numbers/0.png" }
+    - _(_.range(0, 11).reverse()).each(function (num) {
+      %a{ href: "/issues/"+num }
+        %img{ src: "/images/numbers/"+num+".png" }

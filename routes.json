@@ -11,8 +11,8 @@
   "/collab":    "collab",
   "/events/*":    "event",
   "/articoli/*":    "article",
+  "/issues/*":    "read",
   "/event":    "event",
-  "/read":      "read",
   "/issues":      "issues",
   "/events":    "events"
 }

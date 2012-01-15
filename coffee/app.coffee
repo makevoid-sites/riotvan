@@ -31,7 +31,6 @@ $("body").on "sass_loadeds", ->
   
 resize_issuu = ->
   if $(".issuu").length > 0
-    console.log "isssa"
     top_margin = 20
     page_margin = 15
     height = $("header").height() + top_margin + page_margin*2
