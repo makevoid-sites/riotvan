@@ -1,6 +1,6 @@
 {
   "/":          "index",
-  "/chi_siamo": "chi_siamo",
+  "/chi_siamo": "chi_siamo_page",
   "/foto":      "foto",
   "/history":   "history",
   "/shop":      "shop",
@@ -8,7 +8,7 @@
   "/argomenti": "argomenti",
   "/article":   "article",
   "/articles":  "articles",
-  "/collab":    "collab",
+  "/collabs":    "collabs",
   "/events/*":    "event",
   "/articoli/*":    "article",
   "/issues/*":    "read",
