@@ -36,8 +36,6 @@
 
 body
   background: #fefefe
-  
-  
   font-family: arial, helvetica, sans-serif
   
 
@@ -52,6 +50,7 @@ button
 body
   color: #111
   +gradient(#FFF, #888)
+  background: -webkit-linear-gradient(left , #DDD 0%, #FFF 5%, #FFF 95%, #DDD 100%)
   
 #container
   margin: 20px auto
@@ -59,7 +58,7 @@ body
 #content, .outer
   margin: 0 auto
   min-width: 320px
-  max-width: 1100px
+  max-width: 1000px
 
 .page
   margin: 15px !side_margin
@@ -177,6 +176,7 @@ h3
   position: absolute
   top: 0 
   right: 0
+  display: none
   padding: 5px 10px
   background: #fff
   box-shadow: 3px, 3px, #999
@@ -245,8 +245,10 @@ h3
 
 .numbers
   img 
+    padding: 0 15px 0 0
     width: 142px
     height: 200px
+  
 
 .history
   text-align: center
