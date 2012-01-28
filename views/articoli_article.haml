@@ -4,11 +4,11 @@
   %a{ href: link }= title
 %img.main{ src: "/images/articles/"+id+".png" }
 .text
-  = text
+  != text
 
 .article_infos
   -# [fb like]
   = published_by
   il 
-  = created_at
+  = published_at
 .clear_left
