@@ -6,14 +6,9 @@ $("body").on "sass_loadeds", ->
   gal_anim()
   
   # megafix
-  render_md()
-  setTimeout ->
-    render_md()
-  , 200
   
   $("body").on "page_js_loaded", ->
     gal_resize()
-    render_md()
 
     resize_issuu()
     if $(".issuu").length > 0
@@ -44,17 +39,6 @@ resize_issuu = ->
 #     
 # # APIS: fb, lastfm, delicious, twitter
 # require_api "lastfm"
-
-render_md = ->
-  _($(".md")).each (elem) ->
-    el = $(elem)
-    unless el.data("rendered")
-      md = el.html()
-      htm = exports.toHTML md
-      # console.log md
-      # console.log htm
-      el.html htm
-      el.data "rendered", true
 
 restore_gal = ->
   $("#img_gal img").css "opacity", 0
@@ -188,6 +172,13 @@ $("body").on "page_loaded", ->
   
 hamls = {}
 
+write_images = (text) ->
+  text # TODO: snippet for handling images easily
+
+markup = (text) ->
+  txt = markdown.toHTML text
+  write_images txt
+  
 singularize = (word) ->
   word.replace /s$/, ''
 
@@ -217,6 +208,7 @@ load_haml = (view_name, callback) ->
 
 render_haml = (view_name, obj={}, callback) ->
   # TODO: cache request
+  obj.text = markup obj.text
   load_haml view_name, (view) =>
     html = haml.compileStringToJs(view) obj
     callback html
