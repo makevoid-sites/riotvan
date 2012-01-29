@@ -142,7 +142,8 @@ $("body").on "page_loaded", ->
         articoli: 1,
         eventi: 2,
         chi_siamo: 3,
-        collaboratori: 4
+        collaboratori: 4,
+        video: 5
       }
     }
     window.fiveapi = new Fiveapi( configs )
@@ -172,12 +173,21 @@ $("body").on "page_loaded", ->
   
 hamls = {}
 
-write_images = (text) ->
-  text # TODO: snippet for handling images easily
+write_images = (obj) =>
+  # obj.text = 
+  for image in obj.images
+    regex = new RegExp "\\[image_#{image.id}\\]"
+    obj.text = obj.text.replace regex, "![](#{hostz}#{image.url})"
+  obj
 
-markup = (text) ->
-  txt = markdown.toHTML text
-  write_images txt
+write_videos = (text) ->
+  # [youtube_2b_8yOZJn8A]
+  text.replace /\[youtube_(.+)\]/, "<iframe src='http://www.youtube.com/embed/$1' allowfullscreen></iframe>"
+  
+markup = (obj) ->  
+  obj = write_images obj
+  text = markdown.toHTML obj.text
+  write_videos text
   
 singularize = (word) ->
   word.replace /s$/, ''
@@ -208,7 +218,7 @@ load_haml = (view_name, callback) ->
 
 render_haml = (view_name, obj={}, callback) ->
   # TODO: cache request
-  obj.text = markup obj.text
+  obj.text = markup obj
   load_haml view_name, (view) =>
     html = haml.compileStringToJs(view) obj
     callback html
@@ -228,4 +238,13 @@ got_collection = (name, collection) ->
 
 haml.format_date = (date) ->
   date = new Date(date)
-  date.getDay() + "/" + date.getMonth() + "/" + date.getFullYear()
+  "#{date.getDate()}/#{date.getMonth()+1}/#{date.getFullYear()}"
+  
+haml.article_preview = (text) ->
+  max_length = 400
+  if text.length > max_length
+    txt = text.split(/\[image_\d+\]/)[1]
+    text = txt if txt
+    "#{text.substring(0, max_length)}..."
+  else
+    text

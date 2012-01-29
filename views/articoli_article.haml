@@ -2,7 +2,6 @@
 
 %h2
   %a{ href: link }= title
-%img.main{ src: "/images/articles/"+id+".png" }
 .text
   != text
 
@@ -10,5 +9,5 @@
   -# [fb like]
   = published_by
   il 
-  = published_at
+  = haml.format_date(published_at)
 .clear_left

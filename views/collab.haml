@@ -1,10 +1,4 @@
-%article      
-  .imgbox
-    %a{ href: "/article" }
-      %img{ src: "/images/articles/1.png" }
-  %h3 
-    %a{ href: "/article" } Mario Verdi
-  %p E' fuori, a giro, nei posti più tosti. In città sembra che alcuni l'abbiano già avvistato! Il nuovo numero di RIOT VAN, il decimo per l'esattezza, si sta facendo già conoscere tra i più svegli. Anche i pigri però, se lo potranno permettere. Da ... 
-  [fb like]
-  [nome]
-  .clear_left
+- id = fivetastic.current_page.args ? fivetastic.current_page.args[0] : ""
+
+.page.collabs
+  .fiveapi_element{ "data-type": "article", "data-id": id }

@@ -27,12 +27,12 @@
 
 
 @font-face
-  font-family: Lemon
-  src: url('/fonts/lemon.ttf')
-  
-@font-face
   font-family: Chinese_Rocks
   src: url('/fonts/chinese_rocks.ttf')
+  
+@font-face
+  font-family: Bebas_Neue
+  src: url('/fonts/bebas_neue.ttf')
 
 body
   background: #fefefe
@@ -107,11 +107,13 @@ nav
     +rounded
     display: inline-block
     background: !main_c
-    font-family: Chinese_Rocks
   a:hover  
     color: #ddd
     background: #555 // !main_c + #222 // +shift_color(!main_c)
     text-shadow: 0 0 2px #000, 0 0 5px #EEE
+    
+nav a, .right h3
+  font-family: Bebas_Neue    
     
 ul
   margin: 10px 0 20px
@@ -193,7 +195,6 @@ h3
   div
     margin: 0 0 20px 0
   h3
-    font-family: Chinese_Rocks
     margin: 0 0 5px
     font-size: 1.25em
   
@@ -266,7 +267,7 @@ h3
     width: 100%
     
 .article  
-  img.main
+  img:first-child, img.main
     float: left
     margin: 0 12px 0 0
     width: 40%
@@ -309,6 +310,11 @@ h3
 
 .event
   margin: 10px 0 0 0
+
+.videos
+  iframe
+    width: 100%
+    height: 400px
   
 .furgone
   float: right

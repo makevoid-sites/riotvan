@@ -1,6 +1,6 @@
 var settings = {
-  max_width: 600,
-  max_height: 200
+  max_width: 900,
+  max_height: 400
 }
 
 
