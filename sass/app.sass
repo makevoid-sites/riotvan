@@ -51,6 +51,7 @@ body
   color: #111
   +gradient(#FFF, #888)
   background: -webkit-linear-gradient(left , #DDD 0%, #FFF 5%, #FFF 95%, #DDD 100%)
+  // background: -webkit-linear-gradient(left , #FFF 0%, #FFF 3%, #888 5%, #FFF 5.1%, #FFF 94.9%, #888 95%,  #FFF 93%, #FFF 100%)
   
 #container
   margin: 20px auto
@@ -222,6 +223,7 @@ h3
     opacity: 0.8
     width: 35.5%
     font-size: 0.8em
+    z-index: 4
   img 
     position: absolute
     width: 100%
@@ -275,6 +277,22 @@ h3
   .article_infos
     text-align: left
     display: block
+    
+.article_infos
+  .by
+    display: inline
+    font-weight: bold
+    font-size: 1.1em
+    
+.articles, .article
+  .published_at
+    float: right
+    font-size: 0.9em
+    font-style: italic
+
+.articles .by
+  font-weight: normal
+  font-style: italic
 
 .page.article
   img.main
@@ -320,6 +338,14 @@ h3
   float: right
   margin: 30px !side_margin 20px 0
   width: 30%
+
+.member 
+  clear: left
+  padding: 5px 0 0 0
+  img
+    width: 45%
+    float: left 
+
 
 // TODO: add media queries support to clientside-sass-js
 @media (min-width: 1000px)

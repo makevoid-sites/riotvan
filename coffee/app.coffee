@@ -3,11 +3,12 @@ $("body").on "sass_loadeds", ->
   # g.fivetastic.dev_mode() # comment this in production
   $("body").off "page_loaded"
   gal_resize()
-  gal_anim()
   
   # megafix
   
   $("body").on "page_js_loaded", ->
+    $("#content").css({ opacity: 0 })
+    $("#content").animate({ opacity: 1 }, 1000)
     gal_resize()
 
     resize_issuu()
@@ -44,18 +45,31 @@ restore_gal = ->
   $("#img_gal img").css "opacity", 0
   $("#img_gal img:first-child").css "opacity", 1
 
-titles = ["Riot Van #10 is out!", "Foto dal festival internazionale del film a Roma 2011!", "Bam bam bam bam bam bam bam baaam!", "Dee Dee &amp; Brandon of DUM DUM GIRLS &amp; CROCODILES"]
-
 cur_idx = 0
 
+titles = []
 gal_anim = ->
   time = 5000
   # time = 1000
-  $(".caption").html titles[cur_idx]
-  setTimeout ->
+  if $("#img_gal img").length < 1
+    console.log @collection 
+    images = for article in @collection 
+      img = article.images[0]
+      img.title = article.title if img
+      img
+    images = _(images).compact()  
+    for image in images  
+      titles.push image.title
+      $("#img_gal").append("<img src='#{hostz}#{image.url}'>")
+      $("#img_gal img").css({opacity: 0})
+      $("#img_gal img:first").css({opacity: 1})
+    $(".caption").html titles[cur_idx]
+    
+  setTimeout =>
     images = _($("#img_gal img")).map (el) -> el
     cond = cur_idx >= images.length-1
     next_idx = if cond then 0 else cur_idx+1
+    $(".caption").html titles[next_idx]
     $(images[cur_idx]).css "opacity", 0
     $(images[next_idx]).css "opacity", 1
     # console.log "hiding #{cur_idx}, showing #{next_idx}"
@@ -71,25 +85,8 @@ gal_resize = ->
     $("#img_gal").height height
   , 10
 
-
-  
-
-# 
-
 $(window).on "resize", ->
   gal_resize()
-
-$ ->
-  $(document).bind "change", (e) ->
-    e.preventDefault()
-    console.log e.target
-    if ($(e.target).attr("name") == "antani")
-      console.log $(e.target).val()
-  # $(document).bind "drop", (e) ->  
-  #   console.log e.target
-  #   if ($(e.target).attr("name") == "antani")
-  #     console.log "right1!!!"
-  #     e.preventDefault()
 
 
 
@@ -148,9 +145,7 @@ $("body").on "page_loaded", ->
     }
     window.fiveapi = new Fiveapi( configs )
     fiveapi.activate()
-  
-  
-  
+    
     # default sort keys: published_at, id DESC
   
     # #TODO: debug code, remove in production
@@ -164,6 +159,11 @@ $("body").on "page_loaded", ->
     # setTimeout ->
     #     $(".articles a").first().trigger "click"
     #   , 200
+      
+    $("body").on "got_collection", ->
+      gal_anim()
+      $("body").off "got_collection"
+
     setTimeout ->
       get_elements()
     , 100
@@ -228,7 +228,9 @@ got_article = (id, article) ->
   render_haml view, article, (html) ->
     $(".fiveapi_element[data-type=article]").append html      
       
-got_collection = (name, collection) ->                        
+got_collection = (name, collection) -> 
+  @collection = collection
+  $("body").trigger "got_collection"
   _(collection).each (elem) ->                                
     render_haml name, elem, (html) ->                         
       $(".fiveapi_element[data-type=collection]").append html 
