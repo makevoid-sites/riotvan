@@ -12,9 +12,9 @@ old: http://old.riotvan.net
 
 ### todo
 
-
-- photogallery
+- risolvere problema delle ', spariscono gli articoli in fiveapi
 - paginazione coll/sections
+
 - link dall'immagine nella coll/section all'articolo
 - refactoring event.haml
 - rinominare collections in sections (asd)
@@ -68,7 +68,13 @@ lista:
 
     - questa
     - e' una
-    - lista!      
+    - lista!   
+
+link:
+
+<http://new.riotvan.net>  
+
+    <http://new.riotvan.net>    
 
 
 guida completa:
