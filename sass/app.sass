@@ -19,6 +19,7 @@
 !side_margin = 4%
 !side_margin_half = 2%
 !cont_margin_top = 1%
+!max_width = 1000px
 
 !cont_width = 60%
 !right_width = 28%
@@ -56,10 +57,7 @@ body
 #container
   margin: 20px auto
 
-#content, .outer
-  margin: 0 auto
-  min-width: 320px
-  max-width: 1000px
+
 
 .page
   margin: 15px !side_margin
@@ -84,18 +82,34 @@ h1
   margin: 0 0 8px
   img  
     float: left
-    width: 306px 
+    width: 230px 
     margin: 0 0 0 !side_margin
   img:hover
     opacity: 0.85
 
+.nav_box
+  margin: 0px auto
+  max-width: !max_width
+  min-width: 320px
+
 .nav_cont
   background: !main_c
   text-align: center
+  margin: 0 auto
+  width: 92%
+  // margin: 0px 35% 0px 4%
+  // width: 61%
+  max-width: !max_width
+  span
+   color: #fff
   
+#content, .outer
+  margin: 0 auto
+  min-width: 320px
+  max-width: !max_width
 
   
-nav
+nav 
   text-align: left
   padding: 5px 0 2px
   // !side_margin / 2
@@ -107,7 +121,6 @@ nav
     padding: 8px 2% 8px 2%
     +rounded
     display: inline-block
-    background: !main_c
   a:hover  
     color: #ddd
     background: #555 // !main_c + #222 // +shift_color(!main_c)
@@ -172,7 +185,7 @@ h3
   img
     width: 100%
 
-.box, nav a
+.box
   background: !main_c
   
 #debug
@@ -314,7 +327,7 @@ h3
   text-align: left
   font-size: 0.9em
   
-.chi_siamo .who_left  
+.chi_siamo .who_left 
   width: 40%
   margin: 0 0 0 2%
   float: left
