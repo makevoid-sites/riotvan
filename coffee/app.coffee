@@ -7,6 +7,7 @@ $("body").on "sass_loadeds", ->
   # megafix
   
   $("body").on "page_js_loaded", ->
+    gal_build()
     $("#content").css({ opacity: 0 })
     $("#content").animate({ opacity: 1 }, 1000)
     gal_resize()
@@ -48,22 +49,24 @@ restore_gal = ->
 cur_idx = 0
 
 titles = []
+
+gal_build = ->
+  images = for article in @collection 
+    img = article.images[0]
+    img.title = article.title if img
+    img
+  images = _(images).compact()  
+  for image in images  
+    titles.push image.title
+    $("#img_gal").append("<img src='#{hostz}#{image.url}'>")
+    $("#img_gal img").css({opacity: 0})
+    $("#img_gal img:first").css({opacity: 1})
+  $(".caption").html titles[cur_idx]
+
 gal_anim = ->
   time = 5000
   # time = 1000
-  if $("#img_gal img").length < 1
-    console.log @collection 
-    images = for article in @collection 
-      img = article.images[0]
-      img.title = article.title if img
-      img
-    images = _(images).compact()  
-    for image in images  
-      titles.push image.title
-      $("#img_gal").append("<img src='#{hostz}#{image.url}'>")
-      $("#img_gal img").css({opacity: 0})
-      $("#img_gal img:first").css({opacity: 1})
-    $(".caption").html titles[cur_idx]
+  gal_build() if $("#img_gal img").length < 1
     
   setTimeout =>
     images = _($("#img_gal img")).map (el) -> el

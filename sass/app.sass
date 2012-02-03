@@ -177,7 +177,6 @@ h3
   article
     clear: left
     margin: 0 0 15px 0 
-    font-size: 0.8em
   .imgbox    
     width: 40%
     margin: 0 10px 2px 0
@@ -185,7 +184,7 @@ h3
   img
     width: 100%
 
-.box
+.box  
   background: !main_c
   
 #debug
@@ -297,11 +296,10 @@ h3
     font-weight: bold
     font-size: 1.1em
     
-.articles, .article
-  .published_at
-    float: right
-    font-size: 0.9em
-    font-style: italic
+.articles .published_at, .article .published_at
+  float: right
+  font-size: 0.9em
+  font-style: italic
 
 .articles .by
   font-weight: normal
@@ -314,6 +312,10 @@ h3
 .page.articles_page, .page.collabs, .page.event
   width: !full
   margin: 20px auto 0
+
+  
+.collabs .articles
+  float: left
     
 
 .right .events div
