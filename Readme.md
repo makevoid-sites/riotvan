@@ -3,6 +3,7 @@
 
 transitioning from WordPress to FiveTastic + FiveStorage based blog
 
+
 ### links:
 
 current: http://riotvan.net
@@ -102,3 +103,10 @@ osx: http://www.apple.com/downloads/dashboard/developer/imageshackle.html
 online: http://pixlr.com/editor/
 
 enjoy!
+
+
+### avviare il server sul portatile
+
+    cds riotvan; rackup1
+
+    cds fiveapi; rackup

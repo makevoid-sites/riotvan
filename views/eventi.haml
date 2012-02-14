@@ -2,9 +2,8 @@
 .event
   %h3
     %a{ href: link }
-      %span.date 
+      %div.date 
         = haml.format_date(published_at)
-        = "-"
       = title
  
   != text
