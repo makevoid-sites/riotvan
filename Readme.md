@@ -15,6 +15,7 @@ old: http://old.riotvan.net
 
 - risolvere problema delle ', spariscono gli articoli in fiveapi
 - paginazione coll/sections
+- anteprime http://img.youtube.com/vi/cHKP7lpnNS4/0.jpg
 
 - link dall'immagine nella coll/section all'articolo
 - refactoring event.haml
