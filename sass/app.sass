@@ -128,7 +128,6 @@ nav
     display: inline-block
   a:hover  
     color: #ddd
-    background: #555 // !main_c + #222 // +shift_color(!main_c)
     text-shadow: 0 0 2px #000, 0 0 5px #EEE
     
 nav a, .right h3
@@ -141,7 +140,7 @@ ul
    font-weight: bold
   
 h2, .page.videos h3, .page.collabs h3, .page.chi_siamo h3, .page.events h3, .page.home .articles h2 
-  margin: 20px 0 10px 0
+  margin: 0 0 10px 0
   font-family: chunkfive
   font-size: 1.4em
   padding: 3px 2%  
@@ -189,7 +188,6 @@ h3
   font-size: 1.3em
 
 .articles
-  margin: 20px 0 0 0 
   p
     text-align: justify
   article
@@ -285,9 +283,9 @@ h3
 
 .numbers
   img 
-    padding: 0 15px 0 0
-    width: 142px
-    height: 200px
+    margin: 0 0 13px 0
+    padding: 0 1.1% 0 0
+    width: 18.3%
   
 
 .history
@@ -365,10 +363,17 @@ h3
 
 .right .events div
   font-size: 0.8em
+  
+
+
 
 .page.events
   h3
     text-transform: uppercase
+    a
+      color: #FFF 
+	
+	 
   div.date
     font-size: 0.8em
     width: 74px
@@ -379,11 +384,11 @@ h3
   text-align: left
   font-size: 0.9em
   
-.chi_siamo .who_left 
+.chi_siamo .who_right 
   width: 40%
   margin: 0 0 0 2%
   float: left
-.chi_siamo .who_right
+.chi_siamo .who_left
   width: 55% 
   // -!side_margin
   float: left
@@ -418,7 +423,7 @@ h3
 
 .member 
   clear: left
-  padding: 5px 0 0 0
+  margin: 0 0 10px 0 
   img
     width: 45%
     float: left
