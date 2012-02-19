@@ -24,7 +24,7 @@ old: http://old.riotvan.net
 
 Come si inserisce un'articolo in RiotVan.net usando FiveAPI:
 
-- apri Chrome o Safari (su Firefox per ora non funziona l'edit)
+- apri Chrome o Firefox (su Safari per ora non funziona, ziocan!)
 - accedi a http://new.riotvan.net
 - clicca su "Login" (in alto a dx) e inserisci la pass
 - clicca su "Add new"
