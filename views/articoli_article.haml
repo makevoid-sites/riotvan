@@ -1,13 +1,15 @@
 - link = "/articoli/"+id
 
-.published_at
-  = haml.format_date(published_at)
+
 %h2
   %a{ href: link }= title
 .text
   != text
 
 .article_infos
-  -# [fb like]
-  .by= published_by
+  .by 
+    = published_by
+  .published_at
+    = haml.format_date(published_at)
+  
 .clear_left

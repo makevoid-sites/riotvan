@@ -9,7 +9,7 @@
 // this is your main css file, loaded after reset.sass feel free to delete everything and write your own styles
 
 !text_color2 = #FFF
-!main_c = #111
+!main_c = #000
 
 +rounded
   border-radius: 10px
@@ -32,8 +32,12 @@
   src: url('/fonts/chinese_rocks.ttf')
   
 @font-face
-  font-family: Bebas_Neue
+  font-family: bebas_neue
   src: url('/fonts/bebas_neue.ttf')
+  
+@font-face
+  font-family: chunkfive
+  src: url('/fonts/league_gothic.otf')
 
 body
   background: #fefefe
@@ -51,9 +55,8 @@ button
 body
   color: #111
   +gradient(#FFF, #888)
-  background: -webkit-linear-gradient(left , #DDD 0%, #FFF 5%, #FFF 95%, #DDD 100%)
-  // background: -webkit-linear-gradient(left , #FFF 0%, #FFF 3%, #888 5%, #FFF 5.1%, #FFF 94.9%, #888 95%,  #FFF 93%, #FFF 100%)
-  
+   background: -webkit-linear-gradient(left , #DDD 0%, #FFF 5%, #FFF 95%, #DDD 100%)
+  //background: -webkit-linear-gradient(left , white 0%, grey 2%, white 2.01%, white 98%, grey 98.01%, white 100%)
 #container
   margin: 20px auto
 
@@ -73,7 +76,7 @@ body
   width: !full
 
 a
-  color: #000
+  color: !main_c
   
 a:hover
   text-shadow:  0px 0px 1px #888, 0px 0px 3px #F5C593
@@ -97,11 +100,13 @@ h1
   text-align: center
   margin: 0 auto
   width: 92%
+  //border: 2px dashed #AAA
   // margin: 0px 35% 0px 4%
   // width: 61%
   max-width: !max_width
   span
    color: #fff
+  
   
 #content, .outer
   margin: 0 auto
@@ -114,20 +119,19 @@ nav
   padding: 5px 0 2px
   // !side_margin / 2
   margin: 5px !side_margin_half 0
-  font-size: 1.2em
+  font-size: 1.1em
   a
     font-size: 0.9em
     color: !text_color2
-    padding: 8px 2% 8px 2%
+    padding: 2px 2% 3px 2%
     +rounded
     display: inline-block
   a:hover  
     color: #ddd
-    background: #555 // !main_c + #222 // +shift_color(!main_c)
     text-shadow: 0 0 2px #000, 0 0 5px #EEE
     
 nav a, .right h3
-  font-family: Bebas_Neue    
+  font-family: bebas_neue    
     
 ul
   margin: 10px 0 20px
@@ -135,9 +139,21 @@ ul
    margin: 3px 0 5px
    font-weight: bold
   
-h2
-  margin: 20px 0 10px 0
-  
+h2, .page.videos h3, .page.collabs h3, .page.chi_siamo h3, .page.events h3, .page.home .articles h2 
+  margin: 0 0 10px 0
+  font-family: chunkfive
+  font-size: 1.4em
+  padding: 3px 2%  
+  background: !main_c
+  color: white
+  padding: 0 2%
+  word-spacing: 2%
+  a
+    color: #FFF
+    
+.page.collabs h3 a
+  color: #FFF
+    
 p
   margin: 3px 0 5px
   
@@ -165,15 +181,15 @@ ul span
   .blue
     background: #00F
   
-a, h2, h3, span
+a, span
   color: !main_c
   
 h3
   font-size: 1.3em
 
 .articles
-  margin: 20px 0 0 0 
-  text-align: justify
+  p
+    text-align: justify
   article
     clear: left
     margin: 0 0 15px 0 
@@ -183,6 +199,12 @@ h3
     float: left
   img
     width: 100%
+    height: 180px
+  .img_cont img
+    overflow: hidden
+    height: 160px
+    margin: 0 0 10px 0
+    
 
 .box  
   background: !main_c
@@ -203,7 +225,7 @@ h3
   width: !right_width
   margin: 0 !side_margin 0 0
   padding: !cont_margin_top
-  background: #EEE
+  border-left: 2px dashed black
   text-align: center
   div
     margin: 0 0 20px 0
@@ -213,7 +235,7 @@ h3
   
 .last_number
   img
-    margin: 0 auto
+    margin: 0 auto 8px 0
     width: 94.5%
   img:hover
     opacity: 0.85
@@ -229,12 +251,13 @@ h3
   overflow: hidden
   .caption
     position: absolute
+    font-family: bebas_neue 
     color: #FFF
     padding: 10px
     background: #555
     opacity: 0.8
     width: 35.5%
-    font-size: 0.8em
+    font-size: 1.5em
     z-index: 4
   img 
     position: absolute
@@ -260,9 +283,9 @@ h3
 
 .numbers
   img 
-    padding: 0 15px 0 0
-    width: 142px
-    height: 200px
+    margin: 0 0 13px 0
+    padding: 0 1.1% 0 0
+    width: 18.3%
   
 
 .history
@@ -276,39 +299,59 @@ h3
 
 .page.article
   width: !full
+  text-align: justify 
   img.max
     margin: 20px 0
     width: 100%
     
-.article  
-  img:first-child, img.main
+.article
+  img
+    width: 40%
     float: left
     margin: 0 12px 0 0
+    
+.page.article
+  img:first-child 
+    margin: 0 2% 0 0
+    float: left
+  img
+    margin: 7px 0 0 2%
     width: 40%
-  
+    float: right
+    
   .article_infos
     text-align: left
     display: block
+  
+  img:nth-of-type(even)
+    float: right
     
 .article_infos
+  clear: left
+  margin: 30px 0 0 0
+  border-top: 2px dashed black
   .by
     display: inline
     font-weight: bold
     font-size: 1.1em
     
+    
 .articles .published_at, .article .published_at
   float: right
-  font-size: 0.9em
+  margin: 5px 0 0 0 
+  font-size: 0.8em
   font-style: italic
+  font-weight: bold
 
 .articles .by
-  font-weight: normal
+  font-weight: bold
   font-style: italic
-
-.page.article
-  img.main
-    width: 55%
-    
+  font-size: 0.8em
+  
+  
+.articles .text
+  font-size: 0.85em
+  
 .page.articles_page, .page.collabs, .page.event
   width: !full
   margin: 20px auto 0
@@ -320,20 +363,32 @@ h3
 
 .right .events div
   font-size: 0.8em
+  
+
+
 
 .page.events
-  span.date
+  h3
+    text-transform: uppercase
+    a
+      color: #FFF 
+	
+	 
+  div.date
     font-size: 0.8em
+    width: 74px
+    color: #FFF
+    display: inline-block
 
 .page.chi_siamo
   text-align: left
   font-size: 0.9em
   
-.chi_siamo .who_left 
+.chi_siamo .who_right 
   width: 40%
   margin: 0 0 0 2%
   float: left
-.chi_siamo .who_right
+.chi_siamo .who_left
   width: 55% 
   // -!side_margin
   float: left
@@ -348,20 +403,42 @@ h3
   iframe
     width: 100%
     height: 400px
-  
+
+.stripe
+  background: black
+  height: 30px
+  z-index: 1
+  position: relative
+  top: 50px
+  margin: 0 auto
+  width: 90%
+  max-width: 1000px
+   
 .furgone
-  float: right
-  margin: 30px !side_margin 20px 0
-  width: 20%
+  margin: 29px 0 10px 4%
+  z-index: 2
+  position: relative
+  float: left
+  width: 20% 
 
 .member 
   clear: left
-  padding: 5px 0 0 0
+  margin: 0 0 10px 0 
   img
     width: 45%
-    float: left 
-
-
+    float: left
+     
+#fiveapi
+  margin: 0 2.3% 0 0
+#container #fiveapi
+  box-shadow: none
+  border-radius: 0
+  border: 5px groove #AAA
+#container #fiveapi
+  #fiveapi_edit, #fiveapi_login 
+    a
+      color: #FFF
+  
 // TODO: add media queries support to clientside-sass-js
 @media (min-width: 1000px)
   body

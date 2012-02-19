@@ -5,9 +5,9 @@
     %a{ href: link }= title
   .text
     != haml.article_preview(text)
-  .published_at
-    = haml.format_date(published_at)
   .article_infos
-    -# [fb like]
-    .by= published_by
+    .by 
+      = published_by
+    .published_at
+      = haml.format_date(published_at)
   .clear_left

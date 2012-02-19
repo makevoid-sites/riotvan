@@ -246,7 +246,7 @@ haml.format_date = (date) ->
   "#{date.getDate()}/#{date.getMonth()+1}/#{date.getFullYear()}"
   
 haml.article_preview = (text) ->
-  max_length = 400
+  max_length = 550
   if text.length > max_length
     txt = text.split(/\[image_\d+\]/)[1]
     text = txt if txt
