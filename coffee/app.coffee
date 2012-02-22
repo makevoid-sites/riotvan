@@ -129,6 +129,8 @@ else
 hostz = "http://#{hostz}"
 local = "http://#{local}"
 
+articles_per_page = 5
+
 # fiveapi requires jquery/zepto
 
 $("body").on "page_loaded", ->
@@ -197,7 +199,24 @@ singularize = (word) ->
 
 get_elements = ->
   get_article()  
-  get_collection()  
+  filters = { limit: articles_per_page, offset: 0 }
+  get_collection(filters)  
+
+render_pagination = (pag) ->
+  total_pages = pag["entries_count"] / pag["limit"]
+  current_page = (pag["offset"]+1)*pag["limit"]
+  pages_view =  for i in [1..total_pages]
+    "<a>#{i}</a>"
+  pagination = "
+
+    #{pages_view.join(" ")}
+
+  "
+  $(".pagination[data-collection=#{pag["collection"]}]").html(pagination)
+  $(".pagination[data-collection=#{pag["collection"]}] a").on "click", ->
+    page = $(this).html()
+    limit = articles_per_page
+    get_collection { limit: limit, offset: limit*page }
 
 get_article = ->
   article_id = fiveapi.article_from_page()
@@ -205,11 +224,14 @@ get_article = ->
     fiveapi.get_article article_id, (article) ->
       got_article article_id, article
 
-get_collection = ->
+get_collection = (filters={}) ->
   coll_name = fiveapi.collection_from_page()
   if coll_name
-    fiveapi.get_collection coll_name, (collection) ->
-      got_collection coll_name, collection
+    fiveapi.get_collection coll_name, filters, (collection) ->
+      filters.entries_count = collection["count"]
+      filters.collection = coll_name
+      render_pagination(filters)
+      got_collection coll_name, collection["articles"]
 
 load_haml = (view_name, callback) ->
   if hamls[view_name]
@@ -229,15 +251,16 @@ render_haml = (view_name, obj={}, callback) ->
 got_article = (id, article) ->
   view = "#{singularize article.collection}_article"
   render_haml view, article, (html) ->
-    $(".fiveapi_element[data-type=article]").append html      
-      
-got_collection = (name, collection) -> 
-  @collection = collection
-  $("body").trigger "got_collection"
+    $(".fiveapi_element[data-type=article]").append html   
+
+got_collection = (name, collection) ->
+  collection_elem = $(".fiveapi_element[data-type=collection]")
+  collection_elem.html("")           
+  @collection = collection 
+  $("body").trigger "got_collection"            
   _(collection).each (elem) ->                                
     render_haml name, elem, (html) ->                         
-      $(".fiveapi_element[data-type=collection]").append html 
-
+      collection_elem.append html 
 
 # helpers
 
