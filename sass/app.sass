@@ -189,18 +189,23 @@ h3
   font-size: 1.3em
 
 .articles
+  .article
+    margin: 20px 0 0 0
   p
     text-align: justify
   article
     clear: left
     margin: 0 0 15px 0 
-  .imgbox    
-    width: 40%
-    margin: 0 10px 2px 0
-    float: left
   img
     width: 100%
-    height: 180px
+  .img_box  
+    margin: 0 10px 5px 0
+    width: 40%
+    height: 152px
+    overflow: hidden
+    float: left
+    img
+      width: 100%
   .img_cont img
     overflow: hidden
     height: 160px
@@ -335,7 +340,9 @@ h3
     display: inline
     font-weight: bold
     font-size: 1.1em
-    
+
+.articles .article_infos
+  margin: 10px 0 0 0
     
 .articles .published_at, .article .published_at
   float: right
@@ -413,15 +420,19 @@ h3
   top: 50px
   margin: 0 auto
   width: 90%
-  max-width: 1000px
+  max-width: !max_width
    
+footer
+  max-width: !max_width
+  margin: 0 auto
+  
 .furgone
-  margin: 29px 0 10px 4%
+  margin: 13px 0 10px 4%
   z-index: 2
   position: relative
   float: left
-  width: 20% 
-
+  width: 15% 
+  
 .member 
   clear: left
   margin: 0 0 10px 0 
@@ -439,6 +450,23 @@ h3
   #fiveapi_edit, #fiveapi_login 
     a
       color: #FFF
+
+.pagination_text
+  margin: 42px 2% 0 0
+  font-family: bebas_neue
+  font-size: 1.1em
+  float: left
+
+.pagination
+  margin: 40px 0 10px
+  float: left
+  font-family: bebas_neue
+  a
+    cursor: pointer
+    margin: 0 10px
+    padding: 6px 10px
+    border: 1px dashed 
+    font-size: 1.2em
   
 // TODO: add media queries support to clientside-sass-js
 @media (min-width: 1000px)
