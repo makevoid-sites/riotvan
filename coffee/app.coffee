@@ -219,9 +219,12 @@ singularize = (word) ->
 
 get_elements = ->
   get_article()  
-  if location.pathname == "/chi_siamo"
-    articles_per_page = 50
-  filters = { limit: articles_per_page, offset: 0 }
+  per_page = if location.pathname == "/chi_siamo" ||  location.pathname ==  "/collabs"
+    50
+  else
+    articles_per_page
+    
+  filters = { limit: per_page, offset: 0 }
   get_collection(filters)  
 
 render_pagination = (pag) ->  
