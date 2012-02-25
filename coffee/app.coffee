@@ -219,6 +219,8 @@ singularize = (word) ->
 
 get_elements = ->
   get_article()  
+  if location.pathname == "/chi_siamo"
+    articles_per_page = 50
   filters = { limit: articles_per_page, offset: 0 }
   get_collection(filters)  
 
