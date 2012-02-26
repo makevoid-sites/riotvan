@@ -61,7 +61,7 @@ cur_idx = 0
 titles = []
 
 gal_build = ->
-  return unless @collection[0]["collection"] == "articoli"
+  return unless @collection || @collection[0]["collection"] == "articoli"
   images = for article in @collection
     img = article.images[0]
     img.title = article.title if img
@@ -253,6 +253,8 @@ get_collection = (filters={}) ->
   coll_name = fiveapi.collection_from_page()
   if coll_name
     fiveapi.get_collection coll_name, filters, (collection) ->
+      if location.pathname == "/chi_siamo"
+        collection["articles"] = _(collection["articles"]).shuffle()
       filters.entries_count = collection["count"]
       filters.collection = coll_name
       render_pagination(filters)
@@ -290,6 +292,9 @@ got_collection = (name, collection) ->
 
 # helpers
 
+haml.location_article_id = (location) -> 
+  _(location.pathname.split("/")).reverse()[0].split("-")[0]
+
 haml.format_date = (date) ->
   date = new Date(date)
   "#{date.getDate()}/#{date.getMonth()+1}/#{date.getFullYear()}"
@@ -302,3 +307,10 @@ haml.article_preview = (text) ->
     "#{text.substring(0, max_length)}..."
   else
     text
+# 
+# position: relative;
+# top: -66px;
+# right: 35px;
+# border-radius: 43px;
+# width: 1px;
+# font-size: 0.1em;
