@@ -1,17 +1,30 @@
+`
+function init_fb() {
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/it_IT/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+}`
+
 g = window
 $("body").on "sass_loadeds", ->
   # g.fivetastic.dev_mode() # comment this in production
   $("body").off "page_loaded"
   gal_resize()
+  set_home_height()
+  init_fb()
   
   # megafix
   
   $("body").on "page_js_loaded", ->
+    init_fb()
     gal_build()
     $("#content").css({ opacity: 0 })
     $("#content").animate({ opacity: 1 }, 1000)
     gal_resize()
-
     resize_issuu()
     if $(".issuu").length > 0
       $(window).on "resize", ->
@@ -30,10 +43,9 @@ box_images = ->
   for article in $(".article")
     # TODO: when $(".article").loaded or markdown loaded, box image
     article = $(article)
-    # image = article.find("img")
-    # article.find("img").remove()
-    # article.append(image)
+    link = $("h2 a").attr("href")
     article.find("img").wrap("<div class='img_box'></div>")
+    article.find("img").wrap("<a href='#{link}'></a>")
       
 resize_issuu = ->
   if $(".issuu").length > 0
@@ -60,6 +72,10 @@ cur_idx = 0
 
 titles = []
 
+set_home_height = ->
+  height = $("#content").height()
+  $(".right").css { height: height }
+  
 gal_build = ->
   return unless @collection && @collection[0]["collection"] == "articoli"
   images = for article in @collection
@@ -187,7 +203,8 @@ $("body").on "page_loaded", ->
       setTimeout -> 
         box_images()
         gal_build()
-      , 200
+        set_home_height()
+      , 300
 
     setTimeout ->
       get_elements()
@@ -300,7 +317,7 @@ haml.format_date = (date) ->
   "#{date.getDate()}/#{date.getMonth()+1}/#{date.getFullYear()}"
   
 haml.article_preview = (text) ->
-  max_length = 550
+  max_length = 520
   if text.length > max_length
     txt = text.split(/\[image_\d+\]/)[1]
     text = txt if txt
