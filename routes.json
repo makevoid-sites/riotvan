@@ -11,11 +11,12 @@
   "/collabs":     "collabs",
   "/videos":      "videos",
   "/videos/*":    "video",
-  "/events/*":    "event",
   "/articoli/*":  "article",
   "/issues/*":    "read",
   "/collabs/*":   "collab",
   "/event":       "event",
   "/issues":      "issues",
-  "/events":      "events"
+  "/events":      "events",
+  "/events/*":    "event",
+  "*":            "index"
 }
