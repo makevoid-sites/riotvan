@@ -43,7 +43,7 @@ box_images = ->
   for article in $(".article")
     # TODO: when $(".article").loaded or markdown loaded, box image
     article = $(article)
-    link = $("h2 a").attr("href")
+    link = article.find("h2 a").attr("href")
     article.find("img").wrap("<div class='img_box'></div>")
     article.find("img").wrap("<a href='#{link}'></a>")
       
