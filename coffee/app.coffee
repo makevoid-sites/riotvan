@@ -1,13 +1,16 @@
 g = window
 
 fb_init = ->
-  if FB
+  if typeof(FB) == "object"
     FB.init
       appId: "333539793359620"
       channelUrl: "http://riotvan.net/channel.html"
       status: true
       cookie: true
       xfbml: true
+  else
+    window.fbAsyncInit ->
+      fb_init()
     
 g.fb_init = fb_init    
     
