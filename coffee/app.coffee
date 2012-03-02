@@ -1,26 +1,42 @@
-`
-function init_fb() {
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/it_IT/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-}`
-
 g = window
+
+fb_init = ->
+  if FB
+    FB.init
+      appId: "333539793359620"
+      channelUrl: "http://riotvan.net/channel.html"
+      status: true
+      cookie: true
+      xfbml: true
+    
+g.fb_init = fb_init    
+    
+fb_setup = ->
+  ((d) ->
+    js = undefined
+    id = "facebook-jssdk"
+    ref = d.getElementsByTagName("script")[0]
+    return  if d.getElementById(id)
+    js = d.createElement("script")
+    js.id = id
+    js.async = true
+    js.src = "//connect.facebook.net/en_US/all.js"
+    ref.parentNode.insertBefore js, ref
+  ) document
+
+
 $("body").on "sass_loadeds", ->
   # g.fivetastic.dev_mode() # comment this in production
   $("body").off "page_loaded"
   gal_resize()
   set_home_height()
-  init_fb()
+  fb_setup()
+  init_analytics()
   
   # megafix
   
   $("body").on "page_js_loaded", ->
-    init_fb()
+    track_page()
     gal_build()
     $("#content").css({ opacity: 0 })
     $("#content").animate({ opacity: 1 }, 1000)
@@ -38,7 +54,26 @@ $("body").on "sass_loadeds", ->
   if $(".issuu").length > 0
     $(window).on "resize", ->
       resize_issuu()
-      
+
+
+init_analytics = ->
+  _gaq = _gaq or []
+  _gaq.push [ "_setAccount", "UA-17134705-1" ]
+  _gaq.push [ "_trackPageview" ]
+  (->
+    ga = document.createElement("script")
+    ga.type = "text/javascript"
+    ga.async = true
+    ga.src = (if "https:" is document.location.protocol then "https://ssl" else "http://www") + ".google-analytics.com/ga.js"
+    s = document.getElementsByTagName("script")[0]
+    s.parentNode.insertBefore ga, s
+  )()
+  
+
+track_page = ->
+  page = location.pathname[1..-1]
+  _gaq.push("_trackEvent", "Pages", "visit", page)
+
 box_images = ->
   for article in $(".article")
     # TODO: when $(".article").loaded or markdown loaded, box image
@@ -158,6 +193,8 @@ else
 hostz = "http://#{hostz}"
 local = "http://#{local}"
 
+haml.host = local
+
 articles_per_page = 5
 
 # fiveapi requires jquery/zepto
@@ -205,7 +242,10 @@ $("body").on "page_loaded", ->
         gal_build()
         set_home_height()
       , 300
-
+      
+    $("body").on "got_article", ->
+      fb_init()
+      
     setTimeout ->
       get_elements()
     , 100
@@ -296,6 +336,7 @@ got_article = (id, article) ->
   view = "#{singularize article.collection}_article"
   render_haml view, article, (html) ->
     $(".fiveapi_element[data-type=article]").append html   
+    $("body").trigger "got_article"
 
 got_collection = (name, collection) ->
   collection_elem = $(".fiveapi_element[data-type=collection]")

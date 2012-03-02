@@ -17,6 +17,5 @@
   "/event":       "event",
   "/issues":      "issues",
   "/events":      "events",
-  "/events/*":    "event",
-  "*":            "index"
+  "/events/*":    "event"
 }
