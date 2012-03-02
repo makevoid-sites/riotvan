@@ -9,8 +9,9 @@ fb_init = ->
       cookie: true
       xfbml: true
   else
-    window.fbAsyncInit ->
+    setTimeout ->
       fb_init()
+    , 300
     
 g.fb_init = fb_init    
     
@@ -159,7 +160,6 @@ $(window).on "resize", ->
   gal_resize()
 
 
-
 ######## 
 # fiveapi
 
@@ -167,7 +167,7 @@ $(window).on "resize", ->
 #   settings.xhrFields = { withCredentials: true }
 
 
-unless window.console || console.log
+unless window.console && console.log
   window.console = {}
   console.log = ->
 
@@ -240,6 +240,7 @@ $("body").on "page_loaded", ->
       $("body").off "got_collection2"
       
     $("body").on "got_collection", ->
+      fb_init()
       setTimeout -> 
         box_images()
         gal_build()
