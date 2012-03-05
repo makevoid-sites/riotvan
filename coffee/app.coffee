@@ -35,7 +35,6 @@ $("body").on "sass_loadeds", ->
   gal_resize()
   set_home_height()
   fb_setup()
-  init_analytics()
   
   # megafix
   
@@ -58,21 +57,6 @@ $("body").on "sass_loadeds", ->
   if $(".issuu").length > 0
     $(window).on "resize", ->
       resize_issuu()
-
-
-init_analytics = ->
-  _gaq = _gaq or []
-  _gaq.push [ "_setAccount", "UA-17134705-1" ]
-  _gaq.push [ "_trackPageview" ]
-  (->
-    ga = document.createElement("script")
-    ga.type = "text/javascript"
-    ga.async = true
-    ga.src = (if "https:" is document.location.protocol then "https://ssl" else "http://www") + ".google-analytics.com/ga.js"
-    s = document.getElementsByTagName("script")[0]
-    s.parentNode.insertBefore ga, s
-  )()
-  
 
 track_page = ->
   page = location.pathname[1..-1]
@@ -121,6 +105,7 @@ gal_build = ->
     img = article.images[0]
     img.title = article.title if img
     img
+  console.log images
   images = _(images).compact()  
   $("#img_gal img").remove() 
   titles = []
