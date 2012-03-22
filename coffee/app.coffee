@@ -4,7 +4,7 @@ g = window
 
 lightbox = ->
   $(".lightbox").remove()
-  $("html").prepend("<div class='lightbox'></div>")
+  $("html").prepend("<div class='lightbox'></div><div class='clear'></div>")
   
   for time in [0, 200, 500, 1000, 2000, 6000]
     setTimeout ->
@@ -22,16 +22,7 @@ lightbox.show = (url) ->
   
   $(".lightbox img").on "load", ->
     $(".lightbox").css({ display: "block" })
-    page_height = $(window).height() - parseInt($(".lightbox img").css("marginTop"))*2
-    width = $(".lightbox img").width()
-    height = $(".lightbox img").height()
-    ratio = width / height
-  
-    height = Math.min page_height, height
-  
-    width = height * ratio
-    console.log width
-    
+    width = lightbox.image_width()
     $(".lightbox img").css({ width: width })
   
 lightbox.resize = ->
@@ -42,6 +33,14 @@ lightbox.resize = ->
 
 lightbox.close = ->
   $(".lightbox").hide()
+  
+lightbox.image_width = ->
+  page_height = $(window).height() - parseInt($(".lightbox img").css("marginTop"))*2
+  width = $(".lightbox img").width()
+  height = $(".lightbox img").height()
+  ratio = width / height
+  height = Math.min page_height, height
+  height * ratio
 
 # picasa
 
@@ -51,18 +50,16 @@ write_picasa_images = (text) ->
     for match in matches
       album_id = match.match(/\[picasa_(\d+)\]/)[1]
       picasa_init album_id
-    regex = new RegExp( "\\[picasa_"+album_id+"\\]" )
+    regex = new RegExp( "\\[picasa_("+album_id+")\\]" )
     text = text.replace regex, "<div class='picasa_gallery' data-album_id='$1'></div>"
   text
     
   
 picasa_init = (album_id) ->
-  url = "http://picasaweb.google.com/data/feed/api/user/redazioneriotvan@gmail.com/albumid/#{album_id}?alt=json&fields=entry(title,gphoto:numphotos,media:group(media:content,media:thumbnail))&callback=?"
+  url = "http://picasaweb.google.com/data/feed/api/user/redazioneriotvan@gmail.com/albumid/#{album_id}?alt=json&fields=entry(title,gphoto:numphotos,media:group(media:content,media:thumbnail))&imgmax=1280&callback=?"
   thumb_size = 1 # 1/2/3
   
-  
   $.getJSON url, (data) ->
-    console.log data
     photos = data.feed.entry
     gal = $(".picasa_gallery")
     
@@ -72,10 +69,9 @@ picasa_init = (album_id) ->
       url = group.media$content[0].url
       gal.append "<img src='#{thumb_url}' data-url='#{url}' />"
     
-     
-    url = "http://lh4.ggpht.com/-Cg8xAgpmZe4/T13-o6qTUFI/AAAAAAAAAkY/D4b1CFEIq5o/IMG_5881.JPG"
     lightbox()
-    lightbox.show(url)
+    # url = "http://lh4.ggpht.com/-Cg8xAgpmZe4/T13-o6qTUFI/AAAAAAAAAkY/D4b1CFEIq5o/IMG_5881.JPG"
+    #lightbox.show(url)
     
     $(".picasa_gallery img").on "click", ->
       url = $(this).data("url")
@@ -191,7 +187,7 @@ gal_build = ->
     img = article.images[0]
     img.title = article.title if img
     img
-  console.log images
+    
   images = _(images).compact()  
   $("#img_gal img").remove() 
   titles = []
@@ -344,7 +340,7 @@ write_videos = (text) ->
 markup = (obj) ->  
   obj = write_images obj
   text = markdown.toHTML obj.text
-  write_videos text
+  text = write_videos text
   write_picasa_images text
   
 singularize = (word) ->
@@ -434,6 +430,7 @@ haml.format_date = (date) ->
   "#{date.getDate()}/#{date.getMonth()+1}/#{date.getFullYear()}"
   
 haml.article_preview = (text) ->
+  text = text.replace(/\[picasa_(\d+)\]/, '')
   max_length = 520
   if text.length > max_length
     txt = text.split(/\[image_\d+\]/)[1]
