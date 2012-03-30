@@ -199,6 +199,17 @@ a, span
 h3
   font-size: 1.3em
 
+.events
+  .img_box  
+    margin: 0 10px 5px 0
+    width: 30%
+    height: 152px
+    overflow: hidden
+    float: left
+    img
+      width: 100%
+
+
 .articles
   .article
     margin: 20px 0 0 0
@@ -329,20 +340,19 @@ h3
     margin: 0 12px 0 0
     
 .page.article
-  img:first-child 
-    margin: 0 1.2% 0 0
+  p:first-child img:first-child 
+    margin: 0 1.2% 5px 0
     float: left
   img
-    margin: 7px 0 0 2%
-    width: 40%
+    margin: 10px 0 5px 1.2%
+    width: 35%
     float: right
     
   .article_infos
     text-align: left
     display: block
   
-  img:nth-of-type(even)
-    float: right
+  
     
 .article_infos
   clear: left
@@ -386,9 +396,6 @@ h3
 .right .events div
   font-size: 0.8em
   
-
-
-
 .page.events
   h3
     text-transform: uppercase
@@ -396,14 +403,14 @@ h3
       color: #FFF
   p
     text-align: justify
-     
-	
-	 
   div.date
     font-size: 0.8em
     width: 74px
     color: #FFF
     display: inline-block
+  .event img
+    float: left
+    margin: 0 1% 0 0
 
 .page.chi_siamo
   text-align: justify
@@ -429,6 +436,10 @@ h3
   border-bottom: 2px dashed black
   margin: 0 0 30px 0
   padding: 0 0 10px 0
+  img
+    float: left
+    width: 35%
+    margin: 0 1.5% 15px 0
 
 .videos
   iframe

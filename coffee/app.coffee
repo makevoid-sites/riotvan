@@ -145,10 +145,10 @@ track_page = ->
   _gaq.push("_trackEvent", "Pages", "visit", page)
 
 box_images = ->
-  for article in $(".article")
+  for article in $(".article, .event")
     # TODO: when $(".article").loaded or markdown loaded, box image
     article = $(article)
-    link = article.find("h2 a").attr("href")
+    link = article.find("h2 a").attr("href") || article.find("h3 a").attr("href")
     article.find("img").wrap("<div class='img_box'></div>")
     article.find("img").wrap("<a href='#{link}'></a>")
       
