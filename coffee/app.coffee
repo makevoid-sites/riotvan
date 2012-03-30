@@ -329,7 +329,7 @@ hamls = {}
 write_images = (obj) =>
   # obj.text = 
   for image in obj.images
-    regex = new RegExp "\\[image_#{image.id}\\]"
+    regex = new RegExp "\\[(image|file)_#{image.id}\\]"
     obj.text = obj.text.replace regex, "![](#{hostz}#{image.url})"
   obj
 
