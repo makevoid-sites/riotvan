@@ -433,7 +433,7 @@ haml.article_preview = (text) ->
   text = text.replace(/\[picasa_(\d+)\]/, '')
   max_length = 520
   if text.length > max_length
-    txt = text.split(/\[image_\d+\]/)[1]
+    txt = text.split(/\[(file|image)_\d+\]/)[1]
     text = txt if txt
     "#{text.substring(0, max_length)}..."
   else
