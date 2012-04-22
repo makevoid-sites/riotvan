@@ -8,12 +8,13 @@
 .clear
 
 .article_infos
-  .by 
+  .by
     = published_by
   .published_at
     = haml.format_date(published_at)
-    
+
 .fb
-  .fb-like{ "data-href": haml.host+link, "data-send": "true", "data-width": "300", "data-show-faces": "true", "data-action": "recommend", "data-font": "trebuchetms" }  
- 
+  = haml.host+link
+  .fb-like{ "data-href": haml.host+link, "data-send": "true", "data-width": "300", "data-show-faces": "true", "data-action": "recommend", "data-font": "trebuchetms" }
+
 .clear
