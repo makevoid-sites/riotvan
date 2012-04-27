@@ -234,7 +234,7 @@ h3
 .articles
   text-align: justify
 .article
-  text-align: left
+  text-align: justify
 
 .box  
   background: !main_c
@@ -531,16 +531,23 @@ footer
   float: right
   margin: 20px 0 0 
 
-.picasa_gallery
-  display: inline-block
-  img
-    margin: 0 2% 0 0 
+.picasa_gallery  
+  .imgbox
+    display: inline-block
+    height: 150px
+    overflow: hidden
+    border: 1px solid #DDD
+    padding: 1% 10px
+    margin: 1% 10px
+    border-radius: 3px
+    cursor: pointer
+    width: 21%
+    img
+      margin: 0 2% 0 0
+      width: 100%
 
-.picasa_gallery img 
-  cursor: pointer
   
-#content .picasa_gallery img
-  width: 144px
+  
 
 .lightbox
   position: absolute

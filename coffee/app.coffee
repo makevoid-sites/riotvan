@@ -23,7 +23,7 @@ lightbox.show = (url) ->
   $(".lightbox img").on "load", ->
     $(".lightbox").css({ display: "block" })
     width = lightbox.image_width()
-    $(".lightbox img").css({ width: width })
+    $(".lightbox img").css({ width: width }).css({ top: $(document).scrollTop() })
   
 lightbox.resize = ->
   height = $("html").height()
@@ -67,14 +67,14 @@ picasa_init = (album_id) ->
       group = photo.media$group
       thumb_url = group.media$thumbnail[thumb_size].url
       url = group.media$content[0].url
-      gal.append "<img src='#{thumb_url}' data-url='#{url}' />"
+      gal.append "<div class='imgbox'><img src='#{thumb_url}' data-url='#{url}' /></div>"
     
     lightbox()
     # url = "http://lh4.ggpht.com/-Cg8xAgpmZe4/T13-o6qTUFI/AAAAAAAAAkY/D4b1CFEIq5o/IMG_5881.JPG"
     #lightbox.show(url)
     
-    $(".picasa_gallery img").on "click", ->
-      url = $(this).data("url")
+    $(".picasa_gallery .imgbox").on "click", ->
+      url = $(this).find("img").data("url")
       lightbox()
       lightbox.show(url)
       
