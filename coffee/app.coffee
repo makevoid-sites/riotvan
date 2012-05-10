@@ -344,7 +344,7 @@ markup = (obj) ->
   write_picasa_images text
   
 singularize = (word) ->
-  word.replace /s$/, ''
+  word.replace /s$/, '' if word
 
 get_elements = ->
   get_article()  
@@ -405,10 +405,13 @@ render_haml = (view_name, obj={}, callback) ->
     callback html
 
 got_article = (id, article) ->
-  view = "#{singularize article.collection}_article"
-  render_haml view, article, (html) ->
-    $(".fiveapi_element[data-type=article]").append html   
-    $("body").trigger "got_article"
+  if article.collection
+    view = "#{singularize article.collection}_article"
+    render_haml view, article, (html) ->
+      $(".fiveapi_element[data-type=article]").append html   
+      $("body").trigger "got_article"
+  else
+    console.log "Error: #{article.error}"
 
 got_collection = (name, collection) ->
   collection_elem = $(".fiveapi_element[data-type=collection]")

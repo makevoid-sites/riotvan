@@ -1,4 +1,11 @@
+
+- link = "/videos/"+id+"-"+name_url
+
 .video
-  %h3= title
-  != text
-  
+  %h3
+    %a{ href: link }
+      = title
+
+  != haml.article_preview(text)
+
+  .clear
