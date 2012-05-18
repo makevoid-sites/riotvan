@@ -1,5 +1,12 @@
 g = window
 
+# srvstatus
+
+srvstatus = ->
+  $.get "http://riotvan.dyndns.org", (data) ->
+    if data == "OK"
+      $(".srvstatus").addClass "open"
+
 # lightbox
 
 lightbox = ->
@@ -270,6 +277,7 @@ articles_per_page = 5
 # fiveapi requires jquery/zepto
 
 $("body").on "page_loaded", ->
+  srvstatus()
 
   $.get "#{hostz}/fiveapi.js", (data) ->
     eval data
