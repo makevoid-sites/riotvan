@@ -11,7 +11,8 @@ old: http://old.riotvan.net
 
 ### todo
 
-- risolvere problema delle ', spariscono gli articoli in fiveapi
+- fivetastic 2
+
 - paginazione coll/sections
 - anteprime http://img.youtube.com/vi/cHKP7lpnNS4/0.jpg
 
@@ -24,21 +25,25 @@ old: http://old.riotvan.net
 
 Come si inserisce un'articolo in RiotVan.net usando FiveAPI:
 
-- apri Chrome o Firefox (su Safari per ora non funziona, ziocan!)
+- apri Chrome o Firefox (su Safari per ora non funziona.... lo so...)
 - accedi a http://riotvan.net
 - clicca su "Login" (in alto a dx) e inserisci la pass
 - clicca su "Add new"
-- inserisci il titolo
-- premi "Save" per salvare
-- clicca su images (ricordati di salvare prima!)
-- carica le immagini (importante: leggi sotto per maggiori info)
-- copiati/ricordati il codice per le immagini (es: [image_1])
-- inserisci il testo dell'articolo (l'editor usa la sintassi Markdown, leggi sotto per maggiori info)
-- prima del testo dell'articolo ci deve essere il codice dell'immagine che deve apparire nelle anteprime, gallery etc. (es: nel campo testo ci sara': "[image_1] Testo dell'articolo...." e non "Testo dell'articolo... [image_1] ..." ) 
+- inserisci il titolo 
 - inserisci la data di pubblicazione (formato: ANNO-MM-GG es: 2012-02-28)
 - inserisci il nome dell'autore
-- salva
-- ricarica la pagina e... hai inserito il tuo primo articolo! ^^
+- premi "Save" per salvare
+- clicca sul tuo articolo, dovrebbe essere il primo della lista, se non hai inserito data sara' in fondo
+ 
+
+per caricare immagini:
+
+- clicca su "Uploads" (ricordati di salvare prima!)
+- clicca sul tasto "Upload file" e scegli l'immagine dall'hd
+- copiati/ricordati il codice delle immagini (es: [file_123]) da inserire nel testo dell'articolo
+
+prima del testo dell'articolo ci deve essere il codice dell'immagine che deve apparire nelle anteprime, gallery etc. (es: nel campo testo ci sara': "[image_1] Testo dell'articolo...." e non "Testo dell'articolo... [image_1] ..." ) 
+
 
 
 ### Markdown:
