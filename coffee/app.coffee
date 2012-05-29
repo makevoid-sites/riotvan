@@ -345,15 +345,20 @@ write_videos = (text) ->
   # [youtube_2b_8yOZJn8A]
   text.replace /\[youtube_(.+)\]/, "<iframe src='http://www.youtube.com/embed/$1' allowfullscreen></iframe>"
   
-write_html = (text) ->
+write_openzoom = (text) ->
   console.log text
-  $("<div>").html("&lt;html&gt;")
-  text.replace /&lt;html&gt;.+&lt;\/html&gt;/m, 'ahuahuuah'
+  text.replace /\[openzoom_(.+)\]/m, '<object type="application/x-shockwave-flash" data="/openzoom/viewer.swf" width="100%" height="600px" name="viewer">
+      <param name="scale" value="noscale" />
+      <param name="bgcolor" value="#FFFFFF" />
+      <param name="allowfullscreen" value="true" />
+      <param name="allowscriptaccess" value="always" />
+      <param name="flashvars" value="source=/openzoom/$1.dzi" />
+  </object>'
   
 markup = (obj) ->  
   obj = write_images obj
   text = markdown.toHTML obj.text
-  text = write_html text
+  text = write_openzoom text
   text = write_videos text
   write_picasa_images text
   
