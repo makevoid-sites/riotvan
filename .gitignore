@@ -1,3 +1,5 @@
 .DS_Store
 .jhw-cache
 .bundle
+*.dzi
+openzoom/image_files

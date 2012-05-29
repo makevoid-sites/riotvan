@@ -345,9 +345,15 @@ write_videos = (text) ->
   # [youtube_2b_8yOZJn8A]
   text.replace /\[youtube_(.+)\]/, "<iframe src='http://www.youtube.com/embed/$1' allowfullscreen></iframe>"
   
+write_html = (text) ->
+  console.log text
+  $("<div>").html("&lt;html&gt;")
+  text.replace /&lt;html&gt;.+&lt;\/html&gt;/m, 'ahuahuuah'
+  
 markup = (obj) ->  
   obj = write_images obj
   text = markdown.toHTML obj.text
+  text = write_html text
   text = write_videos text
   write_picasa_images text
   

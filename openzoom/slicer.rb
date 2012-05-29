@@ -10,4 +10,4 @@ image_creator.image_quality = 1
 image_creator.copy_metadata = true
 
 # convert
-image_creator.create("fanwall.jpg", "image.dzi")
+image_creator.create("fanwall2.jpg", "image.dzi")
