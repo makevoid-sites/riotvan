@@ -346,7 +346,6 @@ write_videos = (text) ->
   text.replace /\[youtube_(.+)\]/, "<iframe src='http://www.youtube.com/embed/$1' allowfullscreen></iframe>"
   
 write_openzoom = (text) ->
-  console.log text
   text.replace /\[openzoom_(.+)\]/m, '<object type="application/x-shockwave-flash" data="/openzoom/viewer.swf" width="100%" height="600px" name="viewer">
       <param name="scale" value="noscale" />
       <param name="bgcolor" value="#FFFFFF" />
