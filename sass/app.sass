@@ -1,7 +1,7 @@
 // TODO: cercare: 123klan
 
 
-// TODO: add variables into mixins on sass-js 
+// TODO: add variables into mixins on sass-js
 +gradient(!start, !end)
   background-image: -webkit-linear-gradient(!start, !end)
   background: !start
@@ -24,17 +24,17 @@
 !cont_width = 62%
 !right_width = 28%
 
-!width_full = 92% 
+!width_full = 92%
 
 
 @font-face
   font-family: Chinese_Rocks
   src: url('/fonts/chinese_rocks.ttf')
-  
+
 @font-face
   font-family: bebas_neue
   src: url('/fonts/bebas_neue.ttf')
-  
+
 @font-face
   font-family: chunkfive
   src: url('/fonts/league_gothic.otf')
@@ -42,8 +42,8 @@
 body
   background: #fefefe
   font-family: arial, helvetica, sans-serif
-  
-* 
+
+*
   -moz-box-sizing: border-box
   -webkit-box-sizing: border-box
   box-sizing: border-box
@@ -55,7 +55,7 @@ em
 
 button
   padding: 5px 10px
-  
+
 body
   color: #111
   +gradient(#FFF, #888)
@@ -69,7 +69,7 @@ body
 .page
   margin: 15px !side_margin
   width: !cont_width
-  
+
 .page.home
   padding-top: !cont_margin_top
 
@@ -81,15 +81,15 @@ body
 
 a
   color: !main_c
-  
+
 a:hover
   text-shadow:  0px 0px 1px #888, 0px 0px 3px #F5C593
 
-h1 
+h1
   margin: 0 0 8px
-  img  
+  img
     float: left
-    width: 230px 
+    width: 230px
     margin: 0 0 0 !side_margin
   img:hover
     opacity: 0.85
@@ -110,15 +110,15 @@ h1
   max-width: !max_width
   span
    color: #fff
-  
-  
+
+
 #content, .outer
   margin: 0 auto
   min-width: 320px
   max-width: !max_width
 
-  
-nav 
+
+nav
   text-align: left
   padding: 5px 0 2px
   // !side_margin / 2
@@ -130,24 +130,24 @@ nav
     padding: 2px 2% 3px 2%
     +rounded
     display: inline-block
-  a:hover  
+  a:hover
     color: #ddd
     text-shadow: 0 0 2px #000, 0 0 5px #EEE
-    
+
 nav a, .right h3
-  font-family: bebas_neue    
-    
+  font-family: bebas_neue
+
 ul
   margin: 10px 0 20px
   li
    margin: 3px 0 5px
    font-weight: bold
-  
+
 h2, .page.videos h3, .page.collabs h3, .page.collab h3, .page.chi_siamo h3, .page.events h3, .page.event h2, .page.home .articles h2, .page.video h2
   margin: 0 0 10px 0
   font-family: chunkfive
   font-size: 1.4em
-  padding: 3px 2%  
+  padding: 3px 2% 
   background: !main_c
   color: #FFF
   padding: 0 2%
@@ -161,15 +161,15 @@ h2, .page.videos h3, .page.collabs h3, .page.collab h3, .page.chi_siamo h3, .pag
 .collabs article img
   width: 15%
   float: left
-  margin: 0 1% 0 0 
+  margin: 0 1% 0 0
 
 .collab article img
   width: 35%
-  
+
 p
   margin: 3px 0 10px
-  
-  
+
+
 .box
   color: !text_color2
   padding: 2px 9px
@@ -188,19 +188,19 @@ ul span
   background: #DDD
   padding: 8px
   +rounded
-  .red 
+  .red
     background: #F00
   .blue
     background: #00F
-  
+
 a, span
   color: !main_c
-  
+
 h3
   font-size: 1.3em
 
 .events
-  .img_box  
+  .img_box
     margin: 0 10px 5px 0
     width: 30%
     height: 152px
@@ -215,10 +215,10 @@ h3
     margin: 20px 0 0 0
   article
     clear: left
-    margin: 0 0 15px 0 
+    margin: 0 0 15px 0
   img
     width: 100%
-  .img_box  
+  .img_box
     margin: 0 10px 5px 0
     width: 40%
     height: 152px
@@ -236,12 +236,12 @@ h3
 .article
   text-align: justify
 
-.box  
+.box
   background: !main_c
-  
+
 #debug
   position: absolute
-  top: 0 
+  top: 0
   right: 0
   display: none
   padding: 5px 10px
@@ -262,7 +262,7 @@ h3
   h3
     margin: 0 0 5px
     font-size: 1.25em
-  
+
 .last_number
   img
     margin: 0 auto 8px 0
@@ -274,14 +274,14 @@ h3
   img
     width: 60%
     margin: 10px 0
-    
-    
-#img_gal  
+
+
+#img_gal
   position: relative
   overflow: hidden
   .caption
     position: absolute
-    font-family: bebas_neue 
+    font-family: bebas_neue
     color: #FFF
     padding: 10px
     background: #555
@@ -289,7 +289,7 @@ h3
     width: 35.5%
     font-size: 1.5em
     z-index: 4
-  img 
+  img
     position: absolute
     width: 100%
     -webkit-transition-property: opacity
@@ -306,17 +306,17 @@ h3
   iframe
     width: 100%
     height: 350px
-    
+
 .page .yt_video
   width: 100%
   height: 400px
 
 .numbers
-  img 
+  img
     margin: 0 0 13px 0
     padding: 0 1.1% 0 0
     width: 18.3%
-  
+
 
 .history
   text-align: center
@@ -332,28 +332,28 @@ h3
   img.max
     margin: 20px 0
     width: 100%
-    
+
 .article
   img
     width: 40%
     float: left
     margin: 0 12px 0 0
-    
+
 .page.article
-  p:first-child img:first-child 
+  p:first-child img:first-child
     margin: 0 1.2% 5px 0
     float: left
   img
     margin: 10px 0 5px 1.2%
     width: 35%
     float: right
-    
+
   .article_infos
     text-align: left
     display: block
-  
-  
-    
+
+
+
 .article_infos
   clear: left
   margin: 30px 0 0 0
@@ -365,10 +365,10 @@ h3
 
 .articles .article_infos
   margin: 10px 0 0 0
-    
+
 .articles .published_at, .article .published_at
   float: right
-  margin: 5px 0 0 0 
+  margin: 5px 0 0 0
   font-size: 0.8em
   font-style: italic
   font-weight: bold
@@ -377,29 +377,29 @@ h3
   font-weight: bold
   font-style: italic
   font-size: 0.8em
-  
-  
+
+
 .articles .text
   font-size: 0.85em
-  
+
 .page.articles_page, .page.collab, .page.collabs, .page.events, .page.event, .page.videos
   width: !width_full
   margin: 20px auto 0
 
-.page.article h2, .page.article h3, .page.collab h2, .page.collab h3, .page.event h2, .page.event h3 
+.page.article h2, .page.article h3, .page.collab h2, .page.collab h3, .page.event h2, .page.event h3
   font-size: 2em
-  
+
 .page.collab img
   float: left
   margin: 0 1.5% 10px 0
 
 .collabs .articles
   float: left
-    
+
 
 .right .events div
   font-size: 0.8em
-  
+
 .page.events
   h3
     text-transform: uppercase
@@ -417,7 +417,7 @@ h3
     margin: 0 1% 0 0
     width: 100%
 
-  
+
 
 .page.chi_siamo
   text-align: justify
@@ -426,12 +426,12 @@ h3
    margin: 0 0 30px 0
 
 
-.chi_siamo .who_right 
+.chi_siamo .who_right
   width: 43%
   margin: 0 0 0 2%
   float: left
 .chi_siamo .who_left
-  width: 55% 
+  width: 55%
   // -!side_margin
   float: left
   .text
@@ -463,7 +463,7 @@ h3
     margin: 0 0 30px 0
     padding: 0 0 10px 0
 
-  
+
 .article
   iframe
     width: 45%
@@ -484,26 +484,26 @@ h3
 footer
   max-width: !max_width
   margin: 0 auto
-  
+
 .furgone
   margin: 13px 0 10px 4%
   z-index: 2
   position: relative
   float: left
-  width: 15% 
-  
-.member 
+  width: 15%
+
+.member
   clear: left
-  margin: 0 0 10px 0 
+  margin: 0 0 10px 0
   img
     width: 45%
     float: left
-    
+
 .outer
   position: relative
 #fiveapi
   margin: 0 2% 0 0
-#container #fiveapi  
+#container #fiveapi
   top: 0px
   position: absolute
   padding: 0px 5px 3px
@@ -511,12 +511,11 @@ footer
   border-radius: 0
   border: 2px solid #333
 #container #fiveapi
-  #fiveapi_edit, #fiveapi_login 
-    a
-      color: #FFF
-      
+  #fiveapi_edit, #fiveapi_login
     font-size: 0.6em
     padding: 0
+    a
+      color: #FFF
 
 .pagination_text
   margin: 42px 2% 0 0
@@ -533,18 +532,18 @@ footer
     margin: 0 10px 10px 0
     line-height: 40px
     padding: 6px 10px
-    border: 1px dashed 
+    border: 1px dashed
     font-size: 1.2em
-    
+
 .fb
   float: right
-  margin: 20px 0 0 
-  
+  margin: 20px 0 0
+
 .fb-comments
   margin: 20px 0 0
   float: left
 
-.picasa_gallery  
+.picasa_gallery
   .imgbox
     display: inline-block
     height: 150px
@@ -559,8 +558,8 @@ footer
       margin: 0 2% 0 0
       width: 100%
 
-  
-  
+
+
 
 .lightbox
   position: absolute
@@ -592,13 +591,13 @@ footer
   background: #1EBE31
 
 
-  
-  
+
+
 // TODO: add media queries support to clientside-sass-js
 @media (min-width: 1000px)
   body
     font-size: 1.4em
-    
+
   .fb-comments
     display: none
-    
+
