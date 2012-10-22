@@ -12,26 +12,26 @@ srvstatus = ->
 lightbox = ->
   $(".lightbox").remove()
   $("html").prepend("<div class='lightbox'></div><div class='clear'></div>")
-  
+
   for time in [0, 200, 500, 1000, 2000, 6000]
     setTimeout ->
       lightbox.resize()
     , time
-    
+
   $(window).on "resize", ->
     lightbox.resize()
 
 lightbox.show = (url) ->
   $(".lightbox").on "click", ->
     lightbox.close()
-  
+
   $(".lightbox").append("<img src='#{url}' />")
-  
+
   $(".lightbox img").on "load", ->
     $(".lightbox").css({ display: "block" })
     width = lightbox.image_width()
     $(".lightbox img").css({ width: width }).css({ top: $(document).scrollTop() })
-  
+
 lightbox.resize = ->
   height = $("html").height()
   wheight = $(window).height()
@@ -40,7 +40,7 @@ lightbox.resize = ->
 
 lightbox.close = ->
   $(".lightbox").hide()
-  
+
 lightbox.image_width = ->
   page_height = $(window).height() - parseInt($(".lightbox img").css("marginTop"))*2
   width = $(".lightbox img").width()
@@ -60,33 +60,33 @@ write_picasa_images = (text) ->
     regex = new RegExp( "\\[picasa_("+album_id+")\\]" )
     text = text.replace regex, "<div class='picasa_gallery' data-album_id='$1'></div>"
   text
-    
-  
+
+
 picasa_init = (album_id) ->
   url = "http://picasaweb.google.com/data/feed/api/user/redazioneriotvan@gmail.com/albumid/#{album_id}?alt=json&fields=entry(title,gphoto:numphotos,media:group(media:content,media:thumbnail))&imgmax=1280&callback=?"
   thumb_size = 1 # 1/2/3
-  
+
   $.getJSON url, (data) ->
     photos = data.feed.entry
     gal = $(".picasa_gallery")
-    
+
     for photo in photos
       group = photo.media$group
       thumb_url = group.media$thumbnail[thumb_size].url
       url = group.media$content[0].url
       gal.append "<div class='imgbox'><img src='#{thumb_url}' data-url='#{url}' /></div>"
-    
+
     lightbox()
     # url = "http://lh4.ggpht.com/-Cg8xAgpmZe4/T13-o6qTUFI/AAAAAAAAAkY/D4b1CFEIq5o/IMG_5881.JPG"
     #lightbox.show(url)
-    
+
     $(".picasa_gallery .imgbox").on "click", ->
       url = $(this).find("img").data("url")
       lightbox()
       lightbox.show(url)
-      
-      
-    
+
+
+
 # fb
 
 fb_init = ->
@@ -101,9 +101,9 @@ fb_init = ->
     setTimeout ->
       fb_init()
     , 300
-    
-g.fb_init = fb_init    
-    
+
+g.fb_init = fb_init
+
 fb_setup = ->
   ((d) ->
     js = undefined
@@ -124,10 +124,12 @@ $("body").on "sass_loadeds", ->
   gal_resize()
   set_home_height()
   fb_setup()
-  
+
   # megafix
-  
+
   $("body").on "page_js_loaded", ->
+    render_markdown()
+    render_external_markdown()
     track_page()
     gal_build()
     $("#content").css({ opacity: 0 })
@@ -137,12 +139,12 @@ $("body").on "sass_loadeds", ->
     if $(".issuu").length > 0
       $(window).on "resize", ->
         resize_issuu()
-    
+
   # resize issuu
   setTimeout ->
     resize_issuu()
   , 200
-  
+
   if $(".issuu").length > 0
     $(window).on "resize", ->
       resize_issuu()
@@ -158,7 +160,7 @@ box_images = ->
     link = article.find("h2 a").attr("href") || article.find("h3 a").attr("href")
     article.find("img").wrap("<div class='img_box'></div>")
     article.find("img").wrap("<a href='#{link}'></a>")
-      
+
 resize_issuu = ->
   if $(".issuu").length > 0
     top_margin = 20
@@ -167,11 +169,11 @@ resize_issuu = ->
     iss_height = $(window).height() - height
     # console.log iss_height
     $(".issuu, .issuu embed").height iss_height
-  
+
 # require_api = (api) ->
 #   $.get "/fivetastic/api/lastfm.coffee", (coffee) ->
 #     eval CoffeeScript.compile(coffee)
-#     
+#
 # # APIS: fb, lastfm, delicious, twitter
 # require_api "lastfm"
 
@@ -187,18 +189,18 @@ titles = []
 set_home_height = ->
   height = $("#content").height()
   $(".right").css { height: height }
-  
+
 gal_build = ->
   return unless @collection && @collection[0]["collection"] == "articoli"
   images = for article in @collection
     img = article.images[0]
     img.title = article.title if img
     img
-    
-  images = _(images).compact()  
-  $("#img_gal img").remove() 
+
+  images = _(images).compact()
+  $("#img_gal img").remove()
   titles = []
-  for image in images  
+  for image in images
     titles.push image.title
     $("#img_gal").append("<img src='#{hostz}#{image.url}'>")
     $("#img_gal img").css({opacity: 0})
@@ -209,7 +211,7 @@ gal_anim = ->
   time = 5000
   # time = 1000
   gal_build() if $("#img_gal img").length < 1
-    
+
   setTimeout =>
     images = _($("#img_gal img")).map (el) -> el
     cond = cur_idx >= images.length-1
@@ -234,7 +236,7 @@ $(window).on "resize", ->
   gal_resize()
 
 
-######## 
+########
 # fiveapi
 
 # $(document).ajaxSend (event, xhr, settings) ->
@@ -246,7 +248,7 @@ unless window.console && console.log
   console.log = ->
 
 puts = console.log
-  
+
 # models
 
 # mollections
@@ -261,7 +263,7 @@ puts = console.log
 if location.hostname == "localhost"
   # dev
   hostz = "localhost:3000"
-  local = "localhost:3001" 
+  local = "localhost:3001"
 else
   # prod
   hostz = "fiveapi.com"
@@ -284,7 +286,7 @@ $("body").on "page_loaded", ->
     configs = {
       user: "makevoid",
       project: { riotvan: 1 },
-      collections: { 
+      collections: {
         articoli: 1,
         eventi: 2,
         chi_siamo: 3,
@@ -294,48 +296,65 @@ $("body").on "page_loaded", ->
     }
     window.fiveapi = new Fiveapi( configs )
     fiveapi.activate()
-    
+
+    render_markdown()
+    render_external_markdown()
+
     # default sort keys: published_at, id DESC
-  
+
     # #TODO: debug code, remove in production
     # $("#fiveapi_edit").trigger "click"
     # fiveapi.start_edit_mode()
     # setTimeout ->
     #     $(".articles a").first().trigger "click"
     #   , 200
-  
+
     # fiveapi.start_edit_mode()
     # setTimeout ->
     #     $(".articles a").first().trigger "click"
     #   , 200
-      
-      
+
+
     $("body").on "got_collection2", ->
       gal_anim()
       $("body").off "got_collection2"
-      
+
     $("body").on "got_collection", ->
       fb_init()
-      setTimeout -> 
+      setTimeout ->
         box_images()
         gal_build()
         set_home_height()
       , 300
-      
+
     $("body").on "got_article", ->
       fb_init()
-      
+
     setTimeout ->
       get_elements()
     , 100
-  
+
     $("body").on "page_js_loaded", ->
-      get_elements()  
-  
+      get_elements()
+
 hamls = {}
 
+render_external_markdown = ->
+  $(".external_markdown").each (idx, elem) ->
+    view_name = $(elem).data "name"
+    $.get "#{local}/views/#{view_name}.md", (data) =>
+      mark = data
+      html = markdown.toHTML mark
+      $(elem).html html
+
+render_markdown = ->
+  $(".md").each (idx, elem) ->
+    mark = $(elem).html()
+    html = markdown.toHTML mark
+    $(elem).html html
+
 write_images = (obj) =>
-  # obj.text = 
+  # obj.text =
   for image in obj.images
     regex = new RegExp "\\[(image|file)_#{image.id}\\]"
     obj.text = obj.text.replace regex, "![](#{hostz}#{image.url})"
@@ -344,7 +363,7 @@ write_images = (obj) =>
 write_videos = (text) ->
   # [youtube_2b_8yOZJn8A]
   text.replace /\[youtube_(.+)\]/, "<iframe src='http://www.youtube.com/embed/$1' allowfullscreen></iframe>"
-  
+
 write_openzoom = (text) ->
   text.replace /\[openzoom_(.+)\]/m, '<object type="application/x-shockwave-flash" data="/openzoom/viewer.swf" width="100%" height="600px" name="viewer">
       <param name="scale" value="noscale" />
@@ -353,28 +372,28 @@ write_openzoom = (text) ->
       <param name="allowscriptaccess" value="always" />
       <param name="flashvars" value="source=/openzoom/$1.dzi" />
   </object>'
-  
-markup = (obj) ->  
+
+markup = (obj) ->
   obj = write_images obj
   text = markdown.toHTML obj.text
   text = write_openzoom text
   text = write_videos text
   write_picasa_images text
-  
+
 singularize = (word) ->
   word.replace /s$/, '' if word
 
 get_elements = ->
-  get_article()  
+  get_article()
   per_page = if location.pathname == "/chi_siamo" ||  location.pathname ==  "/collabs"
     50
   else
     articles_per_page
-    
-  filters = { limit: per_page, offset: 0 }
-  get_collection(filters)  
 
-render_pagination = (pag) ->  
+  filters = { limit: per_page, offset: 0 }
+  get_collection(filters)
+
+render_pagination = (pag) ->
   total_pages = pag["entries_count"] / pag["limit"]
   current_page = pag["offset"]*pag["limit"]
   pages_view =  for i in [1..total_pages]
@@ -412,7 +431,7 @@ load_haml = (view_name, callback) ->
     callback hamls[view_name]
   else
     $.get "#{local}/views/#{view_name}.haml", (data) =>
-      hamls[view_name] = data 
+      hamls[view_name] = data
       callback hamls[view_name]
 
 render_haml = (view_name, obj={}, callback) ->
@@ -426,30 +445,30 @@ got_article = (id, article) ->
   if article.collection
     view = "#{singularize article.collection}_article"
     render_haml view, article, (html) ->
-      $(".fiveapi_element[data-type=article]").append html   
+      $(".fiveapi_element[data-type=article]").append html
       $("body").trigger "got_article"
   else
     console.log "Error: #{article.error}"
 
 got_collection = (name, collection) ->
   collection_elem = $(".fiveapi_element[data-type=collection]")
-  collection_elem.html("")    
+  collection_elem.html("")
   @collection = collection
   $("body").trigger "got_collection"
   $("body").trigger "got_collection2"
-  _(collection).each (elem) ->                                
-    render_haml name, elem, (html) ->                         
-      collection_elem.append html 
+  _(collection).each (elem) ->
+    render_haml name, elem, (html) ->
+      collection_elem.append html
 
 # helpers
 
-haml.location_article_id = (location) -> 
+haml.location_article_id = (location) ->
   _(location.pathname.split("/")).reverse()[0].split("-")[0]
 
 haml.format_date = (date) ->
   date = new Date(date)
   "#{date.getDate()}/#{date.getMonth()+1}/#{date.getFullYear()}"
-  
+
 haml.article_preview = (text) ->
   text = text.replace(/\[picasa_(\d+)\]/, '')
   max_length = 520
@@ -459,7 +478,7 @@ haml.article_preview = (text) ->
     "#{text.substring(0, max_length)}..."
   else
     text
-# 
+#
 # position: relative;
 # top: -66px;
 # right: 35px;

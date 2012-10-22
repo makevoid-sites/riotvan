@@ -11,50 +11,48 @@
           font-size: 1.1em
         }
       }
-      @media (max-width: 500px) { 
+      @media (max-width: 500px) {
         body #container {
           font-size: 0.9em
-        } .right { 
+        } .right {
           display: none
         } #container .page {
           width: 92%;
-        } 
+        }
       }
   #body
     #container
       %header
         .outer
-          %h1 
+          %h1
             %a{ href: "/" }
               / RiotVan
               %img{ src: "/images/rv_logo.png" }
             .clear
-          .srvstatus  
-          #fiveapi_message  
+          .srvstatus
+          #fiveapi_message
           #fiveapi
-        .nav_box    
+        .nav_box
           .nav_cont
             %nav
               / %a{ href: "http://video.riotvan.net" } Video
-
-              %a{ href: "/videos" } Video 
+              %a{ href: "/videos" }     Video
               %span /
-              / %a{ href: "/shop" }  Shop
-              
-              %a{ href: "/events" }  Eventi
+              / %a{ href: "/shop" }     Shop
+              %a{ href: "/events" }     Eventi
               %span /
               / %a{ href: "/argomenti" }  Argomenti
-              
-              %a{ href: "/issues" }    Magazine
+              %a{ href: "/issues" }     Magazine
               %span /
-              / TODO: rinominare in Uscite, Numeri, ...?
+              %a{ href: "/workshop" }   Workshop
+              %span /
               %a{ href: "/chi_siamo" }  Chi siamo
               %span /
-              %a{ href: "/collabs" }  Collaborazioni
-            
+              %a{ href: "/collabs" }    Collaborazioni
+
       .clear
       #debug
-      
+
       #content
         #webgl
         != yield
@@ -63,4 +61,4 @@
         %img.furgone{ src: "/images/van_mini_glow.png" }
         .stripe
       #fb-root
-          
+

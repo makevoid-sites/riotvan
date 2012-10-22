@@ -1312,7 +1312,10 @@ function render_tree( jsonml ) {
   }
 
   // be careful about adding whitespace here for inline elements
-  return "<"+ tag + tag_attrs + ">" + content.join( "" ) + "</" + tag + ">";
+  var tag_output = "<"+ tag + tag_attrs + ">" + content.join( "" ) + "</" + tag + ">"
+  if (tag == "br")
+    tag_output = "<"+ tag + tag_attrs + "/>"
+  return tag_output;
 }
 
 function convert_tree_to_html( tree, references, options ) {

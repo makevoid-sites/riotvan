@@ -9,6 +9,7 @@
   "/collabs":     "collabs",
   "/articoli/*":  "article",
   "/issues/*":    "read",
+  "/workshop":    "workshop",
   "/collabs/*":   "collab",
   "/videos":      "videos",
   "/videos/*":    "video_page",
