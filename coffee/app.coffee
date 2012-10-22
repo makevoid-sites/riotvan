@@ -3,9 +3,14 @@ g = window
 # srvstatus
 
 srvstatus = ->
-  $.get "http://riotvan.dyndns.org", (data) ->
-    if data == "OK"
-      $(".srvstatus").addClass "open"
+  request = $.ajax
+    url: "http://riotvan.dyndns.org"
+    success: (data) ->
+      if data == "OK"
+        $(".srvstatus").addClass "open"
+    timeout: 4000
+    error: ->
+      # probably it timed out
 
 # lightbox
 
