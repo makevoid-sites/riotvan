@@ -1,3 +1,6 @@
+![](/images/riot_workshop.png)
+
+
 A 5 mesi dall’inaugurazione della Riot House, è con immenso piacere che vi comunichiamo...l’inizio dei **RIOT WORKSHOP!**
 Il primo ciclo di corsi, incontri e seminari tenuti da esperti che metteranno a disposizione le proprie competenze:
 
