@@ -1,11 +1,27 @@
--# contents in #head and #body will be appended to head and body tags in index.html, same thing for #title
-%div
-  #head
-    #title RiotVan
-    %link{ type: "text/sass", href: "/sass/reset.sass" }
-    %link{ type: "text/sass", href: "/sass/app.sass" }
-    %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0, user-scalable=no" }
-    %style
+!!!
+%html
+  %head
+    %title RiotVan
+    %meta{:content => "Riot Van magazine free press di attualità, musica e cultura. Promozione di una cultura dell'informazione attenta, indipendente ed equilibrata.", :property => "description"}/
+    %meta{:content => "riotvan, riot van, magazine, giornale, gratuito, apolitico, studentesco, universitario, media, production", :property => "keywords"}/
+    %meta{:content => "Francesco 'makevoid' Canessa", :property => "author"}/
+    %meta{:content => "http://riotvan.net", :property => "og:url"}/
+    %meta{:content => "RiotVan", :property => "og:site_name"}/
+    %meta{:content => "RiotVan", :property => "og:title"}/
+    %meta{:content => "website", :property => "og:type"}/
+    %meta{:content => "http://riotvan.net/images/rv_logo_square.png", :property => "og:image"}/
+    %meta{:content => "false", :property => "og:fiveapi"}/
+    %meta{:content => "makevoid", :property => "fb:admins"}/
+    %meta{:content => "width=device-width, initial-scale=1.0, user-scalable=no", :name => "viewport"}/
+
+    %link{ href: "/public/css/reset.css", rel: "stylesheet" }
+    %link{ href: "/public/css/app.css", rel: "stylesheet"  }
+
+    %script{ src: "/public/js/vendor/jquery.js" }
+    %script{:src => "/public/js/vendor/markdown.js"}
+    -# %script{:src => "/fivetastic/vendor/all.js"}
+    :css
+
       @media (min-width: 800px) {
         body #container {
           font-size: 1.1em
@@ -20,7 +36,8 @@
           width: 92%;
         }
       }
-  #body
+
+  %body
     #container
       %header
         .outer
@@ -35,13 +52,10 @@
         .nav_box
           .nav_cont
             %nav
-              / %a{ href: "http://video.riotvan.net" } Video
               %a{ href: "/videos" }     Video
               %span /
-              / %a{ href: "/shop" }     Shop
               %a{ href: "/events" }     Eventi
               %span /
-              / %a{ href: "/argomenti" }  Argomenti
               %a{ href: "/issues" }     Magazine
               %span /
               %a{ href: "/workshop" }   Workshop
@@ -55,10 +69,34 @@
 
       #content
         #webgl
-        != yield
+        = yield
       .clear
       %footer
         %img.furgone{ src: "/images/van_mini_glow.png" }
         .stripe
       #fb-root
 
+
+    :javascript
+      var _gauges = _gauges || [];
+      (function() {
+        var t   = document.createElement('script');
+        t.type  = 'text/javascript';
+        t.async = true;
+        t.id    = 'gauges-tracker';
+        t.setAttribute('data-site-id', '4f54b5e6f5a1f50fbb0000c2');
+        t.src = '//secure.gaug.es/track.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s);
+      })();
+
+    :javascript
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-17134705-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();

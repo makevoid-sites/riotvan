@@ -3,3 +3,4 @@
 .bundle
 *.dzi
 openzoom/image_files
+.sass-cache

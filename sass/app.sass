@@ -1,30 +1,31 @@
 // TODO: cercare: 123klan
+@import "reset.sass"
 
 
 // TODO: add variables into mixins on sass-js
-+gradient(!start, !end)
-  background-image: -webkit-linear-gradient(!start, !end)
-  background: !start
+=gradient($start, $end)
+  background-image: -webkit-linear-gradient($start, $end)
+  background: $start
 
 // this is your main css file, loaded after reset.sass feel free to delete everything and write your own styles
 
-!text_color2 = #FFF
-!main_c = #000
+$text_color2: #FFF
+$main_c: #000
 
-+rounded
+=rounded
   border-radius: 10px
   -webkit-border-radius: 10px
   -moz-border-radius: 10px
 
-!side_margin = 4%
-!side_margin_half = 2%
-!cont_margin_top = 1%
-!max_width = 1000px
+$side_margin: 4%
+$side_margin_half: 2%
+$cont_margin_top: 1%
+$max_width: 1000px
 
-!cont_width = 62%
-!right_width = 28%
+$cont_width: 62%
+$right_width: 28%
 
-!width_full = 92%
+$width_full: 92%
 
 
 @font-face
@@ -59,7 +60,7 @@ button
 body
   color: #111
   +gradient(#FFF, #888)
-   background: -webkit-linear-gradient(left , #DDD 0%, #FFF 5%, #FFF 95%, #DDD 100%)
+  background: -webkit-linear-gradient(left , #DDD 0%, #FFF 5%, #FFF 95%, #DDD 100%)
   //background: -webkit-linear-gradient(left , white 0%, grey 2%, white 2.01%, white 98%, grey 98.01%, white 100%)
 #container
   margin: 20px auto
@@ -67,11 +68,11 @@ body
 
 
 .page
-  margin: 15px !side_margin
-  width: !cont_width
+  margin: 15px $side_margin
+  width: $cont_width
 
 .page.home
-  padding-top: !cont_margin_top
+  padding-top: $cont_margin_top
 
 
 .pillola
@@ -88,13 +89,13 @@ body
     text-transform: uppercase
     margin: 10px 0 45px
 
-//100% - !side_margin*2
+//100% - $side_margin*2
 
 .page.full
-  width: !width_full
+  width: $width_full
 
 a
-  color: !main_c
+  color: $main_c
 
 a:hover
   text-shadow:  0px 0px 1px #888, 0px 0px 3px #F5C593
@@ -104,43 +105,43 @@ h1
   img
     float: left
     width: 230px
-    margin: 0 0 0 !side_margin
+    margin: 0 0 0 $side_margin
   img:hover
     opacity: 0.85
 
 .nav_box
   margin: 0px auto
-  max-width: !max_width
+  max-width: $max_width
   min-width: 320px
 
 .nav_cont
-  background: !main_c
+  background: $main_c
   text-align: center
   margin: 0 auto
-  width: !width_full
+  width: $width_full
   //border: 2px dashed #AAA
   // margin: 0px 35% 0px 4%
   // width: 61%
-  max-width: !max_width
+  max-width: $max_width
   span
-   color: #fff
+    color: #fff
 
 
 #content, .outer
   margin: 0 auto
   min-width: 320px
-  max-width: !max_width
+  max-width: $max_width
 
 
 nav
   text-align: left
   padding: 5px 0 2px
-  // !side_margin / 2
-  margin: 5px !side_margin_half 0
+  // $side_margin / 2
+  margin: 5px $side_margin_half 0
   font-size: 1.1em
   a
     font-size: 0.9em
-    color: !text_color2
+    color: $text_color2
     padding: 2px 2% 3px 2%
     +rounded
     display: inline-block
@@ -154,15 +155,15 @@ nav a, .right h3
 ul
   margin: 10px 0 20px
   li
-   margin: 3px 0 5px
-   font-weight: bold
+    margin: 3px 0 5px
+    font-weight: bold
 
 h2, .page.videos h3, .page.collabs h3, .page.collab h3, .page.chi_siamo h3, .page.events h3, .page.event h2, .page.home .articles h2, .page.video h2
   margin: 0 0 10px 0
   font-family: chunkfive
   font-size: 1.4em
-  padding: 3px 2% 
-  background: !main_c
+  padding: 3px 2%
+  background: $main_c
   color: #FFF
   padding: 0 2%
   word-spacing: 2%
@@ -185,11 +186,11 @@ p
 
 
 .box
-  color: !text_color2
+  color: $text_color2
   padding: 2px 9px
   margin: 0 0 15px 0
   +rounded
-  background: !main_c
+  background: $main_c
 
 ul span
   color: #333
@@ -208,7 +209,7 @@ ul span
     background: #00F
 
 a, span
-  color: !main_c
+  color: $main_c
 
 h3
   font-size: 1.3em
@@ -251,7 +252,7 @@ h3
   text-align: justify
 
 .box
-  background: !main_c
+  background: $main_c
 
 #debug
   position: absolute
@@ -266,9 +267,9 @@ h3
 
 .right
   float: right
-  width: !right_width
-  margin: 0 !side_margin 0 0
-  padding: !cont_margin_top
+  width: $right_width
+  margin: 0 $side_margin 0 0
+  padding: $cont_margin_top
   border-left: 2px dashed black
   text-align: center
   div
@@ -342,7 +343,7 @@ h3
   margin: 0 auto
 
 .page.article
-  width: !width_full
+  width: $width_full
   img.max
     margin: 20px 0
     width: 100%
@@ -397,7 +398,7 @@ h3
   font-size: 0.85em
 
 .page.articles_page, .page.collab, .page.collabs, .page.events, .page.event, .page.videos
-  width: !width_full
+  width: $width_full
   margin: 20px auto 0
 
 .page.article h2, .page.article h3, .page.collab h2, .page.collab h3, .page.event h2, .page.event h3
@@ -437,7 +438,7 @@ h3
   text-align: justify
   font-size: 0.9em
   .contatti
-   margin: 0 0 30px 0
+    margin: 0 0 30px 0
 
 
 .chi_siamo .who_right
@@ -446,7 +447,7 @@ h3
   float: left
 .chi_siamo .who_left
   width: 55%
-  // -!side_margin
+  // -$side_margin
   float: left
   .text
     float: left
@@ -492,11 +493,11 @@ h3
   position: relative
   top: 50px
   margin: 0 auto
-  width: !width_full
-  max-width: !max_width
-   
+  width: $width_full
+  max-width: $max_width
+
 footer
-  max-width: !max_width
+  max-width: $max_width
   margin: 0 auto
 
 .furgone
