@@ -21,6 +21,12 @@ class RiotVan < Sinatra::Base
     end
     haml "_#{name}".to_sym, locals: locals
   end
+
+  helpers do
+    def location_article_id
+      request.path.split("/")[-1].split("-")[0]
+    end
+  end
 end
 
 require_all "#{path}/routes"

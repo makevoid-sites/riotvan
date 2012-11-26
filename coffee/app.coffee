@@ -272,13 +272,14 @@ else
 hostz = "http://#{hostz}"
 local = "http://#{local}"
 
+
 haml.host = local
 
 articles_per_page = 5
 
 # fiveapi requires jquery/zepto
 
-$("body").on "page_loaded", ->
+$ ->
   srvstatus()
 
   $.get "#{hostz}/fiveapi.js", (data) ->

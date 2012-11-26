@@ -93,7 +93,8 @@ body
 
 .page.full
   width: $width_full
-
+  img
+    max-width: 100%
 a
   color: $main_c
 
@@ -609,6 +610,9 @@ footer
 
 
 // TODO: add media queries support to clientside-sass-js
+@media (min-width: 400px)
+
+
 @media (min-width: 1000px)
   body
     font-size: 1.4em

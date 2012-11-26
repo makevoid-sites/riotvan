@@ -101,6 +101,8 @@ body {
 
 .page.full {
   width: 92%; }
+  .page.full img {
+    max-width: 100%; }
 
 a {
   color: black; }

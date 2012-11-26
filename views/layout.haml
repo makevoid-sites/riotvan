@@ -17,9 +17,6 @@
     %link{ href: "/public/css/reset.css", rel: "stylesheet" }
     %link{ href: "/public/css/app.css", rel: "stylesheet"  }
 
-    %script{ src: "/public/js/vendor/jquery.js" }
-    %script{:src => "/public/js/vendor/markdown.js"}
-    -# %script{:src => "/fivetastic/vendor/all.js"}
     :css
 
       @media (min-width: 800px) {
@@ -76,7 +73,15 @@
         .stripe
       #fb-root
 
-
+    %script{ src: "/public/js/vendor/jquery.js" }
+    %script{ src: "/public/js/vendor/markdown.js" }
+    %script{ src: "/public/js/vendor/haml/underscore.js" }
+    %script{ src: "/public/js/vendor/haml/underscore.string.js" }
+    - # if IE < 9?
+    -# %script{ src: "/public/js/vendor/haml/json2.js" }
+    %script{ src: "/public/js/vendor/haml.js" }
+    -# %script{:src => "/fivetastic/vendor/all.js"}
+    %script{ src: "/public/js/app.js" }
     :javascript
       var _gauges = _gauges || [];
       (function() {
