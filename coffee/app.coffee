@@ -1,5 +1,11 @@
 g = window
 
+$ ->
+
+  collection_elem = $(".fiveapi_element[data-type=collection],.fiveapi_element[data-type=article],.external_markdown")
+  collection_elem.css {width: "100%", display: "block"}
+  collection_elem.html "loading..."
+
 # srvstatus
 
 srvstatus = ->
@@ -459,7 +465,9 @@ got_collection = (name, collection) ->
   $("body").trigger "got_collection2"
   _(collection).each (elem) ->
     render_haml name, elem, (html) ->
+      $(collection_elem).css {opacity: 0}
       collection_elem.append html
+      $(collection_elem).animate {opacity: 1}, 200
 
 # helpers
 

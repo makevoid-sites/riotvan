@@ -4,6 +4,16 @@
 
   g = window;
 
+  $(function() {
+    var collection_elem;
+    collection_elem = $(".fiveapi_element[data-type=collection],.fiveapi_element[data-type=article],.external_markdown");
+    collection_elem.css({
+      width: "100%",
+      display: "block"
+    });
+    return collection_elem.html("loading...");
+  });
+
   srvstatus = function() {
     return $.get("http://riotvan.dyndns.org", function(data) {
       if (data === "OK") {
@@ -541,7 +551,13 @@
     $("body").trigger("got_collection2");
     return _(collection).each(function(elem) {
       return render_haml(name, elem, function(html) {
-        return collection_elem.append(html);
+        $(collection_elem).css({
+          opacity: 0
+        });
+        collection_elem.append(html);
+        return $(collection_elem).animate({
+          opacity: 1
+        }, 200);
       });
     });
   };
