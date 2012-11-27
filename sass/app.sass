@@ -2,9 +2,14 @@
 @import "reset.sass"
 
 
+=font_src($name)
+  src: url('/fonts/'+$name+'.eot?') format('eot'), url('/fonts/'+$name+'.woff') format('woff'), url('/fonts/'+$name+'.ttf') format('truetype')
+
 // TODO: add variables into mixins on sass-js
 =gradient($start, $end)
+  background-image: -moz-linear-gradient($start, $end)
   background-image: -webkit-linear-gradient($start, $end)
+  background-image: linear-gradient($start, $end)
   background: $start
 
 // this is your main css file, loaded after reset.sass feel free to delete everything and write your own styles
@@ -29,16 +34,23 @@ $width_full: 92%
 
 
 @font-face
-  font-family: Chinese_Rocks
-  src: url('/fonts/chinese_rocks.ttf')
+  font-family: bebas_neue
+  +font_src(bebas_neue)
 
 @font-face
   font-family: bebas_neue
-  src: url('/fonts/bebas_neue.ttf')
+  +font_src(bebas_neue)
+  font-weight: bold
 
 @font-face
-  font-family: chunkfive
-  src: url('/fonts/league_gothic.otf')
+  font-family: league_gothic
+  +font_src(league_gothic)
+
+@font-face
+  font-family: league_gothic
+  font-weight: bold
+  +font_src(league_gothic)
+
 
 body
   background: #fefefe
@@ -154,6 +166,7 @@ nav
 
 nav a, .right h3
   font-family: bebas_neue
+  letter-spacing: 0.13em
 
 ul
   margin: 10px 0 20px
@@ -163,7 +176,8 @@ ul
 
 h2, .page.videos h3, .page.collabs h3, .page.collab h3, .page.chi_siamo h3, .page.events h3, .page.event h2, .page.home .articles h2, .page.video h2
   margin: 0 0 10px 0
-  font-family: chunkfive
+  font-family: league_gothic
+  letter-spacing: 0.085em
   font-size: 1.4em
   padding: 3px 2%
   background: $main_c
@@ -300,6 +314,7 @@ h3
   .caption
     position: absolute
     font-family: bebas_neue
+    letter-spacing: 0.05em
     color: #FFF
     padding: 5px 8px 2px
     background: #555
@@ -541,6 +556,7 @@ footer
 .pagination_text
   margin: 42px 2% 0 0
   font-family: bebas_neue
+  letter-spacing: 0.1em
   font-size: 1.1em
   float: left
 
@@ -548,6 +564,7 @@ footer
   margin: 3px 0 10px
   float: left
   font-family: bebas_neue
+  letter-spacing: 0.1em
   a
     cursor: pointer
     line-height: 34px

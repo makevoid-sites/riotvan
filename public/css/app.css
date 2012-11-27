@@ -41,16 +41,22 @@ h4 {
   clear: right; }
 
 @font-face {
-  font-family: Chinese_Rocks;
-  src: url("/fonts/chinese_rocks.ttf"); }
+  font-family: bebas_neue;
+  src: url("/fonts/bebas_neue.eot?") format("eot"), url("/fonts/bebas_neue.woff") format("woff"), url("/fonts/bebas_neue.ttf") format("truetype"); }
 
 @font-face {
   font-family: bebas_neue;
-  src: url("/fonts/bebas_neue.ttf"); }
+  src: url("/fonts/bebas_neue.eot?") format("eot"), url("/fonts/bebas_neue.woff") format("woff"), url("/fonts/bebas_neue.ttf") format("truetype");
+  font-weight: bold; }
 
 @font-face {
-  font-family: chunkfive;
-  src: url("/fonts/league_gothic.otf"); }
+  font-family: league_gothic;
+  src: url("/fonts/league_gothic.eot?") format("eot"), url("/fonts/league_gothic.woff") format("woff"), url("/fonts/league_gothic.ttf") format("truetype"); }
+
+@font-face {
+  font-family: league_gothic;
+  font-weight: bold;
+  src: url("/fonts/league_gothic.eot?") format("eot"), url("/fonts/league_gothic.woff") format("woff"), url("/fonts/league_gothic.ttf") format("truetype"); }
 
 body {
   background: #fefefe;
@@ -72,7 +78,9 @@ button {
 
 body {
   color: #111111;
+  background-image: -moz-linear-gradient(white, #888888);
   background-image: -webkit-linear-gradient(white, #888888);
+  background-image: linear-gradient(white, #888888);
   background: white;
   background: -webkit-linear-gradient(left, #dddddd 0%, white 5%, white 95%, #dddddd 100%); }
 
@@ -159,7 +167,8 @@ nav {
     text-shadow: 0 0 2px black, 0 0 5px #eeeeee; }
 
 nav a, .right h3 {
-  font-family: bebas_neue; }
+  font-family: bebas_neue;
+  letter-spacing: 0.13em; }
 
 ul {
   margin: 10px 0 20px; }
@@ -169,7 +178,8 @@ ul {
 
 h2, .page.videos h3, .page.collabs h3, .page.collab h3, .page.chi_siamo h3, .page.events h3, .page.event h2, .page.home .articles h2, .page.video h2 {
   margin: 0 0 10px 0;
-  font-family: chunkfive;
+  font-family: league_gothic;
+  letter-spacing: 0.085em;
   font-size: 1.4em;
   padding: 3px 2%;
   background: black;
@@ -303,6 +313,7 @@ h3 {
   #img_gal .caption {
     position: absolute;
     font-family: bebas_neue;
+    letter-spacing: 0.05em;
     color: white;
     padding: 5px 8px 2px;
     background: #555555;
@@ -528,13 +539,15 @@ footer {
 .pagination_text {
   margin: 42px 2% 0 0;
   font-family: bebas_neue;
+  letter-spacing: 0.1em;
   font-size: 1.1em;
   float: left; }
 
 .pagination {
   margin: 3px 0 10px;
   float: left;
-  font-family: bebas_neue; }
+  font-family: bebas_neue;
+  letter-spacing: 0.1em; }
   .pagination a {
     cursor: pointer;
     line-height: 34px;
