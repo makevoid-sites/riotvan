@@ -1,21 +1,9 @@
 # RiotVan
 ## new RiotVan website - http://riotvan.net
 
-transitioning from WordPress to FiveTastic + FiveStorage based blog
+# todo:
 
-
-### links:
-
-old: http://old.riotvan.net
-
-
-### todo
-
-- fivetastic 2
-
-- paginazione coll/sections
 - anteprime http://img.youtube.com/vi/cHKP7lpnNS4/0.jpg
-
 - link dall'immagine nella coll/section all'articolo
 - refactoring event.haml
 - rinominare collections in sections (asd)
@@ -109,8 +97,9 @@ online: http://pixlr.com/editor/
 enjoy!
 
 
-### avviare il server sul portatile
+### history:
 
-    cds riotvan; rackup1
+wordpress site -> FiveTastic + FiveApi -> Sinatra + FiveApi
 
-    cds fiveapi; rackup
+old: http://old.riotvan.net (wp)
+fivetastic: branch fivetastic
