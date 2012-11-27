@@ -6,9 +6,6 @@ require "#{path}/config/env.rb"
 class RiotVan < Sinatra::Base
   include Voidtools::Sinatra::ViewHelpers
 
-  set :root, PATH
-  set :public_folder, PATH
-
   # partial :comment, { comment: "blah" }
   # partial :comment, comment
 

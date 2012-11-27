@@ -14,8 +14,8 @@
     %meta{:content => "makevoid", :property => "fb:admins"}/
     %meta{:content => "width=device-width, initial-scale=1.0, user-scalable=no", :name => "viewport"}/
 
-    %link{ href: "/public/css/reset.css", rel: "stylesheet" }
-    %link{ href: "/public/css/app.css", rel: "stylesheet"  }
+    %link{ href: "/css/reset.css", rel: "stylesheet" }
+    %link{ href: "/css/app.css", rel: "stylesheet"  }
 
     :css
 
@@ -73,16 +73,16 @@
         .stripe
       #fb-root
 
-    %script{ src: "/public/js/vendor/jquery.js" }
-    %script{ src: "/public/js/vendor/markdown.js" }
-    %script{ src: "/public/js/vendor/haml/underscore.js" }
-    %script{ src: "/public/js/vendor/haml/underscore.string.js" }
+    %script{ src: "/js/vendor/jquery.js" }
+    %script{ src: "/js/vendor/markdown.js" }
+    %script{ src: "/js/vendor/haml/underscore.js" }
+    %script{ src: "/js/vendor/haml/underscore.string.js" }
     - # if IE < 9?
-    -# %script{ src: "/public/js/vendor/haml/json2.js" }
-    %script{ src: "/public/js/vendor/haml.js" }
-    %script{ src: "/public/js/vendor/jquery_imagesloaded.js" }
+    -# %script{ src: "/js/vendor/haml/json2.js" }
+    %script{ src: "/js/vendor/haml.js" }
+    %script{ src: "/js/vendor/jquery_imagesloaded.js" }
     -# %script{:src => "/fivetastic/vendor/all.js"}
-    %script{ src: "/public/js/app.js" }
+    %script{ src: "/js/app.js" }
     :javascript
       var _gauges = _gauges || [];
       (function() {

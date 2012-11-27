@@ -2,5 +2,5 @@
 .jhw-cache
 .bundle
 *.dzi
-openzoom/image_files
+public/openzoom/image_files
 .sass-cache
