@@ -1,5 +1,5 @@
 .page.full
   .numbers
-    - 0.upto(12).each do |num|
+    - 11.downto(0).each do |num|
       %a{ href: "/issues/#{num}" }
         %img{ src: "/images/numbers/#{num}.png" }
