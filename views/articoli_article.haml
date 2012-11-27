@@ -2,8 +2,9 @@
 
 %h2
   %a{ href: article[:link] }= article[:title]
-.text{ :"data-images" => article[:images].to_json  }
-  != article[:text]
+.text{ :"data-images" => article[:images].to_json, :"data-text" => article[:text]  }><
+  = article[:text]
+
 
 .clear
 
@@ -13,7 +14,8 @@
   .published_at
     =# haml.format_date(published_at)
 
-- full_link = "http://#{request_host}/"+link
+- full_link = "http://#{request_host}#{link}"
+
 
 .fb
   .fb-like{ "data-href" => full_link, "data-send" => "true", "data-width" => "300", "data-show-faces" => "true", "data-action" => "recommend", "data-font" => "trebuchet ms" }

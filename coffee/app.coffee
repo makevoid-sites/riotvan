@@ -13,14 +13,9 @@ render_markup = ->
     images = text_elem.data "images"
     return unless images
     text = text_elem.data "text"
-    article = { images: images, text: text_elem.html() }
-    html = markup(article)
+    article = { images: images, text: text }
+    html = markup article
     text_elem.html html
-
-
-$ ->
-  inject_spinner()
-  render_markup()
 
 
 # srvstatus
@@ -32,6 +27,7 @@ srvstatus = ->
       if data == "OK"
         $(".srvstatus").addClass "open"
     error: ->
+      ""
       # do nothing
 
 # lightbox
@@ -144,39 +140,6 @@ fb_setup = ->
     ref.parentNode.insertBefore js, ref
   ) document
 
-
-$ ->
-# $("body").on "sass_loadeds", ->
-  # g.fivetastic.dev_mode() # comment this in production
-  # $("body").off "page_loaded"
-  # gal_build()
-  fb_setup()
-
-  # megafix
-
-  # $("body").on "page_js_loaded", ->
-  # render_markdown()
-  # render_external_markdown()
-  # track_page()
-  # $("#content").css({ opacity: 0 })
-  # $("#content").animate({ opacity: 1 }, 1000)
-  # gal_resize()
-  resize_issuu()
-  if $(".issuu").length > 0
-    $(window).on "resize", ->
-      resize_issuu()
-
-$ ->
-
-  # resize issuu
-  setTimeout ->
-    resize_issuu()
-  , 200
-
-  if $(".issuu").length > 0
-    $(window).on "resize", ->
-      resize_issuu()
-
 track_page = ->
   page = location.pathname[1..-1]
   _gaq.push("_trackEvent", "Pages", "visit", page)
@@ -262,9 +225,6 @@ gal_resize = ->
     $("#img_gal").height height
   , 10
 
-$(window).on "resize", ->
-  gal_resize()
-
 
 ########
 # fiveapi
@@ -310,6 +270,30 @@ articles_per_page = 5
 # fiveapi requires jquery/zepto
 
 $ ->
+
+  fb_setup()
+
+  resize_issuu()
+  if $(".issuu").length > 0
+    $(window).on "resize", ->
+      resize_issuu()
+  inject_spinner()
+  render_markup()
+
+  # resize issuu
+  setTimeout ->
+    resize_issuu()
+  , 200
+
+  if $(".issuu").length > 0
+    $(window).on "resize", ->
+      resize_issuu()
+
+  $(window).on "resize", ->
+    gal_resize()
+
+  # fiveapi
+
   srvstatus()
 
   $.get "#{hostz}/fiveapi.js", (data) ->
@@ -383,7 +367,8 @@ write_openzoom = (text) ->
 
 markup = (obj) ->
   obj = write_images obj
-  text = markdown.toHTML obj.text
+  text = obj.text
+  text = markdown.toHTML text
   text = write_openzoom text
   text = write_videos text
   write_picasa_images text
@@ -492,10 +477,3 @@ haml.article_preview = (text) ->
     "#{text.substring(0, max_length)}..."
   else
     text
-#
-# position: relative;
-# top: -66px;
-# right: 35px;
-# border-radius: 43px;
-# width: 1px;
-# font-size: 0.1em;

@@ -30,17 +30,12 @@
       text = text_elem.data("text");
       article = {
         images: images,
-        text: text_elem.html()
+        text: text
       };
       html = markup(article);
       return text_elem.html(html);
     });
   };
-
-  $(function() {
-    inject_spinner();
-    return render_markup();
-  });
 
   srvstatus = function() {
     return $.ajax({
@@ -50,7 +45,9 @@
           return $(".srvstatus").addClass("open");
         }
       },
-      error: function() {}
+      error: function() {
+        return "";
+      }
     });
   };
 
@@ -185,27 +182,6 @@
     })(document);
   };
 
-  $(function() {
-    fb_setup();
-    resize_issuu();
-    if ($(".issuu").length > 0) {
-      return $(window).on("resize", function() {
-        return resize_issuu();
-      });
-    }
-  });
-
-  $(function() {
-    setTimeout(function() {
-      return resize_issuu();
-    }, 200);
-    if ($(".issuu").length > 0) {
-      return $(window).on("resize", function() {
-        return resize_issuu();
-      });
-    }
-  });
-
   track_page = function() {
     var page;
     page = location.pathname.slice(1);
@@ -323,10 +299,6 @@
     }, 10);
   };
 
-  $(window).on("resize", function() {
-    return gal_resize();
-  });
-
   if (!(window.console && console.log)) {
     window.console = {};
     console.log = function() {};
@@ -351,6 +323,26 @@
   articles_per_page = 5;
 
   $(function() {
+    fb_setup();
+    resize_issuu();
+    if ($(".issuu").length > 0) {
+      $(window).on("resize", function() {
+        return resize_issuu();
+      });
+    }
+    inject_spinner();
+    render_markup();
+    setTimeout(function() {
+      return resize_issuu();
+    }, 200);
+    if ($(".issuu").length > 0) {
+      $(window).on("resize", function() {
+        return resize_issuu();
+      });
+    }
+    $(window).on("resize", function() {
+      return gal_resize();
+    });
     srvstatus();
     return $.get("" + hostz + "/fiveapi.js", function(data) {
       var configs;
@@ -439,7 +431,8 @@
   markup = function(obj) {
     var text;
     obj = write_images(obj);
-    text = markdown.toHTML(obj.text);
+    text = obj.text;
+    text = markdown.toHTML(text);
     text = write_openzoom(text);
     text = write_videos(text);
     return write_picasa_images(text);
