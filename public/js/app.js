@@ -44,7 +44,7 @@
 
   srvstatus = function() {
     return $.ajax({
-      url: "http://localhost:3000",
+      url: "http://riotvan.dyndns.org",
       success: function(data) {
         if (data === "OK") {
           return $(".srvstatus").addClass("open");

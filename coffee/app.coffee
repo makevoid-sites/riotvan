@@ -27,7 +27,7 @@ $ ->
 
 srvstatus = ->
   $.ajax
-    url: "http://localhost:3000"
+    url: "http://riotvan.dyndns.org"
     success: (data) ->
       if data == "OK"
         $(".srvstatus").addClass "open"
