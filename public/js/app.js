@@ -1,24 +1,56 @@
 (function() {
-  var articles_per_page, box_images, cur_idx, fb_init, fb_setup, g, gal_anim, gal_build, gal_resize, get_article, get_collection, get_elements, got_article, got_collection, hamls, hostz, lightbox, load_haml, local, markup, picasa_init, puts, render_external_markdown, render_haml, render_markdown, render_pagination, resize_issuu, restore_gal, set_home_height, singularize, srvstatus, titles, track_page, write_images, write_openzoom, write_picasa_images, write_videos,
+  var articles_per_page, box_images, cur_idx, fb_init, fb_setup, g, gal_anim, gal_build, gal_resize, get_article, get_collection, get_elements, got_article, got_collection, hamls, hostz, inject_spinner, lightbox, load_haml, local, markup, picasa_init, puts, render_external_markdown, render_haml, render_markdown, render_markup, render_pagination, resize_issuu, restore_gal, set_home_height, singularize, srvstatus, titles, track_page, write_images, write_openzoom, write_picasa_images, write_videos,
     _this = this;
 
   g = window;
 
-  $(function() {
-    var collection_elem;
-    collection_elem = $(".fiveapi_element[data-type=collection],.fiveapi_element[data-type=article],.external_markdown");
-    collection_elem.css({
+  inject_spinner = function() {
+    var elements;
+    elements = $(".fiveapi_element[data-type=collection],.fiveapi_element[data-type=article],.external_markdown");
+    if (elements.html() !== "") {
+      return;
+    }
+    elements.css({
       width: "100%",
       display: "block"
     });
-    return collection_elem.html("loading...");
+    return elements.html("<img src='/images/spinner.gif' class='spinner'>");
+  };
+
+  render_markup = function() {
+    var elements;
+    elements = $(".fiveapi_element[data-type=article]");
+    return elements.each(function(idx, element) {
+      var article, html, images, text, text_elem;
+      text_elem = $(element).find(".text");
+      images = text_elem.data("images");
+      if (!images) {
+        return;
+      }
+      text = text_elem.data("text");
+      article = {
+        images: images,
+        text: text_elem.html()
+      };
+      html = markup(article);
+      return text_elem.html(html);
+    });
+  };
+
+  $(function() {
+    inject_spinner();
+    return render_markup();
   });
 
   srvstatus = function() {
-    return $.get("http://riotvan.dyndns.org", function(data) {
-      if (data === "OK") {
-        return $(".srvstatus").addClass("open");
-      }
+    return $.ajax({
+      url: "http://localhost:3000",
+      success: function(data) {
+        if (data === "OK") {
+          return $(".srvstatus").addClass("open");
+        }
+      },
+      error: function() {}
     });
   };
 
@@ -153,30 +185,17 @@
     })(document);
   };
 
-  $("body").on("sass_loadeds", function() {
-    $("body").off("page_loaded");
-    gal_resize();
-    set_home_height();
+  $(function() {
     fb_setup();
-    $("body").on("page_js_loaded", function() {
-      render_markdown();
-      render_external_markdown();
-      track_page();
-      gal_build();
-      $("#content").css({
-        opacity: 0
+    resize_issuu();
+    if ($(".issuu").length > 0) {
+      return $(window).on("resize", function() {
+        return resize_issuu();
       });
-      $("#content").animate({
-        opacity: 1
-      }, 1000);
-      gal_resize();
-      resize_issuu();
-      if ($(".issuu").length > 0) {
-        return $(window).on("resize", function() {
-          return resize_issuu();
-        });
-      }
-    });
+    }
+  });
+
+  $(function() {
     setTimeout(function() {
       return resize_issuu();
     }, 200);
@@ -194,17 +213,20 @@
   };
 
   box_images = function() {
-    var article, link, _i, _len, _ref, _results;
-    _ref = $(".article, .event");
-    _results = [];
-    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      article = _ref[_i];
+    return $(".article, .event").each(function(idx, article) {
+      var img, link,
+        _this = this;
       article = $(article);
       link = article.find("h2 a").attr("href") || article.find("h3 a").attr("href");
-      article.find("img").wrap("<div class='img_box'></div>");
-      _results.push(article.find("img").wrap("<a href='" + link + "'></a>"));
-    }
-    return _results;
+      img = article.find("img");
+      img.wrap("<div class='img_box'></div>");
+      if (link) {
+        img.wrap("<a href='" + link + "'></a>");
+      }
+      return img.imagesLoaded(function() {
+        return article.find(".img_box").height(img.height());
+      });
+    });
   };
 
   resize_issuu = function() {
@@ -350,26 +372,16 @@
       fiveapi.activate();
       render_markdown();
       render_external_markdown();
-      $("body").on("got_collection2", function() {
-        gal_anim();
-        return $("body").off("got_collection2");
-      });
-      $("body").on("got_collection", function() {
-        fb_init();
-        return setTimeout(function() {
-          box_images();
-          gal_build();
-          return set_home_height();
-        }, 300);
-      });
-      $("body").on("got_article", function() {
-        return fb_init();
-      });
+      fb_init();
+      set_home_height();
       setTimeout(function() {
         return get_elements();
       }, 100);
-      return $("body").on("page_js_loaded", function() {
-        return get_elements();
+      return $("body").on("got_collection", function() {
+        gal_anim();
+        gal_resize();
+        set_home_height();
+        return box_images();
       });
     });
   });
@@ -477,6 +489,9 @@
 
   get_article = function() {
     var article_id;
+    if (location.pathname.match(/\/articoli/)) {
+      return;
+    }
     article_id = fiveapi.article_from_page();
     if (article_id) {
       return fiveapi.get_article(article_id, function(article) {
@@ -534,7 +549,7 @@
     if (article.collection) {
       view = "" + (singularize(article.collection)) + "_article";
       return render_haml(view, article, function(html) {
-        $(".fiveapi_element[data-type=article]").append(html);
+        $(".fiveapi_element[data-type=article]").html(html);
         return $("body").trigger("got_article");
       });
     } else {
@@ -542,22 +557,28 @@
     }
   };
 
+  g.cur_collection = [];
+
   got_collection = function(name, collection) {
-    var collection_elem;
+    var coll_temp, collection_elem,
+      _this = this;
     collection_elem = $(".fiveapi_element[data-type=collection]");
     collection_elem.html("");
     this.collection = collection;
-    $("body").trigger("got_collection");
-    $("body").trigger("got_collection2");
-    return _(collection).each(function(elem) {
+    coll_temp = [];
+    return _(collection).each(function(elem, idx) {
       return render_haml(name, elem, function(html) {
-        $(collection_elem).css({
-          opacity: 0
-        });
-        collection_elem.append(html);
-        return $(collection_elem).animate({
-          opacity: 1
-        }, 200);
+        coll_temp[idx] = html;
+        if (_(coll_temp).compact().length === collection.length) {
+          collection_elem.append(coll_temp.join("\n"));
+          $(collection_elem).css({
+            opacity: 0
+          });
+          $(collection_elem).animate({
+            opacity: 1
+          }, 200);
+          return $("body").trigger("got_collection");
+        }
       });
     });
   };

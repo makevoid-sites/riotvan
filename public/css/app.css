@@ -138,6 +138,9 @@ h1 {
   min-width: 320px;
   max-width: 1000px; }
 
+#content {
+  min-height: 400px; }
+
 nav {
   text-align: left;
   padding: 5px 0 2px;
@@ -301,11 +304,11 @@ h3 {
     position: absolute;
     font-family: bebas_neue;
     color: white;
-    padding: 10px;
+    padding: 5px 8px 2px;
     background: #555555;
-    opacity: 0.8;
-    width: 35.5%;
-    font-size: 1.5em;
+    opacity: 0.75;
+    width: 40.5%;
+    font-size: 1.4em;
     z-index: 4; }
   #img_gal img {
     position: absolute;
@@ -529,20 +532,22 @@ footer {
   float: left; }
 
 .pagination {
-  margin: 40px 0 10px;
+  margin: 3px 0 10px;
   float: left;
   font-family: bebas_neue; }
   .pagination a {
     cursor: pointer;
-    margin: 0 10px 10px 0;
-    line-height: 40px;
-    padding: 6px 10px;
+    line-height: 34px;
+    padding: 2px 7px 0px;
     border: 1px dashed;
     font-size: 1.2em; }
 
 .fb {
   float: right;
   margin: 20px 0 0; }
+
+.fb_like_box {
+  overflow: hidden; }
 
 .fb-comments {
   margin: 20px 0 0;
@@ -590,6 +595,11 @@ footer {
 
 .srvstatus.open {
   background: #1ebe31; }
+
+.spinner, .page.home .spinner, .page.article .spinner {
+  margin: 0 auto;
+  width: auto;
+  display: block; }
 
 @media (min-width: 1000px) {
   body {

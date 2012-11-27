@@ -1,22 +1,24 @@
-- link = "/articoli/"+id+"-"+name_url
+- link = "/articoli/#{article[:id]}-"+article[:name_url]
 
 %h2
-  %a{ href: link }= title
-.text
-  != text
+  %a{ href: article[:link] }= article[:title]
+.text{ :"data-images" => article[:images].to_json  }
+  != article[:text]
 
 .clear
 
 .article_infos
   .by
-    = published_by
+    = article[:published_by]
   .published_at
-    = haml.format_date(published_at)
+    =# haml.format_date(published_at)
+
+- full_link = "http://#{request_host}/"+link
 
 .fb
-  .fb-like{ "data-href": haml.host+link, "data-send": "true", "data-width": "300", "data-show-faces": "true", "data-action": "recommend", "data-font": "trebuchet ms" }  
+  .fb-like{ "data-href" => full_link, "data-send" => "true", "data-width" => "300", "data-show-faces" => "true", "data-action" => "recommend", "data-font" => "trebuchet ms" }
 .clear
-  
-.fb-comments{ "data-href": haml.host+link, "data-num-posts": 2, "data-width": "550" }
+
+.fb-comments{ "data-href" => full_link, "data-num-posts" => 2, "data-width" => "550" }
 
 .clear

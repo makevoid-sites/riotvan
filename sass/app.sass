@@ -132,6 +132,8 @@ h1
   margin: 0 auto
   min-width: 320px
   max-width: $max_width
+#content
+  min-height: 400px
 
 
 nav
@@ -299,11 +301,11 @@ h3
     position: absolute
     font-family: bebas_neue
     color: #FFF
-    padding: 10px
+    padding: 5px 8px 2px
     background: #555
-    opacity: 0.8
-    width: 35.5%
-    font-size: 1.5em
+    opacity: 0.75
+    width: 40.5%
+    font-size: 1.4em
     z-index: 4
   img
     position: absolute
@@ -543,20 +545,22 @@ footer
   float: left
 
 .pagination
-  margin: 40px 0 10px
+  margin: 3px 0 10px
   float: left
   font-family: bebas_neue
   a
     cursor: pointer
-    margin: 0 10px 10px 0
-    line-height: 40px
-    padding: 6px 10px
+    line-height: 34px
+    padding: 2px 7px 0px
     border: 1px dashed
     font-size: 1.2em
 
 .fb
   float: right
   margin: 20px 0 0
+
+.fb_like_box
+  overflow: hidden
 
 .fb-comments
   margin: 20px 0 0
@@ -610,7 +614,10 @@ footer
   background: #1EBE31
 
 
-
+.spinner, .page.home .spinner, .page.article .spinner
+  margin: 0 auto
+  width: auto
+  display: block
 
 // TODO: add media queries support to clientside-sass-js
 @media (min-width: 400px)

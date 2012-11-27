@@ -1,17 +1,38 @@
 g = window
 
-$ ->
+inject_spinner = ->
+  elements = $(".fiveapi_element[data-type=collection],.fiveapi_element[data-type=article],.external_markdown")
+  return if elements.html() != ""
+  elements.css { width: "100%", display: "block" }
+  elements.html "<img src='/images/spinner.gif' class='spinner'>"
 
-  collection_elem = $(".fiveapi_element[data-type=collection],.fiveapi_element[data-type=article],.external_markdown")
-  collection_elem.css {width: "100%", display: "block"}
-  collection_elem.html "loading..."
+render_markup = ->
+  elements = $(".fiveapi_element[data-type=article]")
+  elements.each (idx, element) ->
+    text_elem = $(element).find(".text")
+    images = text_elem.data "images"
+    return unless images
+    text = text_elem.data "text"
+    article = { images: images, text: text_elem.html() }
+    html = markup(article)
+    text_elem.html html
+
+
+$ ->
+  inject_spinner()
+  render_markup()
+
 
 # srvstatus
 
 srvstatus = ->
-  $.get "http://riotvan.dyndns.org", (data) ->
-    if data == "OK"
-      $(".srvstatus").addClass "open"
+  $.ajax
+    url: "http://localhost:3000"
+    success: (data) ->
+      if data == "OK"
+        $(".srvstatus").addClass "open"
+    error: ->
+      # do nothing
 
 # lightbox
 
@@ -124,27 +145,28 @@ fb_setup = ->
   ) document
 
 
-$("body").on "sass_loadeds", ->
+$ ->
+# $("body").on "sass_loadeds", ->
   # g.fivetastic.dev_mode() # comment this in production
-  $("body").off "page_loaded"
-  gal_resize()
-  set_home_height()
+  # $("body").off "page_loaded"
+  # gal_build()
   fb_setup()
 
   # megafix
 
-  $("body").on "page_js_loaded", ->
-    render_markdown()
-    render_external_markdown()
-    track_page()
-    gal_build()
-    $("#content").css({ opacity: 0 })
-    $("#content").animate({ opacity: 1 }, 1000)
-    gal_resize()
-    resize_issuu()
-    if $(".issuu").length > 0
-      $(window).on "resize", ->
-        resize_issuu()
+  # $("body").on "page_js_loaded", ->
+  # render_markdown()
+  # render_external_markdown()
+  # track_page()
+  # $("#content").css({ opacity: 0 })
+  # $("#content").animate({ opacity: 1 }, 1000)
+  # gal_resize()
+  resize_issuu()
+  if $(".issuu").length > 0
+    $(window).on "resize", ->
+      resize_issuu()
+
+$ ->
 
   # resize issuu
   setTimeout ->
@@ -160,12 +182,14 @@ track_page = ->
   _gaq.push("_trackEvent", "Pages", "visit", page)
 
 box_images = ->
-  for article in $(".article, .event")
-    # TODO: when $(".article").loaded or markdown loaded, box image
+  $(".article, .event").each (idx, article) ->
     article = $(article)
     link = article.find("h2 a").attr("href") || article.find("h3 a").attr("href")
-    article.find("img").wrap("<div class='img_box'></div>")
-    article.find("img").wrap("<a href='#{link}'></a>")
+    img = article.find("img")
+    img.wrap("<div class='img_box'></div>")
+    img.wrap("<a href='#{link}'></a>") if link
+    img.imagesLoaded =>
+      article.find(".img_box").height img.height()
 
 resize_issuu = ->
   if $(".issuu").length > 0
@@ -307,42 +331,19 @@ $ ->
     render_markdown()
     render_external_markdown()
 
-    # default sort keys: published_at, id DESC
-
-    # #TODO: debug code, remove in production
-    # $("#fiveapi_edit").trigger "click"
-    # fiveapi.start_edit_mode()
-    # setTimeout ->
-    #     $(".articles a").first().trigger "click"
-    #   , 200
-
-    # fiveapi.start_edit_mode()
-    # setTimeout ->
-    #     $(".articles a").first().trigger "click"
-    #   , 200
-
-
-    $("body").on "got_collection2", ->
-      gal_anim()
-      $("body").off "got_collection2"
-
-    $("body").on "got_collection", ->
-      fb_init()
-      setTimeout ->
-        box_images()
-        gal_build()
-        set_home_height()
-      , 300
-
-    $("body").on "got_article", ->
-      fb_init()
+    fb_init()
+    # gal_build()
+    set_home_height()
 
     setTimeout ->
       get_elements()
     , 100
 
-    $("body").on "page_js_loaded", ->
-      get_elements()
+    $("body").on "got_collection", ->
+      gal_anim()
+      gal_resize()
+      set_home_height()
+      box_images()
 
 hamls = {}
 
@@ -417,6 +418,7 @@ render_pagination = (pag) ->
     get_collection { limit: limit, offset: limit*page }
 
 get_article = ->
+  return if location.pathname.match /\/articoli/
   article_id = fiveapi.article_from_page()
   if article_id
     fiveapi.get_article article_id, (article) ->
@@ -452,23 +454,26 @@ got_article = (id, article) ->
   if article.collection
     view = "#{singularize article.collection}_article"
     render_haml view, article, (html) ->
-      $(".fiveapi_element[data-type=article]").append html
+      $(".fiveapi_element[data-type=article]").html html
       $("body").trigger "got_article"
   else
     console.log "Error: #{article.error}"
+
+g.cur_collection = []
 
 got_collection = (name, collection) ->
   collection_elem = $(".fiveapi_element[data-type=collection]")
   collection_elem.html("")
   @collection = collection
-  $("body").trigger "got_collection"
-  $("body").trigger "got_collection2"
-  _(collection).each (elem) ->
-    render_haml name, elem, (html) ->
-      $(collection_elem).css {opacity: 0}
-      collection_elem.append html
-      $(collection_elem).animate {opacity: 1}, 200
-
+  coll_temp = []
+  _(collection).each (elem, idx) =>
+    render_haml name, elem, (html) =>
+      coll_temp[idx] = html
+      if _(coll_temp).compact().length == collection.length
+        collection_elem.append coll_temp.join("\n")
+        $(collection_elem).css {opacity: 0}
+        $(collection_elem).animate {opacity: 1}, 200
+        $("body").trigger "got_collection"
 # helpers
 
 haml.location_article_id = (location) ->

@@ -15,7 +15,10 @@ class RiotVan < Sinatra::Base
     haml :collabs
   end
 
-  get "/articoli/*" do
+  get "/articoli/:article_id" do
+    article_id = params[:article_id].split("-")
+    article_id = article_id[0] if article_id
+    @article = Article.get article_id
     haml :article
   end
 

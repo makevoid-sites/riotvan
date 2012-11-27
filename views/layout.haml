@@ -67,7 +67,7 @@
       #content
         #webgl
         = yield
-      .clear
+        .clear
       %footer
         %img.furgone{ src: "/images/van_mini_glow.png" }
         .stripe
@@ -80,6 +80,7 @@
     - # if IE < 9?
     -# %script{ src: "/public/js/vendor/haml/json2.js" }
     %script{ src: "/public/js/vendor/haml.js" }
+    %script{ src: "/public/js/vendor/jquery_imagesloaded.js" }
     -# %script{:src => "/fivetastic/vendor/all.js"}
     %script{ src: "/public/js/app.js" }
     :javascript
