@@ -1,5 +1,5 @@
 (function() {
-  var articles_per_page, box_images, cur_idx, fb_init, fb_setup, g, gal_anim, gal_build, gal_resize, get_article, get_collection, get_elements, got_article, got_collection, hamls, hostz, inject_spinner, lightbox, load_haml, local, markup, picasa_init, puts, render_external_markdown, render_haml, render_markdown, render_markup, render_pagination, resize_issuu, restore_gal, set_home_height, singularize, srvstatus, titles, track_page, write_images, write_openzoom, write_picasa_images, write_videos,
+  var articles_per_page, box_images, cur_idx, fb_init, fb_setup, g, gal_anim, gal_build, gal_resize, get_article, get_collection, get_elements, got_article, got_collection, hamls, hostz, inject_spinner, lightbox, load_haml, local, markup, picasa_init, picasa_resize, puts, render_external_markdown, render_haml, render_markdown, render_markup, render_pagination, resize_issuu, restore_gal, set_home_height, singularize, srvstatus, titles, track_page, write_images, write_openzoom, write_picasa_images, write_videos,
     _this = this;
 
   g = window;
@@ -72,16 +72,21 @@
       return lightbox.close();
     });
     $(".lightbox").append("<img src='" + url + "' />");
-    return $(".lightbox img").on("load", function() {
-      var width;
+    return $(".lightbox img").imagesLoaded(function() {
+      var img, marginLeft, width;
       $(".lightbox").css({
         display: "block"
       });
       width = lightbox.image_width();
-      return $(".lightbox img").css({
+      img = $(".lightbox img");
+      img.css({
         width: width
       }).css({
         top: $(document).scrollTop()
+      });
+      marginLeft = $("body").width() / 2 - img.width() / 2;
+      return img.css({
+        left: marginLeft
       });
     });
   };
@@ -139,10 +144,23 @@
         gal.append("<div class='imgbox'><img src='" + thumb_url + "' data-url='" + url + "' /></div>");
       }
       lightbox();
-      return $(".picasa_gallery .imgbox").on("click", function() {
+      $(".picasa_gallery .imgbox").on("click", function() {
         url = $(this).find("img").data("url");
         lightbox();
         return lightbox.show(url);
+      });
+      picasa_resize();
+      return $(window).on("resize", function() {
+        return picasa_resize();
+      });
+    });
+  };
+
+  picasa_resize = function() {
+    return $(".picasa_gallery .imgbox img").imagesLoaded(function() {
+      return $(".picasa_gallery .imgbox").each(function(idx, img) {
+        img = $(img);
+        return img.height(img.find("img").height());
       });
     });
   };

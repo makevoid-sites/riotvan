@@ -50,10 +50,13 @@ lightbox.show = (url) ->
 
   $(".lightbox").append("<img src='#{url}' />")
 
-  $(".lightbox img").on "load", ->
+  $(".lightbox img").imagesLoaded ->
     $(".lightbox").css({ display: "block" })
     width = lightbox.image_width()
-    $(".lightbox img").css({ width: width }).css({ top: $(document).scrollTop() })
+    img = $(".lightbox img")
+    img.css({ width: width }).css({ top: $(document).scrollTop() })
+    marginLeft = $("body").width() / 2 - img.width() / 2
+    img.css( left: marginLeft )
 
 lightbox.resize = ->
   height = $("html").height()
@@ -107,6 +110,16 @@ picasa_init = (album_id) ->
       url = $(this).find("img").data("url")
       lightbox()
       lightbox.show(url)
+
+    picasa_resize()
+    $(window).on "resize", ->
+      picasa_resize()
+
+picasa_resize = ->
+  $(".picasa_gallery .imgbox img").imagesLoaded ->
+    $(".picasa_gallery .imgbox").each (idx, img) ->
+      img = $(img)
+      img.height img.find("img").height()
 
 
 
