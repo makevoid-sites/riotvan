@@ -23,6 +23,10 @@ class RiotVan < Sinatra::Base
     haml :article
   end
 
+  get "/issues" do
+    haml :issues
+  end
+
   get "/issues/*" do
     haml :read
   end
@@ -47,9 +51,6 @@ class RiotVan < Sinatra::Base
     haml :event
   end
 
-  get "/issues" do
-    haml :issues
-  end
 
   get "/events" do
     haml :events

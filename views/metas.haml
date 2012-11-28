@@ -11,6 +11,11 @@
   - image = "http://#{FIVEAPI_HOST}#{image["url"]}" if image
   - url = "#{url}/articoli/#{@article[:id]}-#{@article[:name_url]}"
 
+- split = request.path.split("/")
+- if split[1] == "issues" && (num = split[2]) != nil
+  - title = "Riot Van - Numero #{num}"
+  - image = "http://riotvan.net/images/numbers/#{num}.png"
+
 
 %meta{:content => meta_description, :name => "description"}/
 %meta{:content => "riotvan, riot van, magazine, giornale, gratuito, apolitico, studentesco, universitario, media, production", :name => "keywords"}/
