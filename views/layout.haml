@@ -2,13 +2,15 @@
 %html
   %head
     %title RiotVan
-    %meta{:content => "Riot Van magazine free press di attualità, musica e cultura. Promozione di una cultura dell'informazione attenta, indipendente ed equilibrata.", :property => "description"}/
+    - meta_description = "Riot Van magazine free press di attualità, musica e cultura. Promozione di una cultura dell'informazione attenta, indipendente ed equilibrata.", :property => "description"
+    %meta{:content => meta_description}/
     %meta{:content => "riotvan, riot van, magazine, giornale, gratuito, apolitico, studentesco, universitario, media, production", :property => "keywords"}/
     %meta{:content => "Francesco 'makevoid' Canessa", :property => "author"}/
     %meta{:content => "http://riotvan.net", :property => "og:url"}/
     %meta{:content => "RiotVan", :property => "og:site_name"}/
     %meta{:content => "RiotVan", :property => "og:title"}/
     %meta{:content => "website", :property => "og:type"}/
+    %meta{:content => meta_description, :property => "og:description"}/
     %meta{:content => "http://riotvan.net/images/rv_logo_square.png", :property => "og:image"}/
     %meta{:content => "false", :property => "og:fiveapi"}/
     %meta{:content => "makevoid", :property => "fb:admins"}/
