@@ -9,7 +9,7 @@ class RiotVan < Sinatra::Base
   # partial :comment, { comment: "blah" }
   # partial :comment, comment
 
-  def partial(name, value)
+  def partial(name, value={})
     locals = if value.is_a? Hash
       value
     else
