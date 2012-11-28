@@ -1,6 +1,7 @@
 - meta_description = "Riot Van magazine free press di attualità, musica e cultura. Promozione di una cultura dell'informazione attenta, indipendente ed equilibrata."
 - title = "RiotVan"
 - image = "http://riotvan.net/images/rv_logo_square.png"
+- url = "http://riotvan.net"
 
 - if @article
   - meta_description = article_preview @article[:text]
@@ -8,12 +9,13 @@
   - title = @article[:title]
   - image = @article[:images].first
   - image = "http://#{FIVEAPI_HOST}#{image["url"]}" if image
+  - url = "#{url}/articoli/#{@article[:id]}-#{@article[:name_url]}"
 
 
 %meta{:content => meta_description, :name => "description"}/
 %meta{:content => "riotvan, riot van, magazine, giornale, gratuito, apolitico, studentesco, universitario, media, production", :name => "keywords"}/
 %meta{:content => "Francesco 'makevoid' Canessa", :name => "author"}/
-%meta{:content => "http://riotvan.net", :property => "og:url"}/
+%meta{:content => url, :property => "og:url"}/
 %meta{:content => "RiotVan", :property => "og:site_name"}/
 %meta{:content => title, :property => "og:title"}/
 %meta{:content => "website", :property => "og:type"}/
