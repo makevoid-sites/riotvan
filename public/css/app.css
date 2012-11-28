@@ -430,6 +430,7 @@ h3 {
   text-align: justify; }
 .page.events div.date {
   font-size: 0.8em;
+  letter-spacing: 0.05em;
   width: 74px;
   color: white;
   display: inline-block; }
