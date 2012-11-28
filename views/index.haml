@@ -56,6 +56,9 @@
 
   %section.articles
     .fiveapi_element{ :"data-type" => "collection", :"data-name" => "articoli" }
+      - if @articles
+        - @articles.each do |article|
+          = partial :articolo, article
   %p.pagination_text
     Pagine
   .pagination{ :"data-collection" => "articoli" }

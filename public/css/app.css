@@ -157,7 +157,7 @@ nav {
   nav a {
     font-size: 0.9em;
     color: white;
-    padding: 2px 2% 3px 2%;
+    padding: 2px 1% 3px;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -383,9 +383,9 @@ h3 {
   margin: 30px 0 0 0;
   border-top: 2px dashed black; }
   .article_infos .by {
-    display: inline;
     font-weight: bold;
-    font-size: 1.1em; }
+    font-size: 1.1em;
+    margin: 3px 0 0; }
 
 .articles .article_infos {
   margin: 10px 0 0 0; }

@@ -1,21 +1,19 @@
-- link = "/articoli/#{article[:id]}-"+article[:name_url]
+- link = "/articoli/#{id}-#{name_url}"
+- full_link = "http://#{request_host}#{link}"
 
 %h2
-  %a{ href: article[:link] }= article[:title]
-.text{ :"data-images" => article[:images].to_json, :"data-text" => article[:text]  }><
-  = article[:text]
+  %a{ href: link }= title
+.text{ :"data-images" => images.to_json, :"data-text" => text  }><
+  = text
 
 
 .clear
 
 .article_infos
-  .by
-    = article[:published_by]
   .published_at
-    =# haml.format_date(published_at)
-
-- full_link = "http://#{request_host}#{link}"
-
+    = format_date published_at
+  .by
+    = published_by
 
 .fb
   .fb-like{ "data-href" => full_link, "data-send" => "true", "data-width" => "300", "data-show-faces" => "true", "data-action" => "recommend", "data-font" => "trebuchet ms" }

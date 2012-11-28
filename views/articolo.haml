@@ -1,13 +1,13 @@
-- link = "/articoli/"+id+"-"+name_url
+- link = "/articoli/#{id}-#{name_url}"
 
 .article
   %h2
     %a{ href: link }= title
   .text
-    != haml.article_preview(text)
+    = article_preview text
   .article_infos  
     .published_at
-      = haml.format_date(published_at)
+      = format_date published_at, :short
     .by
       = published_by
   .clear_left

@@ -1,5 +1,6 @@
 class RiotVan < Sinatra::Base
   get "/" do
+    @articles = Collection.get :articoli
     haml :index
   end
 

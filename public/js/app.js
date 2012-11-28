@@ -507,6 +507,9 @@
         filters.entries_count = collection["count"];
         filters.collection = coll_name;
         render_pagination(filters);
+        if (location.pathname === "/" && !filters.limit) {
+          return;
+        }
         return got_collection(coll_name, collection["articles"]);
       });
     }

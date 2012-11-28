@@ -418,6 +418,7 @@ get_collection = (filters={}) ->
       filters.entries_count = collection["count"]
       filters.collection = coll_name
       render_pagination(filters)
+      return if location.pathname == "/" && !filters.limit
       got_collection coll_name, collection["articles"]
 
 load_haml = (view_name, callback) ->
