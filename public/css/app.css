@@ -60,7 +60,8 @@ h4 {
 
 body {
   background: #fefefe;
-  font-family: arial, helvetica, sans-serif; }
+  font-family: arial, helvetica, sans-serif;
+  font-size: 90%; }
 
 * {
   -moz-box-sizing: border-box;
@@ -615,9 +616,14 @@ footer {
   width: auto;
   display: block; }
 
-@media (min-width: 1000px) {
-  body {
-    font-size: 1.05em; }
+@media (max-width: 500px) {
+  body #container {
+    font-size: 0.9em; }
+    body #container .right {
+      display: none; }
 
-  .fb-comments {
-    display: none; } }
+  #container .page {
+    width: 92%; } }
+@media (min-width: 1200px) {
+  body #container {
+    font-size: 1.1em; } }

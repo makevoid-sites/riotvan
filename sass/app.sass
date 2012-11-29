@@ -55,6 +55,7 @@ $width_full: 92%
 body
   background: #fefefe
   font-family: arial, helvetica, sans-serif
+  font-size: 90%
 
 *
   -moz-box-sizing: border-box
@@ -638,13 +639,19 @@ footer
   display: block
 
 // TODO: add media queries support to clientside-sass-js
-@media (min-width: 400px)
 
 
-@media (min-width: 1000px)
-  body
-    font-size: 1.05em
 
-  .fb-comments
-    display: none
+
+@media (max-width: 500px)
+  body #container
+    font-size: 0.9em
+    .right
+      display: none
+  #container .page
+    width: 92%
+
+@media (min-width: 1200px)
+  body #container
+    font-size: 1.1em
 
