@@ -1,4 +1,13 @@
 class RiotVan < Sinatra::Base
+
+  def redirect_without_www
+    redirect "http://#{request.host.sub(/^www./, '')}" if request.host =~ /^www./
+  end
+
+  before do
+    redirect_without_www
+  end
+
   get "/" do
     @articles = Collection.get :articoli
     haml :index
