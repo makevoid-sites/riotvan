@@ -1,7 +1,7 @@
 class RiotVan < Sinatra::Base
 
   def redirect_without_www
-    redirect "http://#{request.host.sub(/^www./, '')}" if request.host =~ /^www./
+    redirect "http://#{request.host.sub(/^www./, '')}#{request.path}" if request.host =~ /^www./
   end
 
   before do
