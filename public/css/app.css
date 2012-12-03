@@ -480,10 +480,13 @@ h3 {
   padding: 0 0 10px 0; }
 
 .article iframe {
-  width: 45%;
+  width: 40%;
   height: 275px;
   float: right;
   margin: 15px 0 0 1.5%; }
+.article iframe:nth-child(2n+1) {
+  float: left;
+  margin: 15px 1.5% 0 0; }
 
 .stripe {
   background: black;

@@ -433,7 +433,7 @@
   };
 
   write_videos = function(text) {
-    return text.replace(/\[youtube_(.+)\]/, "<iframe src='http://www.youtube.com/embed/$1' allowfullscreen></iframe>");
+    return text.replace(/\[youtube_(.+)\]/g, "<iframe src='http://www.youtube.com/embed/$1' allowfullscreen></iframe>");
   };
 
   write_openzoom = function(text) {
