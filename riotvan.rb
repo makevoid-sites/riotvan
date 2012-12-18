@@ -6,7 +6,7 @@ require "#{path}/config/env.rb"
 class RiotVan < Sinatra::Base
   include Voidtools::Sinatra::ViewHelpers
 
-  Haml::Template.options[:format] = :html5
+  Haml::Options.defaults[:format] = :html5
 
   # partial :comment, { comment: "blah" }
   # partial :comment, comment
