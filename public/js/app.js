@@ -207,7 +207,7 @@
   };
 
   box_images = function() {
-    return $(".article .article, .event").each(function(idx, article) {
+    return $(".article, .event").each(function(idx, article) {
       var img, link,
         _this = this;
       article = $(article);

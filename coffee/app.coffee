@@ -158,8 +158,7 @@ track_page = ->
   _gaq.push("_trackEvent", "Pages", "visit", page)
 
 box_images = ->
-  # TODO: .article
-  $(".article .article, .event").each (idx, article) ->
+  $(".article, .event").each (idx, article) ->
     article = $(article)
     link = article.find("h2 a").attr("href") || article.find("h3 a").attr("href")
     img = article.find("img")
