@@ -218,7 +218,9 @@
         img.wrap("<a href='" + link + "'></a>");
       }
       return img.imagesLoaded(function() {
-        return article.find(".img_box").height(img.height());
+        var height;
+        height = Math.min(img.height(), 200);
+        return article.find(".img_box").height(height);
       });
     });
   };
@@ -615,7 +617,7 @@
       if (txt) {
         text = txt;
       }
-      return "" + (text.substring(0, max_length)) + "...";
+      return $.htmlClean("" + (text.substring(0, max_length)) + "...");
     } else {
       return text;
     }

@@ -165,7 +165,8 @@ box_images = ->
     img.wrap("<div class='img_box'></div>")
     img.wrap("<a href='#{link}'></a>") if link
     img.imagesLoaded =>
-      article.find(".img_box").height img.height()
+      height = Math.min img.height(), 200
+      article.find(".img_box").height height
 
 resize_issuu = ->
   if $(".issuu").length > 0
@@ -489,6 +490,6 @@ haml.article_preview = (text) ->
   if text.length > max_length
     txt = text.split(/\[(file|image)_\d+\]/)[1]
     text = txt if txt
-    "#{text.substring(0, max_length)}..."
+    $.htmlClean "#{text.substring(0, max_length)}..."
   else
     text
