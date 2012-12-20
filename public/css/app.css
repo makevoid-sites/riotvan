@@ -619,6 +619,12 @@ footer {
   width: auto;
   display: block; }
 
+.concorso_fotografico {
+  border: 2px dashed black;
+  padding: 10px 0;
+  width: 94%;
+  margin: 0 auto 30px; }
+
 @media (max-width: 500px) {
   body #container {
     font-size: 0.9em; }
