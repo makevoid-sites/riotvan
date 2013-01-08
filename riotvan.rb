@@ -11,12 +11,21 @@ class RiotVan < Sinatra::Base
   # partial :comment, { comment: "blah" }
   # partial :comment, comment
 
-  set :static, true
-
   before do
     # request.env["HTTP_ORIGIN"]
     headers "Access-Control-Allow-Origin" =>  "*"
   end
+
+  def self.serve_cors_views
+    Dir.glob("views/*.haml").each do |view|
+      # p view
+      get "#{view}" do
+        send_file File.expand_path(view, settings.public)
+      end
+    end
+  end
+
+  serve_cors_views
 
   def partial(name, value={})
     locals = if value.is_a? Hash
