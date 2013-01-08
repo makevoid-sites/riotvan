@@ -329,6 +329,7 @@
   if (location.hostname === "localhost") {
     hostz = "localhost:3000";
     local = "localhost:3001";
+    local = "riotvan.net";
   } else {
     hostz = "fiveapi.com";
     local = "riotvan.net";
