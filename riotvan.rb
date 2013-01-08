@@ -11,7 +11,7 @@ class RiotVan < Sinatra::Base
   # partial :comment, { comment: "blah" }
   # partial :comment, comment
 
-  # set :static, true
+  set :static, true
 
   before do
     # request.env["HTTP_ORIGIN"]
