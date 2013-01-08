@@ -11,6 +11,11 @@ class RiotVan < Sinatra::Base
   # partial :comment, { comment: "blah" }
   # partial :comment, comment
 
+  before do
+    # request.env["HTTP_ORIGIN"]
+    headers "Access-Control-Allow-Origin" =>  "*"
+  end
+
   def partial(name, value={})
     locals = if value.is_a? Hash
       value

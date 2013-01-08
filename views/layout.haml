@@ -2,14 +2,12 @@
 %html
   %head
     %title RiotVan
-
     %meta{:content => "width=device-width, initial-scale=1.0, user-scalable=no", :name => "viewport"}/
-
     %link{ href: "/css/reset.css", rel: "stylesheet" }
     %link{ href: "/css/app.css", rel: "stylesheet"  }
-
     = partial :metas
-
+    :javascript
+      var fiveapi_host = "#{FIVEAPI_HOST}"
   %body
     #container
       %header

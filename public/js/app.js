@@ -378,7 +378,8 @@
           chi_siamo: 3,
           collaboratori: 4,
           video: 5
-        }
+        },
+        host: hostz
       };
       window.fiveapi = new Fiveapi(configs);
       fiveapi.activate();

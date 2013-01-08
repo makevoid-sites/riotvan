@@ -268,6 +268,8 @@ if location.hostname == "localhost"
   # dev
   hostz = "localhost:3000"
   local = "localhost:3001"
+  # hostz = "fiveapi.com"
+  # local = "riotvan.net"
 else
   # prod
   hostz = "fiveapi.com"
@@ -321,7 +323,8 @@ $ ->
         chi_siamo: 3,
         collaboratori: 4,
         video: 5
-      }
+      },
+      host: hostz
     }
     window.fiveapi = new Fiveapi( configs )
     fiveapi.activate()
