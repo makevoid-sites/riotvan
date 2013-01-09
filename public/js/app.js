@@ -38,17 +38,19 @@
   };
 
   srvstatus = function() {
-    return $.ajax({
-      url: "http://riotvan.dyndns.org",
-      success: function(data) {
-        if (data === "OK") {
-          return $(".srvstatus").addClass("open");
+    if (location.hostname !== "localhost") {
+      return $.ajax({
+        url: "http://riotvan.dyndns.org",
+        success: function(data) {
+          if (data === "OK") {
+            return $(".srvstatus").addClass("open");
+          }
+        },
+        error: function() {
+          return "";
         }
-      },
-      error: function() {
-        return "";
-      }
-    });
+      });
+    }
   };
 
   lightbox = function() {
@@ -184,20 +186,7 @@
   g.fb_init = fb_init;
 
   fb_setup = function() {
-    return (function(d) {
-      var id, js, ref;
-      js = void 0;
-      id = "facebook-jssdk";
-      ref = d.getElementsByTagName("script")[0];
-      if (d.getElementById(id)) {
-        return;
-      }
-      js = d.createElement("script");
-      js.id = id;
-      js.async = true;
-      js.src = "//connect.facebook.net/en_US/all.js";
-      return ref.parentNode.insertBefore(js, ref);
-    })(document);
+    return '(function(d, s, id) {\n  var js, fjs = d.getElementsByTagName(s)[0];\n  if (d.getElementById(id)) return;\n  js = d.createElement(s); js.id = id;\n  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=333539793359620";\n  fjs.parentNode.insertBefore(js, fjs);\n}(document, \'script\', \'facebook-jssdk\'))';
   };
 
   track_page = function() {
@@ -329,7 +318,6 @@
   if (location.hostname === "localhost") {
     hostz = "localhost:3000";
     local = "localhost:3001";
-    local = "riotvan.net";
   } else {
     hostz = "fiveapi.com";
     local = "riotvan.net";
@@ -386,7 +374,6 @@
       fiveapi.activate();
       render_markdown();
       render_external_markdown();
-      fb_init();
       set_home_height();
       setTimeout(function() {
         return get_elements();

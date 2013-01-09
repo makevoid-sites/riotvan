@@ -21,14 +21,15 @@ render_markup = ->
 # srvstatus
 
 srvstatus = ->
-  $.ajax
-    url: "http://riotvan.dyndns.org"
-    success: (data) ->
-      if data == "OK"
-        $(".srvstatus").addClass "open"
-    error: ->
-      ""
-      # do nothing
+  if location.hostname != "localhost"
+    $.ajax
+      url: "http://riotvan.dyndns.org"
+      success: (data) ->
+        if data == "OK"
+          $(".srvstatus").addClass "open"
+      error: ->
+        ""
+        # do nothing
 
 # lightbox
 
@@ -141,17 +142,15 @@ fb_init = ->
 g.fb_init = fb_init
 
 fb_setup = ->
-  ((d) ->
-    js = undefined
-    id = "facebook-jssdk"
-    ref = d.getElementsByTagName("script")[0]
-    return  if d.getElementById(id)
-    js = d.createElement("script")
-    js.id = id
-    js.async = true
-    js.src = "//connect.facebook.net/en_US/all.js"
-    ref.parentNode.insertBefore js, ref
-  ) document
+  '''
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=333539793359620";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'))
+  '''
 
 track_page = ->
   page = location.pathname[1..-1]
@@ -269,7 +268,7 @@ if location.hostname == "localhost"
   hostz = "localhost:3000"
   local = "localhost:3001"
   # hostz = "fiveapi.com"
-  local = "riotvan.net"
+  # local = "riotvan.net"
 else
   # prod
   hostz = "fiveapi.com"
@@ -332,7 +331,7 @@ $ ->
     render_markdown()
     render_external_markdown()
 
-    fb_init()
+    # fb_init()
     # gal_build()
     set_home_height()
 
