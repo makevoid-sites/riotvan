@@ -19,8 +19,9 @@ class RiotVan < Sinatra::Base
   def self.serve_cors_views
     Dir.glob("views/*.haml").each do |view|
       # p view
-      get "#{view}" do
-        send_file File.expand_path(view, settings.public)
+      get "/#{view}" do
+        p view
+        send_file "#{PATH}/#{view}"
       end
     end
   end

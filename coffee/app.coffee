@@ -269,7 +269,7 @@ if location.hostname == "localhost"
   hostz = "localhost:3000"
   local = "localhost:3001"
   # hostz = "fiveapi.com"
-  local = "riotvan.net"
+  # local = "riotvan.net"
 else
   # prod
   hostz = "fiveapi.com"
