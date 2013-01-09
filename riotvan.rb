@@ -17,7 +17,7 @@ class RiotVan < Sinatra::Base
   end
 
   def self.serve_cors_views
-    Dir.glob("views/*.haml").each do |view|
+    Dir.glob("#{PATH}/views/*.haml").each do |view|
       # p view
       get "/#{view}" do
         p view
