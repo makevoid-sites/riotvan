@@ -27,7 +27,7 @@ class RiotVan < Sinatra::Base
     end
   # end
 
-  get "/views/articoli.haml" do
+  get "/views/articoli2.haml" do
     send_file "#{PATH}/views/articoli.haml"
   end
 
