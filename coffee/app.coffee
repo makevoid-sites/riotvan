@@ -21,15 +21,14 @@ render_markup = ->
 # srvstatus
 
 srvstatus = ->
-  if location.hostname != "localhost"
-    $.ajax
-      url: "http://riotvan.dyndns.org"
-      success: (data) ->
-        if data == "OK"
-          $(".srvstatus").addClass "open"
-      error: ->
-        ""
-        # do nothing
+  # if location.hostname != "localhost"
+  $.ajax
+    url: "http://riotvan.dyndns.org"
+    success: (data) ->
+      if data == "OK"
+        $(".srvstatus").addClass "open"
+    error: ->
+      false # do nothing
 
 # lightbox
 

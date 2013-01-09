@@ -38,19 +38,17 @@
   };
 
   srvstatus = function() {
-    if (location.hostname !== "localhost") {
-      return $.ajax({
-        url: "http://riotvan.dyndns.org",
-        success: function(data) {
-          if (data === "OK") {
-            return $(".srvstatus").addClass("open");
-          }
-        },
-        error: function() {
-          return "";
+    return $.ajax({
+      url: "http://riotvan.dyndns.org",
+      success: function(data) {
+        if (data === "OK") {
+          return $(".srvstatus").addClass("open");
         }
-      });
-    }
+      },
+      error: function() {
+        return false;
+      }
+    });
   };
 
   lightbox = function() {
