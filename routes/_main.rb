@@ -8,6 +8,15 @@ class RiotVan < Sinatra::Base
     redirect_without_www
   end
 
+  Dir.glob("#{PATH}/views/*.haml").each do |view|
+    name = File.basename view
+    puts "-"*80
+    puts name
+    get "/views/#{name}" do
+      send_file "#{PATH}/views/#{name}"
+    end
+  end
+
   get "/" do
     @articles = Collection.get :articoli
     haml :index
