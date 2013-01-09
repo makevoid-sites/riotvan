@@ -16,17 +16,16 @@ class RiotVan < Sinatra::Base
     headers "Access-Control-Allow-Origin" =>  "*"
   end
 
-  def self.serve_cors_views
+  # def self.serve_cors_views
     Dir.glob("#{PATH}/views/*.haml").each do |view|
-      # p view
-      get "/#{view}" do
-        p view
-        send_file "#{PATH}/#{view}"
+      name = File.basename view
+      get "/views/#{name}" do
+        send_file "#{PATH}/views/#{name}"
       end
     end
-  end
+  # end
 
-  serve_cors_views
+  # serve_cors_views
 
   def partial(name, value={})
     locals = if value.is_a? Hash
