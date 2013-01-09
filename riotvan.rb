@@ -19,6 +19,8 @@ class RiotVan < Sinatra::Base
   # def self.serve_cors_views
     Dir.glob("#{PATH}/views/*.haml").each do |view|
       name = File.basename view
+      puts "-"*80
+      puts name
       get "/views/#{name}" do
         send_file "#{PATH}/views/#{name}"
       end
