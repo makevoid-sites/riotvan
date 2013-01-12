@@ -13,7 +13,7 @@ end
 include Utils
 
 FIVEAPI_HOST = if ENV['RACK_ENV'] == "development"
-  "localhost:3000"
+  "fiveapi.com"
 else
   "fiveapi.com"
 end
