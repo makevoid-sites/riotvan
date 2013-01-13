@@ -141,7 +141,7 @@ fb_init = ->
 g.fb_init = fb_init
 
 fb_setup = ->
-  '''
+  `
   (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
@@ -149,7 +149,8 @@ fb_setup = ->
     js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=333539793359620";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'))
-  '''
+  `
+  true
 
 track_page = ->
   page = location.pathname[1..-1]
@@ -330,7 +331,7 @@ $ ->
     render_markdown()
     render_external_markdown()
 
-    fb_init()
+    # fb_init()
     # gal_build()
     set_home_height()
 

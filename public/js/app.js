@@ -184,7 +184,16 @@
   g.fb_init = fb_init;
 
   fb_setup = function() {
-    return '(function(d, s, id) {\n  var js, fjs = d.getElementsByTagName(s)[0];\n  if (d.getElementById(id)) return;\n  js = d.createElement(s); js.id = id;\n  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=333539793359620";\n  fjs.parentNode.insertBefore(js, fjs);\n}(document, \'script\', \'facebook-jssdk\'))';
+    
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=333539793359620";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'))
+  ;
+    return true;
   };
 
   track_page = function() {
@@ -372,7 +381,6 @@
       fiveapi.activate();
       render_markdown();
       render_external_markdown();
-      fb_init();
       set_home_height();
       setTimeout(function() {
         return get_elements();
