@@ -2,12 +2,22 @@
 %html
   %head
     %title RiotVan
+
     %meta{:content => "width=device-width, initial-scale=1.0, user-scalable=no", :name => "viewport"}/
+
     %link{ href: "/css/reset.css", rel: "stylesheet" }
     %link{ href: "/css/app.css", rel: "stylesheet"  }
     = partial :metas
     :javascript
       var fiveapi_host = "#{FIVEAPI_HOST}"
+    :javascript
+      (function() {
+        var cx = '017532368030178752298:s-vzxfhbnga';
+        var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+            '//www.google.com/cse/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+        })();
   %body
     #container
       %header
@@ -20,6 +30,7 @@
           .srvstatus
           #fiveapi_message
           #fiveapi
+          %gcse:searchbox-only
         .nav_box
           .nav_cont
             %nav
@@ -34,6 +45,7 @@
               %a{ href: "/chi_siamo" }  Chi siamo
               %span /
               %a{ href: "/collabs" }    Collaborazioni
+	
 
       .clear
       #debug

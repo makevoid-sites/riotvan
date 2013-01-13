@@ -625,6 +625,14 @@ footer {
   width: 94%;
   margin: 0 auto 30px; }
 
+#___gcse_0 {
+  width: 35%;
+  position: absolute;
+  right: 0px;
+  top: 10px;
+  padding-top: 15px;
+  padding-right: 1.5%; }
+
 @media (max-width: 500px) {
   body #container {
     font-size: 0.9em; }

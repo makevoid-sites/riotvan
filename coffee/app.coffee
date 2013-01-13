@@ -1,5 +1,10 @@
 g = window
 
+# TODO: lanciare alla callback o quando appare .gsc-input
+setTimeout ->
+    $(".gsc-input").css(background: "none")
+  , 2000
+
 inject_spinner = ->
   elements = $(".fiveapi_element[data-type=collection],.fiveapi_element[data-type=article],.external_markdown")
   return if elements.html() != ""

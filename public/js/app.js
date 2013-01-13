@@ -4,6 +4,12 @@
 
   g = window;
 
+  setTimeout(function() {
+    return $(".gsc-input").css({
+      background: "none"
+    });
+  }, 2000);
+
   inject_spinner = function() {
     var elements;
     elements = $(".fiveapi_element[data-type=collection],.fiveapi_element[data-type=article],.external_markdown");
