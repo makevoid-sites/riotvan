@@ -330,7 +330,7 @@ $ ->
     render_markdown()
     render_external_markdown()
 
-    # fb_init()
+    fb_init()
     # gal_build()
     set_home_height()
 

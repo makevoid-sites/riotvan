@@ -372,6 +372,7 @@
       fiveapi.activate();
       render_markdown();
       render_external_markdown();
+      fb_init();
       set_home_height();
       setTimeout(function() {
         return get_elements();
