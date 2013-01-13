@@ -1,7 +1,7 @@
 # RiotVan
 ## new RiotVan website - http://riotvan.net
 
-# todo:
+# todo!!! :
 
 - anteprime http://img.youtube.com/vi/cHKP7lpnNS4/0.jpg
 - link dall'immagine nella coll/section all'articolo
