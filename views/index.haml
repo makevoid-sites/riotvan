@@ -4,10 +4,11 @@
     %a{ href: "/issues/12" }
       %img{ src: "/images/numbers/12.png" }
 
-  .non.pillola.ma.concorso_fotografico
-    %h3 Concorso fotografico
-    %p
-      - link_to "Scarica il bando", "/pdf/concorso_fotografico2.pdf"
+  /
+    .non.pillola.ma.concorso_fotografico
+      %h3 Concorso fotografico
+      %p
+        - link_to "Scarica il bando", "/pdf/concorso_fotografico2.pdf"
 
   .pillola
     %h3 Spillo
@@ -41,14 +42,20 @@
 
   .partners
     %h3 Partners
+    %a{ href: "http://www.blueswriters.com" }
+      %img{ src: "/images/partners/blueswriters.png" }
     %a{ href: "http://nodump.it" }
       %img{ src: "/images/partners/no_dump.png" }
+    %a{ href: "http://guerrillaspam.blogspot.it" }
+      %img{ src: "/images/partners/guerrilla_spam.png" }
     %a{ href: "http://www.velvetgoldmine.eu" }
       %img{ src: "/images/partners/gold.png" }
-    %a{ href: "http://www.parkourfirenze.org" }
-      %img{ src: "/images/partners/parkhour.png" }
-    %a{ href: "http://super-magazine.com" }
-      %img{ src: "/images/partners/super_magazine.png" }
+
+    /
+      %a{ href: "http://www.parkourfirenze.org" }
+        %img{ src: "/images/partners/parkhour.png" }
+      %a{ href: "http://super-magazine.com" }
+        %img{ src: "/images/partners/super_magazine.png" }
 
 
   .fb_like_box
