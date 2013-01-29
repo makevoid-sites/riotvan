@@ -18,6 +18,14 @@
   - url = "#{url}/issues/#{num}"
 
 
+
+- if split[1..2] == ["guerrilla_spam", "libro"]
+  - title = "Tutto ciò che sai è falso - Guerrilla SPAM"
+  - image = "http://riotvan.net/images/guerrilla_spam/guerrilla_spam_libro.jpg"
+  - url = "#{url}/guerrilla_spam/libro"
+  - meta_description = "Il libro di Guerrilla SPAM e' possibile ottenere una copia cartacea al solo costo di stampa! E c'e' pure la versione online!"
+
+
 %meta{:content => meta_description, :name => "description"}/
 %meta{:content => "riotvan, riot van, magazine, giornale, gratuito, apolitico, studentesco, universitario, media, production", :name => "keywords"}/
 %meta{:content => "Francesco 'makevoid' Canessa", :name => "author"}/
