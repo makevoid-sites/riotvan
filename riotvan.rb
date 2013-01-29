@@ -42,6 +42,18 @@ class RiotVan < Sinatra::Base
   end
 
   helpers do
+    def riot_house
+      uri = URI.parse("http://riotvan.dyndns.org")
+      http = Net::HTTP.new uri.host, uri.port
+      http.read_timeout = 4
+      http.open_timeout = 4
+      begin
+        resp = http.get "/"
+        resp.body
+      rescue
+      end
+    end
+
     def location_article_id
       request.path.split("/")[-1].split("-")[0]
     end
