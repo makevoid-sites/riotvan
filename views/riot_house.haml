@@ -1,0 +1,17 @@
+.page.full.riot_house
+  %h1 Riot House
+
+  - status = Net::HTTP.get_response(URI.parse("http://riotvan.dyndns.org")).body
+  .big
+    - if status.blank?
+      %p
+        La Riot House probabilmente è
+        %strong chiusa,
+      %p
+        Prova a chiamare lo
+        %strong 055 9335268.
+    - else
+      %p
+        La Riot House è
+        %strong aperta!
+      %p Passa a trovarci!

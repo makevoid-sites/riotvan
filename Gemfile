@@ -10,6 +10,8 @@ gem "json"
 gem "haml"
 gem "sass"
 
+gem "mail"
+
 group :development do
   gem "foreman"
   gem "rerun"
@@ -20,7 +22,7 @@ group :development do
   # gem "growl"
   #
   # only linux?
-  gem 'rb-inotify', '~> 0.8.8' 
+  gem 'rb-inotify', '~> 0.8.8'
 end
 
 group :test do

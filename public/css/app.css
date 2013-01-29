@@ -498,6 +498,27 @@ h3 {
   width: 92%;
   max-width: 1000px; }
 
+.page.full.guerrilla_spam h1, .page.full.riot_house h1 {
+  font-family: bebas_neue;
+  margin: 0; }
+.page.full.guerrilla_spam h2, .page.full.riot_house h2 {
+  float: left;
+  margin: 15px 0 7px 0; }
+.page.full.guerrilla_spam .text, .page.full.riot_house .text {
+  clear: both; }
+.page.full.guerrilla_spam img, .page.full.riot_house img {
+  float: right;
+  width: 40%;
+  margin: 0 0 0 1.5%; }
+.page.full.guerrilla_spam .big, .page.full.riot_house .big {
+  font-size: 1.4em; }
+
+.spaced {
+  margin: 20px 0 0 0; }
+
+form.mail input {
+  font-size: 1.2em; }
+
 footer {
   max-width: 1000px;
   margin: 0 auto; }
@@ -629,8 +650,7 @@ footer {
   width: 35%;
   position: absolute;
   right: 0px;
-  top: 10px;
-  padding-top: 15px;
+  top: 25px;
   padding-right: 1.5%; }
 
 @media (max-width: 500px) {

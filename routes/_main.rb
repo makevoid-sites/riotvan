@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class RiotVan < Sinatra::Base
 
   def redirect_without_www
@@ -67,6 +69,37 @@ class RiotVan < Sinatra::Base
 
   get "/events/*" do
     haml :event
+  end
+
+  get "/guerrilla_spam/libro" do
+    haml :guerrilla_spam_libro
+  end
+
+  get "/riot_house" do
+    haml :riot_house
+  end
+
+  post "/mail/guerrilla_spam" do
+    mail = params[:mail]
+    message = Mail.new do
+            to MAIN_EMAIL
+          from 'm4kevoid@gmail.com'
+      reply_to mail["from"]
+       subject "RV.net: Libro SPAM <#{mail["from"]}>"
+          body "Vorrei il libro di Guerrilla SPAM, rispondetemi con questo messaggio:
+
+          Ciao,
+
+          vieni pure a ritiare la tua copia del libro \"Tutto ciò che sai è falso\" di Guerrilla SPAM in sede RiotVan: http://goo.gl/maps/4IUx0 (Via Santa Reparata 40/r - Firenze)
+
+          Per sapere se siamo aperti controlla questa pagina:
+          http://riotvan.net/riot_house
+
+          A presto!
+          "
+    end
+    message.deliver
+    haml :email_success
   end
 
   # unpublisheds

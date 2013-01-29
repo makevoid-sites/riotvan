@@ -1,0 +1,59 @@
+- spam_article = "http://guerrillaspam.blogspot.it/2012/10/tutto-cio-che-sai-e-falso.html"
+
+.page.full.guerrilla_spam
+  %h1 Tutto ciò che sai è falso
+  %h2 Il non-libro di Guerrilla SPAM
+  .text
+    %a{ href: spam_article }
+      %img{ src: "/images/guerrilla_spam/guerrilla_spam_libro.jpg"}
+
+    %p EDIZIONE INDIPENDENTE GUERRILLA SPAM
+
+    %p Questa pubblicazione nasce dopo cinque mesi di lavoro, di ricerche, e di assemblaggio di numerosi documenti, foto e disegni, molti dei quali inediti, con l'obbiettivo di mostrarli al pubblico, all'interno di un racconto che ripercorre la storia di SPAM dalla sua nascita sino ad oggi.
+
+    %p Numerosi aneddoti, storie ufficiali e racconti non ufficiali dei backstage si alternano ad articoli, saggi critici, interviste e molto altro, che accompagnano le vicessitudini di SPAM in questo percorso di 3 anni.
+
+    %p All'interno sono presenti anche commenti o lettere dei fan, ricette e consigli per chi volesse cimentarsi nell'arte di strada, e naturalmente centinaia di disegni, schizzi, bozzetti, fotografie di appunti, lavori inediti e fotografie di attacchi, dalle preparazioni, alle fasi di lavorazione.
+
+  %a{ href: "http://www.youblisher.com/p/491119-tutto-cio-che-sai-e-falso-guerrilla-SPAM/" }
+    %h2 Versione Digitale
+    .clear_left
+
+    %p Online e gratuita! (clicca per aprire lo sfogliatore)
+
+    %p
+      %a{ href: "http://www.youblisher.com/files/publications/82/491119/pdf.pdf" } versione PDF (~500MB)
+
+
+  %h2 Versione Cartacea
+  .clear_left
+
+  %p
+    E' vostro al solo costo di stampa:
+
+    %span.big 15€
+
+  %p in formato A5, 250 pagine a colori!
+
+  %p
+    %strong e' ritirabile presso:
+
+  %a{ href: "http://goo.gl/maps/4IUx0" }
+    %p Riot Van
+    %p via S.Reparata 40/rosso (mappa)
+
+  .spaced
+    %a{ href: "/riot_house" }
+      %p Per sapere se siamo aperti controlla questa pagina:
+      %h3 riotvan.net/riot_house
+
+  .spaced
+    %p A presto!
+
+  /
+    %p
+      prenota subito la tua copia inserendo il tuo
+      %strong indirizzo email:
+    %form.mail{ action: "/mail/guerrilla_spam", method: "post" }
+      %input{ name: "email", type: "text" }
+      %input{ value: "Prenota", type: "submit" }
