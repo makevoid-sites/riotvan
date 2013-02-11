@@ -1,9 +1,8 @@
 .page.full.riot_house
   %h1 Riot House
 
-  - status = Net::HTTP.get_response(URI.parse("http://riotvan.dyndns.org")).body
   .big
-    - if status.blank?
+    - if riot_house.blank?
       %p
         La Riot House probabilmente è
         %strong chiusa,
