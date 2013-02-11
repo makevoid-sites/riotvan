@@ -16,6 +16,14 @@ class RiotVan < Sinatra::Base
     headers "Access-Control-Allow-Origin" =>  "*"
   end
 
+  not_found do
+    haml :error_404
+  end
+
+  error do
+    haml :error_500
+  end
+
   # def self.serve_cors_views
     Dir.glob("#{PATH}/views/*.haml").each do |view|
       name = File.basename view
