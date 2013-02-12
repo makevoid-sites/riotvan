@@ -68,6 +68,11 @@ link:
 <http://new.riotvan.net>  
 
     <http://new.riotvan.net>    
+    
+[testo del link](http://example.com) 
+
+    [testo del link](http://example.com) 
+
 
 
 guida completa:
