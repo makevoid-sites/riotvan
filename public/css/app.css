@@ -377,6 +377,18 @@ h3 {
   margin: 10px 0 5px 1.2%;
   width: 35%;
   float: right; }
+.page.article figure:first-child {
+  margin: 0 1.2% 5px 0;
+  float: left; }
+.page.article figure {
+  margin: 10px 0 5px 1.2%;
+  width: 35%;
+  float: right; }
+  .page.article figure img {
+    width: 100%; }
+  .page.article figure figcaption {
+    text-align: center;
+    font-style: oblique; }
 .page.article .article_infos {
   text-align: left;
   display: block; }

@@ -20,8 +20,18 @@ render_markup = ->
     text = text_elem.data "text"
     article = { images: images, text: text }
     html = markup article
+    html = render_issuu html
     text_elem.html html
 
+render_issuu = (html) ->
+  regex = /\[issuu_([a-f0-9-]+)\]/
+  match = html.match regex
+  if match
+    issuu_id = match[1]
+    obj = { issuu_id: issuu_id }
+    issuu_html = haml.compileStringToJs(views.issuu) obj
+    html = html.replace regex, issuu_html
+  html
 
 
 # srvstatus
@@ -300,8 +310,10 @@ $ ->
       resize_issuu()
   inject_spinner()
 
+  # article (single page article)
   render_markup()
   bind_lightbox()
+  add_figcaptions()
 
   # resize issuu
   setTimeout ->
@@ -359,6 +371,16 @@ bind_lightbox = ->
     lightbox()
     lightbox.show(url)
 
+add_figcaptions = ->
+  $(".article .text img").imagesLoaded ->
+    $(this).each (id, elem) ->
+      add_figcaption $(elem)
+
+add_figcaption = (img) ->
+  figure = $("<figure>")
+  caption = img.attr "title"
+  img.wrap figure
+  img.after "<figcaption>#{caption}</figcaption>"
 
 
 hamls = {}
@@ -380,8 +402,12 @@ render_markdown = ->
 write_images = (obj) =>
   # obj.text =
   for image in obj.images
-    regex = new RegExp "\\[(image|file)_#{image.id}\\](>(.+)<)*"
-    obj.text = obj.text.replace regex, "![$3](#{hostz}#{image.url})"
+    regex_w_title = new RegExp "\\[(image|file)_#{image.id}\\](>(.+)<)*"
+    if obj.text.match regex_w_title
+      obj.text = obj.text.replace regex_w_title, "![$3](#{hostz}#{image.url} \"$3\")"
+    else
+      regex = new RegExp "\\[(image|file)_#{image.id}\\]"
+      obj.text = obj.text.replace regex, "![](#{hostz}#{image.url})"
   obj
 
 write_videos = (text) ->
@@ -510,3 +536,16 @@ haml.article_preview = (text) ->
     $.htmlClean "#{text.substring(0, max_length)}..."
   else
     text
+
+views = {}
+
+views.issuu = '- src = "http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf"\n
+- mode = "mode=mini&backgroundColor=%23222222&documentId="+issuu_id\n
+.page.full.history\n
+  %object.issuu\n
+    %param{ name: "movie", value: src+"?"+mode }/\n
+    %param{ name: "allowfullscreen", value: "true"}/\n
+    %param{ name: "menu", value: "false"}/\n
+    %param{ name: "wmode", value: "transparent"}/\n
+    %embed{ allowfullscreen: "true", flashvars: mode, menu: "false", src: src,  type: "application/x-shockwave-flash", wmode: "transparent" }/'
+

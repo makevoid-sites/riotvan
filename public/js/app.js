@@ -1,5 +1,5 @@
 (function() {
-  var articles_per_page, bind_lightbox, box_images, cur_idx, fb_init, fb_setup, g, gal_anim, gal_build, gal_resize, get_article, get_collection, get_elements, got_article, got_collection, hamls, hostz, inject_spinner, lightbox, load_haml, local, markup, picasa_init, picasa_resize, puts, render_external_markdown, render_haml, render_markdown, render_markup, render_pagination, resize_issuu, restore_gal, set_home_height, singularize, srvstatus, titles, track_page, write_images, write_openzoom, write_picasa_images, write_videos,
+  var add_figcaption, add_figcaptions, articles_per_page, bind_lightbox, box_images, cur_idx, fb_init, fb_setup, g, gal_anim, gal_build, gal_resize, get_article, get_collection, get_elements, got_article, got_collection, hamls, hostz, inject_spinner, lightbox, load_haml, local, markup, picasa_init, picasa_resize, puts, render_external_markdown, render_haml, render_issuu, render_markdown, render_markup, render_pagination, resize_issuu, restore_gal, set_home_height, singularize, srvstatus, titles, track_page, views, write_images, write_openzoom, write_picasa_images, write_videos,
     _this = this;
 
   g = window;
@@ -39,8 +39,24 @@
         text: text
       };
       html = markup(article);
+      html = render_issuu(html);
       return text_elem.html(html);
     });
+  };
+
+  render_issuu = function(html) {
+    var issuu_html, issuu_id, match, obj, regex;
+    regex = /\[issuu_([a-f0-9-]+)\]/;
+    match = html.match(regex);
+    if (match) {
+      issuu_id = match[1];
+      obj = {
+        issuu_id: issuu_id
+      };
+      issuu_html = haml.compileStringToJs(views.issuu)(obj);
+      html = html.replace(regex, issuu_html);
+    }
+    return html;
   };
 
   srvstatus = function() {
@@ -355,6 +371,7 @@
     inject_spinner();
     render_markup();
     bind_lightbox();
+    add_figcaptions();
     setTimeout(function() {
       return resize_issuu();
     }, 200);
@@ -410,6 +427,22 @@
     });
   };
 
+  add_figcaptions = function() {
+    return $(".article .text img").imagesLoaded(function() {
+      return $(this).each(function(id, elem) {
+        return add_figcaption($(elem));
+      });
+    });
+  };
+
+  add_figcaption = function(img) {
+    var caption, figure;
+    figure = $("<figure>");
+    caption = img.attr("title");
+    img.wrap(figure);
+    return img.after("<figcaption>" + caption + "</figcaption>");
+  };
+
   hamls = {};
 
   render_external_markdown = function() {
@@ -436,12 +469,17 @@
   };
 
   write_images = function(obj) {
-    var image, regex, _i, _len, _ref;
+    var image, regex, regex_w_title, _i, _len, _ref;
     _ref = obj.images;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       image = _ref[_i];
-      regex = new RegExp("\\[(image|file)_" + image.id + "\\](>(.+)<)*");
-      obj.text = obj.text.replace(regex, "![$3](" + hostz + image.url + ")");
+      regex_w_title = new RegExp("\\[(image|file)_" + image.id + "\\](>(.+)<)*");
+      if (obj.text.match(regex_w_title)) {
+        obj.text = obj.text.replace(regex_w_title, "![$3](" + hostz + image.url + " \"$3\")");
+      } else {
+        regex = new RegExp("\\[(image|file)_" + image.id + "\\]");
+        obj.text = obj.text.replace(regex, "![](" + hostz + image.url + ")");
+      }
     }
     return obj;
   };
@@ -634,5 +672,17 @@
       return text;
     }
   };
+
+  views = {};
+
+  views.issuu = '- src = "http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf"\n\
+- mode = "mode=mini&backgroundColor=%23222222&documentId="+issuu_id\n\
+.page.full.history\n\
+  %object.issuu\n\
+    %param{ name: "movie", value: src+"?"+mode }/\n\
+    %param{ name: "allowfullscreen", value: "true"}/\n\
+    %param{ name: "menu", value: "false"}/\n\
+    %param{ name: "wmode", value: "transparent"}/\n\
+    %embed{ allowfullscreen: "true", flashvars: mode, menu: "false", src: src,  type: "application/x-shockwave-flash", wmode: "transparent" }/';
 
 }).call(this);
