@@ -379,8 +379,9 @@ add_figcaptions = ->
 add_figcaption = (img) ->
   figure = $("<figure>")
   caption = img.attr "title"
-  img.wrap figure
-  img.after "<figcaption>#{caption}</figcaption>"
+  if caption
+    img.wrap figure
+    img.after "<figcaption>#{caption}</figcaption>"
 
 
 hamls = {}

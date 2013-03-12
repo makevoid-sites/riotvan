@@ -370,14 +370,14 @@ h3 {
   float: left;
   margin: 0 12px 0 0; }
 
-.page.article p:first-child img:first-child {
+.page.article p:first-child img:first-child, .page.article p:nth-child(2n) img:first-child {
   margin: 0 1.2% 5px 0;
   float: left; }
 .page.article img {
   margin: 10px 0 5px 1.2%;
   width: 35%;
   float: right; }
-.page.article figure:first-child {
+.page.article p:first-child figure:first-child, .page.article p:nth-child(2n) figure:first-child {
   margin: 0 1.2% 5px 0;
   float: left; }
 .page.article figure {

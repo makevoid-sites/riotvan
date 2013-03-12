@@ -439,8 +439,10 @@
     var caption, figure;
     figure = $("<figure>");
     caption = img.attr("title");
-    img.wrap(figure);
-    return img.after("<figcaption>" + caption + "</figcaption>");
+    if (caption) {
+      img.wrap(figure);
+      return img.after("<figcaption>" + caption + "</figcaption>");
+    }
   };
 
   hamls = {};
