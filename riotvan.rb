@@ -12,7 +12,6 @@ class RiotVan < Sinatra::Base
   # partial :comment, comment
 
   before do
-    # request.env["HTTP_ORIGIN"]
     headers "Access-Control-Allow-Origin" =>  "*"
   end
 
@@ -24,18 +23,16 @@ class RiotVan < Sinatra::Base
     haml :error_500
   end
 
-  # def self.serve_cors_views
-    Dir.glob("#{PATH}/views/*.haml").each do |view|
-      name = File.basename view
-      get "/views/#{name}" do
-        send_file "#{PATH}/views/#{name}"
-      end
-    end
+  # Dir.glob("#{PATH}/views/*.haml").each do |view|
+  #   name = File.basename view
+  #   get "/views/#{name}" do
+  #     send_file "#{PATH}/views/#{name}"
+  #   end
   # end
 
-  get "/views/articoli2.haml" do
-    send_file "#{PATH}/views/articoli.haml"
-  end
+  # get "/views/articoli2.haml" do
+  #   send_file "#{PATH}/views/articoli.haml"
+  # end
 
   # serve_cors_views
 

@@ -1,5 +1,5 @@
 (function() {
-  var articles_per_page, box_images, cur_idx, fb_init, fb_setup, g, gal_anim, gal_build, gal_resize, get_article, get_collection, get_elements, got_article, got_collection, hamls, hostz, inject_spinner, lightbox, load_haml, local, markup, picasa_init, picasa_resize, puts, render_external_markdown, render_haml, render_markdown, render_markup, render_pagination, resize_issuu, restore_gal, set_home_height, singularize, srvstatus, titles, track_page, write_images, write_openzoom, write_picasa_images, write_videos,
+  var articles_per_page, bind_lightbox, box_images, cur_idx, fb_init, fb_setup, g, gal_anim, gal_build, gal_resize, get_article, get_collection, get_elements, got_article, got_collection, hamls, hostz, inject_spinner, lightbox, load_haml, local, markup, picasa_init, picasa_resize, puts, render_external_markdown, render_haml, render_markdown, render_markup, render_pagination, resize_issuu, restore_gal, set_home_height, singularize, srvstatus, titles, track_page, write_images, write_openzoom, write_picasa_images, write_videos,
     _this = this;
 
   g = window;
@@ -354,6 +354,7 @@
     }
     inject_spinner();
     render_markup();
+    bind_lightbox();
     setTimeout(function() {
       return resize_issuu();
     }, 200);
@@ -400,6 +401,15 @@
     });
   });
 
+  bind_lightbox = function() {
+    return $(".article .text img").on("click", function() {
+      var url;
+      url = $(this).attr("src");
+      lightbox();
+      return lightbox.show(url);
+    });
+  };
+
   hamls = {};
 
   render_external_markdown = function() {
@@ -430,8 +440,8 @@
     _ref = obj.images;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       image = _ref[_i];
-      regex = new RegExp("\\[(image|file)_" + image.id + "\\]");
-      obj.text = obj.text.replace(regex, "![](" + hostz + image.url + ")");
+      regex = new RegExp("\\[(image|file)_" + image.id + "\\](>(.+)<)*");
+      obj.text = obj.text.replace(regex, "![$3](" + hostz + image.url + ")");
     }
     return obj;
   };

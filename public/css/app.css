@@ -362,6 +362,8 @@ h3 {
   .page.article img.max {
     margin: 20px 0;
     width: 100%; }
+  .page.article .text img {
+    cursor: pointer; }
 
 .article img {
   width: 40%;

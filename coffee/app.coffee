@@ -23,6 +23,7 @@ render_markup = ->
     text_elem.html html
 
 
+
 # srvstatus
 
 srvstatus = ->
@@ -298,7 +299,9 @@ $ ->
     $(window).on "resize", ->
       resize_issuu()
   inject_spinner()
+
   render_markup()
+  bind_lightbox()
 
   # resize issuu
   setTimeout ->
@@ -350,6 +353,13 @@ $ ->
       set_home_height()
       box_images()
 
+bind_lightbox = ->
+  $(".article .text img").on "click", ->
+    url = $(this).attr("src")
+    lightbox()
+    lightbox.show(url)
+
+
 
 hamls = {}
 
@@ -370,8 +380,8 @@ render_markdown = ->
 write_images = (obj) =>
   # obj.text =
   for image in obj.images
-    regex = new RegExp "\\[(image|file)_#{image.id}\\]"
-    obj.text = obj.text.replace regex, "![](#{hostz}#{image.url})"
+    regex = new RegExp "\\[(image|file)_#{image.id}\\](>(.+)<)*"
+    obj.text = obj.text.replace regex, "![$3](#{hostz}#{image.url})"
   obj
 
 write_videos = (text) ->

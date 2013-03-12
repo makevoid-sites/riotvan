@@ -15,7 +15,8 @@ include Utils
 require "#{path}/lib/monkeypatches"
 
 FIVEAPI_HOST = if ENV['RACK_ENV'] == "development"
-  "fiveapi.com"
+  # "fiveapi.com"
+  "localhost:3000"
 else
   "fiveapi.com"
 end

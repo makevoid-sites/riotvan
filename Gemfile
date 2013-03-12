@@ -1,4 +1,4 @@
-source :rubygems
+source 'http://rubygems.org'
 
 gem "sinatra"
 gem "json"
@@ -21,8 +21,8 @@ group :development do
   gem "guard-livereload",   require: false
   # gem "growl"
   #
-  # only linux?
-  gem 'rb-inotify', '~> 0.8.8'
+  gem 'rb-fsevent', '~> 0.9.1'  # osx
+  gem 'rb-inotify', '~> 0.8.8'  # linux
 end
 
 group :test do
