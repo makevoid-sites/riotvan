@@ -413,7 +413,10 @@ write_images = (obj) =>
 
 write_videos = (text) ->
   # [youtube_2b_8yOZJn8A]
-  text.replace /\[youtube_(.+)\]/g, "<iframe src='http://www.youtube.com/embed/$1' allowfullscreen></iframe>"
+  text.replace /\[youtube-(.+)\]/g, "<iframe src='http://www.youtube.com/embed/$1' allowfullscreen></iframe>"
+
+prepare_videos = (text) ->
+  text.replace /\[youtube_(.+)\]/g, "[youtube-$1]"
 
 write_openzoom = (text) ->
   text.replace /\[openzoom_(.+)\]/m, '<object type="application/x-shockwave-flash" data="/openzoom/viewer.swf" width="100%" height="600px" name="viewer">
@@ -427,6 +430,7 @@ write_openzoom = (text) ->
 markup = (obj) ->
   obj = write_images obj
   text = obj.text
+  text = prepare_videos text
   text = markdown.toHTML text
   text = write_openzoom text
   text = write_videos text

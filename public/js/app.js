@@ -1,5 +1,5 @@
 (function() {
-  var add_figcaption, add_figcaptions, articles_per_page, bind_lightbox, box_images, cur_idx, fb_init, fb_setup, g, gal_anim, gal_build, gal_resize, get_article, get_collection, get_elements, got_article, got_collection, hamls, hostz, inject_spinner, lightbox, load_haml, local, markup, picasa_init, picasa_resize, puts, render_external_markdown, render_haml, render_issuu, render_markdown, render_markup, render_pagination, resize_issuu, restore_gal, set_home_height, singularize, srvstatus, titles, track_page, views, write_images, write_openzoom, write_picasa_images, write_videos,
+  var add_figcaption, add_figcaptions, articles_per_page, bind_lightbox, box_images, cur_idx, fb_init, fb_setup, g, gal_anim, gal_build, gal_resize, get_article, get_collection, get_elements, got_article, got_collection, hamls, hostz, inject_spinner, lightbox, load_haml, local, markup, picasa_init, picasa_resize, prepare_videos, puts, render_external_markdown, render_haml, render_issuu, render_markdown, render_markup, render_pagination, resize_issuu, restore_gal, set_home_height, singularize, srvstatus, titles, track_page, views, write_images, write_openzoom, write_picasa_images, write_videos,
     _this = this;
 
   g = window;
@@ -487,7 +487,11 @@
   };
 
   write_videos = function(text) {
-    return text.replace(/\[youtube_(.+)\]/g, "<iframe src='http://www.youtube.com/embed/$1' allowfullscreen></iframe>");
+    return text.replace(/\[youtube-(.+)\]/g, "<iframe src='http://www.youtube.com/embed/$1' allowfullscreen></iframe>");
+  };
+
+  prepare_videos = function(text) {
+    return text.replace(/\[youtube_(.+)\]/g, "[youtube-$1]");
   };
 
   write_openzoom = function(text) {
@@ -504,6 +508,7 @@
     var text;
     obj = write_images(obj);
     text = obj.text;
+    text = prepare_videos(text);
     text = markdown.toHTML(text);
     text = write_openzoom(text);
     text = write_videos(text);
