@@ -67,6 +67,10 @@ class RiotVan < Sinatra::Base
     haml :events
   end
 
+  get "/map" do
+    haml :map
+  end
+
   get "/events/*" do
     haml :event
   end
