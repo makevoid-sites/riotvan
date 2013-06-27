@@ -47,6 +47,7 @@ GEM
     rb-fsevent (0.9.3)
     rb-inotify (0.8.8)
       ffi (>= 0.5.0)
+    rdiscount (2.1.6)
     rerun (0.7.1)
       listen
     sass (3.2.5)
@@ -72,6 +73,7 @@ DEPENDENCIES
   json
   rb-fsevent (~> 0.9.1)
   rb-inotify (~> 0.8.8)
+  rdiscount
   rerun
   sass
   sinatra

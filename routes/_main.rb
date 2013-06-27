@@ -82,6 +82,14 @@ class RiotVan < Sinatra::Base
   get "/riot_house" do
     haml :riot_house
   end
+  
+  get "/lista_distribuzione" do
+    haml :lista_distribuzione
+  end
+  
+  get "/soluzioni_cruciverba" do
+    haml :soluzioni_cruciverba
+  end
 
   # post "/mail/guerrilla_spam" do
   #   mail = params[:mail]

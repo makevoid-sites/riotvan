@@ -11,6 +11,7 @@ gem "haml"
 gem "sass"
 
 # gem "mail"
+gem "rdiscount"
 
 group :development do
   gem "foreman"
