@@ -668,7 +668,8 @@ footer {
   padding-right: 1.5%; }
 
 .page.full.cruciverba img {
-  width: 100%; }
+  width: 100%;
+  margin: 0 0 40px 0; }
 
 a.back {
   margin: 0 0 10px 0;
