@@ -1,4 +1,4 @@
-ISSSUU_IDS = [
+ISSUU_IDS = [
   "100613211926-d6311fd97ee7496585903a4094d20a51", 
   "100613211517-c4df43bee4734f13a19c428810dedced", 
   "100613210551-a4233c90ab7e420296aba1eaf20faa69", 
@@ -18,7 +18,7 @@ ISSSUU_IDS = [
   # aggiungere nuovi numeri sopra questa riga
 ]
 
-ISSUE_NUM = ISSSUU_IDS.size-1
+ISSUE_NUM = ISSUU_IDS.size-1
 
 # per aggiungere un nuovo numero:
 
