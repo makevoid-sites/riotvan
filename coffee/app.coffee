@@ -71,8 +71,8 @@ lightbox.show = (url) ->
     width = lightbox.image_width()
     img = $(".lightbox img")
     img.css({ width: width }).css({ top: $(document).scrollTop() })
-    marginLeft = $("body").width() / 2 - img.width() / 2
-    img.css( left: marginLeft )
+    marginLeft = ( $("body").width() / 2 - img.width() / 2 ) / 2
+    img.css( marginLeft: -marginLeft )
 
 lightbox.resize = ->
   height = $("html").height()

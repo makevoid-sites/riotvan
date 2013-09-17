@@ -106,9 +106,9 @@
       }).css({
         top: $(document).scrollTop()
       });
-      marginLeft = $("body").width() / 2 - img.width() / 2;
+      marginLeft = ($("body").width() / 2 - img.width() / 2) / 2;
       return img.css({
-        left: marginLeft
+        marginLeft: -marginLeft
       });
     });
   };
@@ -214,8 +214,7 @@
     js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=333539793359620";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'))
-  ;
-    return true;
+  ;    return true;
   };
 
   track_page = function() {
