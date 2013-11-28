@@ -675,6 +675,9 @@ a.back {
   margin: 0 0 10px 0;
   float: right; }
 
+.cal {
+  padding-bottom: 20px; }
+
 @media (max-width: 500px) {
   body #container {
     font-size: 0.9em; }

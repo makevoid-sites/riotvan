@@ -1,7 +1,14 @@
 .page.events
-  
+ 
+  - height = 300
+  .cal
+    :plain
+      <iframe src="https://www.google.com/calendar/embed?height=#{height}&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=riotvan.net_pja5s57s5k17l1n0f35ij9lek4%40group.calendar.google.com&amp;color=%23B1440E&amp;ctz=Europe%2FRome" style=" border-width:0 " width="100%" height="#{height}" frameborder="0" scrolling="no"></iframe>
+    
   .fiveapi_element{ :"data-type" => "collection", :"data-name" => "eventi" }
   
   %p.pagination_text
     Pagine
   .pagination{ :"data-collection" => "eventi" }
+  
+  
