@@ -3,18 +3,27 @@
 -# aggiungere nuovi numeri alla fine
 - issuu_id = ISSUU_IDS[id]
 
-- src = "http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf"
-- mode = "mode=mini&backgroundColor=%23222222&documentId="+issuu_id
+
+- unless issuu_id.size > 20 # new embed code
+
+  %div{ :"data-configid" => issuu_id, style: "width: 80%; height: 630px; padding-top: 60px; margin: 0 auto", class: "issuuembed" }
+  %script{ type: "text/javascript", src: "//e.issuu.com/embed.js", async: "true" }
 
 
-.page.full.history
-  %object.issuu
-    %param{ name: "movie", value: src+"?"+mode }/
-    %param{ name: "allowfullscreen", value: "true"}/
-    %param{ name: "menu", value: "false"}/
-    %param{ name: "wmode", value: "transparent"}/
-    %embed{ allowfullscreen: "true", flashvars: mode, menu: "false", src: src,  type: "application/x-shockwave-flash", wmode: "transparent" }/
+- else
 
-  -# dl_url = "http://document.issuu.com/"+issuu_id+"/original.file"
-  -# dl_url = "http://issuu.com/riotvan/docs/riot14-ma_la_notte_no_#download"
-  -# %a{ href: dl_url } Download
+  - src = "http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf"
+  - mode = "mode=mini&backgroundColor=%23222222&documentId="+issuu_id
+
+
+  .page.full.history
+    %object.issuu
+      %param{ name: "movie", value: src+"?"+mode }/
+      %param{ name: "allowfullscreen", value: "true"}/
+      %param{ name: "menu", value: "false"}/
+      %param{ name: "wmode", value: "transparent"}/
+      %embed{ allowfullscreen: "true", flashvars: mode, menu: "false", src: src,  type: "application/x-shockwave-flash", wmode: "transparent" }/
+
+    -# dl_url = "http://document.issuu.com/"+issuu_id+"/original.file"
+    -# dl_url = "http://issuu.com/riotvan/docs/riot14-ma_la_notte_no_#download"
+    -# %a{ href: dl_url } Download

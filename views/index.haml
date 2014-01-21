@@ -33,7 +33,7 @@
     <div id="mc_embed_signup">
     <form action="http://riotvan.us6.list-manage.com/subscribe/post?u=360847a5ff1fe3497ccf0ef16&amp;id=c90d4a8ce0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
     	<h3>Newsletter</h3>
-    
+
     <div class="mc-field-group">
     	<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
     </div>
@@ -52,17 +52,20 @@
         var jqueryLoaded=false;
     }
     var head= document.getElementsByTagName('head')[0];
-    if (!jqueryLoaded) {
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = '//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js';
-        head.appendChild(script);
-        if (script.readyState && script.onload!==null){
-            script.onreadystatechange= function () {
-                  if (this.readyState == 'complete') mce_preload_check();
-            }    
-        }
-    }
+
+    // fuck mailchimp!
+
+    // if (!jqueryLoaded) {
+    //     var script = document.createElement('script');
+    //     script.type = 'text/javascript';
+    //     script.src = '//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js';
+    //     head.appendChild(script);
+    //     if (script.readyState && script.onload!==null){
+    //         script.onreadystatechange= function () {
+    //               if (this.readyState == 'complete') mce_preload_check();
+    //         }
+    //     }
+    // }
 
     var err_style = '';
     try{
@@ -134,7 +137,7 @@
                                         		this.value = '';
     									    } else {
     									        if (/\[day\]/.test(fields[0].name)){
-        	                                        this.value = fields[1].value+'/'+fields[0].value+'/'+fields[2].value;									        
+        	                                        this.value = fields[1].value+'/'+fields[0].value+'/'+fields[2].value;
     									        } else {
         	                                        this.value = fields[0].value+'/'+fields[1].value+'/'+fields[2].value;
     	                                        }
@@ -160,7 +163,7 @@
                                         });
                                 });
                             return mce_validator.form();
-                        }, 
+                        },
                         success: mce_success_cb
                     };
           $('#mc-embedded-subscribe-form').ajaxForm(options);
@@ -201,7 +204,7 @@
             try{
                 if (index== -1){
                     $('#mce-'+resp.result+'-response').show();
-                    $('#mce-'+resp.result+'-response').html(msg);            
+                    $('#mce-'+resp.result+'-response').html(msg);
                 } else {
                     err_id = 'mce_tmp_error_msg';
                     html = '<div id="'+err_id+'" style="'+err_style+'"> '+msg+'</div>';
@@ -235,7 +238,7 @@
 
     </script>
     <!--End mc_embed_signup-->
-  
+
   .others
     %h3
       %a{ href: "/lista_distribuzione" } Lista Distribuzione
@@ -249,9 +252,7 @@
       %span “
 
       //////// CITAZIONE
-      \- Quello che mi frega e'una schiacciante, infinita nostalgia per i miei vent'anni.
-      \- A ventitre' anni?
-      \- A ventitre' anni
+      Noi siamo per la depenalizzazione di tutto: già qua, sulla terra, scontiamo una pena abbastanza grande.
 
       ////////////////////////
 
@@ -260,7 +261,7 @@
     %p
 
       //////// AUTORE
-      Vanni Santoni, Personaggi Precari
+      Esistenzialisti con il sorriso
       ////////////////////////
 
   .events
