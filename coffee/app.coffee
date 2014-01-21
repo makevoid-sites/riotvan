@@ -296,7 +296,7 @@ local = "http://#{local}"
 
 haml.host = local
 
-articles_per_page = 5
+articles_per_page = 6
 
 # fiveapi requires jquery/zepto
 

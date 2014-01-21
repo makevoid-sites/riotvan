@@ -214,7 +214,8 @@
     js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=333539793359620";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'))
-  ;    return true;
+  ;
+    return true;
   };
 
   track_page = function() {
@@ -357,7 +358,7 @@
 
   haml.host = local;
 
-  articles_per_page = 5;
+  articles_per_page = 6;
 
   $(function() {
     fb_setup();
