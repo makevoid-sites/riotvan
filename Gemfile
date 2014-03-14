@@ -24,6 +24,8 @@ group :development do
   #
   gem 'rb-fsevent', '~> 0.9.1'  # osx
   gem 'rb-inotify', '~> 0.8.8'  # linux
+
+  gem "hpricot"
 end
 
 group :test do

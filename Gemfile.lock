@@ -32,6 +32,7 @@ GEM
       guard (>= 1.1.0)
       sass (>= 3.1)
     haml (3.1.7)
+    hpricot (0.8.6)
     json (1.7.6)
     listen (0.7.1)
     lumberjack (1.0.2)
@@ -70,6 +71,7 @@ DEPENDENCIES
   guard-livereload
   guard-sass
   haml
+  hpricot
   json
   rb-fsevent (~> 0.9.1)
   rb-inotify (~> 0.8.8)
