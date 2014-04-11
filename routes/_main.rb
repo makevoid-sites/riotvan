@@ -70,7 +70,6 @@ class RiotVan < Sinatra::Base
     haml :event
   end
 
-
   get "/events" do
     haml :events
   end

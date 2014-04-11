@@ -1,8 +1,56 @@
 .right2.right
+  / foto
+  %iframe{:allowfullscreen => "true", :height => "210", :mozallowfullscreen => "true", :src => "http://files.photosnack.com/iframejs/embed.html?hash=ptplb333&t=1397230791", :style => "border:none", :webkitallowfullscreen => "true", :width => "100%", style: "padding: 0 3%; margin-bottom: 20px "}
+    
+ 
   / video story telling
   - video_id = "CWixPNYVmI0"
   
   %iframe.last_video{ width: "100%", src: "//www.youtube.com/embed/#{video_id}", frameborder: 0, allowfullscreen: true }
+  
+  
+  .others
+    %h3 Se ti piace Riot Van sostienilo con una donazione
+
+    = haml :"_donate_button"
+    %br
+  
+  
+  %h2= "Progetti Principali".upcase
+  
+  %ul 
+    %li 
+      %h4
+        %a{ href: "/issues" } Riot Van
+      %span Free Press, edizione cartacea e digitale (pdf) 
+    %li
+      %h4
+        %a{ href: "/videos" } Story Telling
+      %span Video interview + play in acustico, band locali come:
+      -# %a{ href: "" } Passogigante,
+      -# %a{ href: "" } A Free Mama,
+      -# %a{ href: "" } Street Clerks
+      %b Passogigante,  
+      %b A Free Mama, 
+      %b Street Clerks
+
+  .partners
+    %h2 PARTNERS
+    %a{ href: "http://www.blueswriters.com" }
+      %img{ src: "/images/partners/blueswriters.png" }
+    %a{ href: "http://nodump.it" }
+      %img{ src: "/images/partners/no_dump.png" }
+    %a{ href: "http://guerrillaspam.blogspot.it" }
+      %img{ src: "/images/partners/guerrilla_spam.png" }
+    %a{ href: "http://www.velvetgoldmine.eu" }
+      %img{ src: "/images/partners/gold.png" }
+
+    /
+      %a{ href: "http://www.parkourfirenze.org" }
+        %img{ src: "/images/partners/parkhour.png" }
+      %a{ href: "http://super-magazine.com" }
+        %img{ src: "/images/partners/super_magazine.png" }
+  
 
 
 .right
@@ -11,36 +59,12 @@
   
   %iframe.last_video{ width: "100%", src: "//www.youtube.com/embed/#{video_id}", frameborder: 0, allowfullscreen: true }
   
-  
   .last_number
     / %h3 Ultimo Numero
     %a{ href: "/issues/#{ISSUE_NUM}" }
       %img{ src: "/images/numbers/#{ISSUE_NUM}.png" }
-      
-      
-  .others
-    %h3 Se ti piace Riot Van sostienilo con una donazione
-    
-    = haml :"_donate_button"
-    %br
-    
-    %h2= "Progetti Principali".upcase
-    
-    %ul 
-      %li 
-        %h4
-          %a{ href: "/issues" } Riot Van
-        %span Free Press, edizione cartacea e digitale (pdf) 
-      %li
-        %h4
-          %a{ href: "/videos" } Story Telling
-        %span Video interview + play in acustico, band locali come:
-        -# %a{ href: "" } Passogigante,
-        -# %a{ href: "" } A Free Mama,
-        -# %a{ href: "" } Street Clerks
-        %b Passogigante,  
-        %b A Free Mama, 
-        %b Street Clerks
+  
+  
   /
     .non.pillola.ma.concorso_fotografico
       %h3 Concorso fotografico
@@ -104,22 +128,6 @@
   -#   - src = "http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Fplaylists%2F"+playlist+"}&amp;auto_play=false&amp;show_artwork=false&amp;color=ff7700"
   -#   %iframe{ src: src, scrolling: "no", frameborder: "no" }
 
-  .partners
-    %h3 Partners
-    %a{ href: "http://www.blueswriters.com" }
-      %img{ src: "/images/partners/blueswriters.png" }
-    %a{ href: "http://nodump.it" }
-      %img{ src: "/images/partners/no_dump.png" }
-    %a{ href: "http://guerrillaspam.blogspot.it" }
-      %img{ src: "/images/partners/guerrilla_spam.png" }
-    %a{ href: "http://www.velvetgoldmine.eu" }
-      %img{ src: "/images/partners/gold.png" }
-
-    /
-      %a{ href: "http://www.parkourfirenze.org" }
-        %img{ src: "/images/partners/parkhour.png" }
-      %a{ href: "http://super-magazine.com" }
-        %img{ src: "/images/partners/super_magazine.png" }
 
 
   .fb_like_box

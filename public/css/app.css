@@ -302,7 +302,7 @@ h3 {
     font-size: 1.25em; }
 
 .last_number img {
-  margin: 0 auto 8px 0;
+  margin: 0 auto 0 0;
   width: 94.5%; }
 .last_number img:hover {
   opacity: 0.85; }
