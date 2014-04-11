@@ -1,4 +1,17 @@
+.right2.right
+  / video story telling
+  - video_id = "CWixPNYVmI0"
+  
+  %iframe.last_video{ width: "100%", src: "//www.youtube.com/embed/#{video_id}", frameborder: 0, allowfullscreen: true }
+
+
 .right
+  / video sez. principale
+  - video_id = "eIecUWC9SPk"
+  
+  %iframe.last_video{ width: "100%", src: "//www.youtube.com/embed/#{video_id}", frameborder: 0, allowfullscreen: true }
+  
+  
   .last_number
     / %h3 Ultimo Numero
     %a{ href: "/issues/#{ISSUE_NUM}" }

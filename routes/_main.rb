@@ -57,6 +57,14 @@ class RiotVan < Sinatra::Base
   get "/videos/*" do
     haml :video_page
   end
+  
+  get "/storytelling" do
+    haml :videos
+  end
+
+  get "/storytelling/*" do
+    haml :video_page
+  end
 
   get "/event" do
     haml :event

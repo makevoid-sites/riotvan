@@ -90,7 +90,7 @@ body {
 
 .page {
   margin: 15px 4%;
-  width: 58%; }
+  width: 40%; }
 
 .page.home {
   padding-top: 1%; }
@@ -285,10 +285,13 @@ h3 {
   box-shadow: 3px, 3px, #999999;
   font-size: 1em; }
 
+.right2.right {
+  margin: 0 4% 0 0; }
+
 .right {
   float: right;
-  width: 32%;
-  margin: 0 4% 0 0;
+  width: 25%;
+  margin: 0;
   padding: 1%;
   border-left: 2px dashed black;
   text-align: center; }
@@ -698,3 +701,8 @@ a.back {
   .page.videos .video iframe {
     width: 100%;
     height: 200px; }
+
+.last_video {
+  height: 210px;
+  padding: 0 3%;
+  margin-bottom: 20px; }
