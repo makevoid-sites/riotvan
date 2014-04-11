@@ -90,7 +90,7 @@ body {
 
 .page {
   margin: 15px 4%;
-  width: 62%; }
+  width: 58%; }
 
 .page.home {
   padding-top: 1%; }
@@ -287,7 +287,7 @@ h3 {
 
 .right {
   float: right;
-  width: 28%;
+  width: 32%;
   margin: 0 4% 0 0;
   padding: 1%;
   border-left: 2px dashed black;
