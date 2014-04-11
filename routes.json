@@ -10,6 +10,8 @@
   "/collabs/*":   "collab",
   "/videos":      "videos",
   "/videos/*":    "video_page",
+  "/storytelling":      "videos",
+  "/storytelling/*":    "video_page",
   "/issues":      "issues",
   "/events":      "events",
   "/events/*":    "event",

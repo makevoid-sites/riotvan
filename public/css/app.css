@@ -130,7 +130,7 @@ h1 {
 
 .nav_box {
   margin: 0px auto;
-  max-width: 1000px;
+  max-width: 1200px;
   min-width: 320px; }
 
 .nav_cont {
@@ -138,14 +138,14 @@ h1 {
   text-align: center;
   margin: 0 auto;
   width: 92%;
-  max-width: 1000px; }
+  max-width: 1200px; }
   .nav_cont span {
     color: white; }
 
 #content, .outer {
   margin: 0 auto;
   min-width: 320px;
-  max-width: 1000px; }
+  max-width: 1200px; }
 
 #content {
   min-height: 400px; }
@@ -510,7 +510,7 @@ h3 {
   top: 50px;
   margin: 0 auto;
   width: 92%;
-  max-width: 1000px; }
+  max-width: 1200px; }
 
 .page.full.guerrilla_spam h1, .page.full.riot_house h1 {
   font-family: bebas_neue;
@@ -534,7 +534,7 @@ form.mail input {
   font-size: 1.2em; }
 
 footer {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto; }
 
 .furgone {

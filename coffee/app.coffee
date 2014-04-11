@@ -341,7 +341,8 @@ $ ->
         eventi: 2,
         chi_siamo: 3,
         collaboratori: 4,
-        video: 5
+        video: 5,
+        storytelling: 17
       },
       host: hostz
     }
