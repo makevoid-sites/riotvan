@@ -315,6 +315,7 @@ $ ->
   bind_lightbox()
   add_figcaptions()
 
+
   # resize issuu
   setTimeout ->
     resize_issuu()
