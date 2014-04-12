@@ -206,7 +206,7 @@
   g.fb_init = fb_init;
 
   fb_setup = function() {
-    
+
   (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
@@ -358,7 +358,7 @@
 
   haml.host = local;
 
-  articles_per_page = 6;
+  articles_per_page = 4;
 
   $(function() {
     fb_setup();
