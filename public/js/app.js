@@ -206,7 +206,7 @@
   g.fb_init = fb_init;
 
   fb_setup = function() {
-
+    
   (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
@@ -397,7 +397,8 @@
           eventi: 2,
           chi_siamo: 3,
           collaboratori: 4,
-          video: 5
+          video: 5,
+          storytelling: 17
         },
         host: hostz
       };
@@ -533,16 +534,52 @@
   };
 
   render_pagination = function(pag) {
-    var current_page, i, pages_view, pagination, total_pages;
-    total_pages = pag["entries_count"] / pag["limit"];
-    current_page = pag["offset"] * pag["limit"];
+    var a, b, c, cp, current_page, i, last, pages_view, pagination, size, total_pages;
+    total_pages = parseInt(pag["entries_count"] / pag["limit"]);
+    current_page = parseInt(pag["offset"] / pag["limit"]);
     pages_view = (function() {
       var _i, _results;
-      _results = [];
-      for (i = _i = 1; 1 <= total_pages ? _i <= total_pages : _i >= total_pages; i = 1 <= total_pages ? ++_i : --_i) {
-        _results.push("<a>" + i + "</a>");
+      if (total_pages < 10) {
+        _results = [];
+        for (i = _i = 1; 1 <= total_pages ? _i <= total_pages : _i >= total_pages; i = 1 <= total_pages ? ++_i : --_i) {
+          _results.push("<a>" + i + "</a>");
+        }
+        return _results;
+      } else {
+        size = 4;
+        cp = Math.max(current_page || 1, 4);
+        last = Math.min(cp + size - 1, total_pages - 3);
+        a = (function() {
+          var _j, _results1;
+          _results1 = [];
+          for (i = _j = 1; _j <= 3; i = ++_j) {
+            _results1.push("<a>" + i + "</a>");
+          }
+          return _results1;
+        })();
+        b = (function() {
+          var _j, _results1;
+          _results1 = [];
+          for (i = _j = cp; cp <= last ? _j <= last : _j >= last; i = cp <= last ? ++_j : --_j) {
+            _results1.push("<a>" + i + "</a>");
+          }
+          return _results1;
+        })();
+        c = (function() {
+          var _j, _ref, _results1;
+          _results1 = [];
+          for (i = _j = _ref = total_pages - 2; _ref <= total_pages ? _j <= total_pages : _j >= total_pages; i = _ref <= total_pages ? ++_j : --_j) {
+            _results1.push("<a>" + i + "</a>");
+          }
+          return _results1;
+        })();
+        if (cp > 4) {
+          a.push("<span class='dots'>...</span>");
+        }
+        b.push("<span class='dots'>...</span>");
+        a = a.concat(b);
+        return a.concat(c);
       }
-      return _results;
     })();
     pagination = "    " + (pages_view.join(" ")) + "  ";
     $(".pagination[data-collection=" + pag["collection"] + "]").html(pagination);

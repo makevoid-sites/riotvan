@@ -451,10 +451,27 @@ get_elements = ->
   get_collection(filters)
 
 render_pagination = (pag) ->
-  total_pages = pag["entries_count"] / pag["limit"]
-  current_page = pag["offset"]*pag["limit"]
-  pages_view =  for i in [1..total_pages]
-    "<a>#{i}</a>"
+  total_pages  = parseInt( pag["entries_count"] / pag["limit"] )
+  current_page = parseInt( pag["offset"] / pag["limit"] )
+  pages_view =  if total_pages < 10
+    for i in [1..total_pages]
+      "<a>#{i}</a>"
+  else
+    # naive implementation but works
+    size = 4
+    cp = Math.max(current_page || 1, 4)
+    last = Math.min(cp+size-1, total_pages-3)
+    a = for i in [1..3]
+      "<a>#{i}</a>"
+    b = for i in [cp..last]
+      "<a>#{i}</a>"
+    c = for i in [(total_pages-2)..total_pages]
+      "<a>#{i}</a>"
+    a.push "<span class='dots'>...</span>" if cp > 4
+    b.push "<span class='dots'>...</span>"
+    a = a.concat b
+    a.concat c
+
   pagination = "
 
     #{pages_view.join(" ")}
