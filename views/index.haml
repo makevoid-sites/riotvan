@@ -65,7 +65,8 @@
   %iframe.last_video{ width: "100%", src: "//www.youtube.com/embed/#{video_id}", frameborder: 0, allowfullscreen: true }
 
   .last_number
-    %h3 Magazine
+    %h3
+     %a{ href: "/issues" } Magazine
     %a{ href: "/issues/#{ISSUE_NUM}" }
       %img{ src: "/images/numbers/#{ISSUE_NUM}.png" }
 
