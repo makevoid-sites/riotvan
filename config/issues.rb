@@ -16,6 +16,7 @@ ISSUU_IDS = [
   "130630192306-9ea60176757726b1e61eb37f9df43141",
   "3259606/6416071",
   "1865874/8262298",
+  "141212155517-b643b05006a55a7f5767f4c58fd204fe",
   # aggiungere nuovi numeri sopra questa riga
 ]
 
