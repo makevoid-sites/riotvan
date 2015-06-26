@@ -18,6 +18,7 @@ ISSUU_IDS = [
   "1865874/8262298",
   "1865874/10559543",
   "1865874/12098836",
+  "1865874/13790532",
   # aggiungere nuovi numeri sopra questa riga
 ]
 
