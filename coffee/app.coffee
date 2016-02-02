@@ -288,7 +288,7 @@ if location.hostname == "localhost"
 else
   # prod
   hostz = "fiveapi.com"
-  local = "riotvan.net"
+  local = "old.riotvan.net"
 
 hostz = "http://#{hostz}"
 local = "http://#{local}"
