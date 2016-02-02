@@ -349,7 +349,7 @@
     local = "localhost:3001";
   } else {
     hostz = "fiveapi.com";
-    local = "riotvan.net";
+    local = "old.riotvan.net";
   }
 
   hostz = "http://" + hostz;
